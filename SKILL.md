@@ -1,92 +1,175 @@
 ---
 name: cartridge-read-write
-description: Write text into a PNG file by appending raw bytes after the IEND chunk, and read that text back out. Use when the user asks to embed, append, hide, or extract text in/from a PNG using the "cartridge" trick — the PNG remains a valid image while carrying an arbitrary payload at the tail. Trigger phrases include "cartridge", "append text to png", "hide text in png", "read text from cartridge png", "extract payload from png".
+description: Write text into a PNG or JPEG/JFIF image by appending raw bytes after the image's end marker, and read that text back out. Use when the user asks to embed, append, hide, or extract text in/from an image using the "cartridge" trick — the image remains valid and renders normally while carrying a text payload at the tail. Also covers converting PNG to JFIF so cartridges can be shared on platforms (like X/Twitter) that prefer JPEG. Trigger phrases include "cartridge", "append text to png/jpeg/jfif", "hide text in image", "read text from cartridge", "extract payload from image", "convert png to jfif".
 ---
 
 # cartridge-read-write
 
-A "cartridge" is a normal PNG file with arbitrary bytes appended after the final `IEND` chunk. PNG decoders stop reading at `IEND`, so the image still renders correctly while the trailing bytes ride along as a payload.
+A "cartridge" is a normal image file with arbitrary bytes appended after its end-of-image marker. Image decoders stop at the marker, so the picture still renders, while the trailing bytes ride along as a payload.
+
+Supports two formats:
+
+| Format | Magic (first bytes) | End marker | Bytes to skip after marker |
+| --- | --- | --- | --- |
+| PNG | `89 50 4E 47` | `49 45 4E 44 AE 42 60 82` (`IEND` + CRC) — 8 bytes | 8 |
+| JPEG / JFIF | `FF D8 FF` | `FF D9` (EOI) — 2 bytes | 2 |
+
+`.jpg`, `.jpeg`, and `.jfif` are all the same JPEG byte format — only the extension differs.
 
 ## CRITICAL — how to invoke the snippets below
 
-Every snippet in this skill uses `$variables`. Run them with the **PowerShell tool directly**, OR save them to a `.ps1` and run that file.
+Every snippet uses `$variables`. Run with the **PowerShell tool directly**, OR save to a `.ps1` and run that file.
 
-**DO NOT** wrap them as `bash -c "powershell -Command \"...$var...\""` — bash interprets every `$var` as an empty bash variable and strips it, turning `$i--` into `--` and producing a parse error in PowerShell.
-
-If you must invoke through bash, use **single quotes** around the `-Command` argument so the `$` characters survive:
+**DO NOT** wrap as `bash -c "powershell -Command \"...$var...\""` — bash interprets every `$var` as an empty bash variable and strips it, turning `$i--` into `--` and producing a parse error in PowerShell. If you must invoke through bash, use single quotes around `-Command` so `$` survives:
 
 ```bash
-powershell -NoProfile -Command '$bytes = [System.IO.File]::ReadAllBytes("C:\path.png"); ...'
+powershell -NoProfile -Command '$b = [System.IO.File]::ReadAllBytes("C:\path.png"); ...'
 ```
 
-…or write the script to a file and run `powershell -NoProfile -File script.ps1`.
+…or run from a file: `powershell -NoProfile -File script.ps1`.
 
-## How it works
-
-A PNG file ends with an 8-byte `IEND` chunk: `00 00 00 00 49 45 4E 44 AE 42 60 82`. The 4-byte tail `AE 42 60 82` is the CRC, so every valid PNG ends with the same final 8 bytes: `49 45 4E 44 AE 42 60 82`. Any bytes after that are ignored by image viewers but preserved on disk.
-
-## Writing a payload
+## Writing a payload (works for PNG or JPEG/JFIF — appending is format-agnostic)
 
 ```powershell
-$src = "C:\path\to\input.png"
-$dst = "C:\path\to\output.png"
+$src     = "C:\path\to\input.png"        # or .jpg / .jpeg / .jfif
+$dst     = "C:\path\to\output.png"       # match the source extension
 $payload = "the text to embed"
 
 Copy-Item $src $dst -Force
 $bytes = [System.Text.Encoding]::UTF8.GetBytes($payload)
-$fs = [System.IO.File]::Open($dst, "Append")
+$fs = [System.IO.File]::Open((Resolve-Path $dst), "Append")
 $fs.Write($bytes, 0, $bytes.Length)
 $fs.Close()
 ```
 
-To overwrite the original instead, set `$dst = $src` and skip the `Copy-Item`.
+To overwrite in place, set `$dst = $src` and skip the `Copy-Item`.
 
-## Reading a payload (preferred — works without knowing the length)
+## Reading a payload (auto-detect PNG vs JPEG)
 
-This version uses string `IndexOf` over a Latin-1 view of the bytes, so it's a clean one-liner with no manual byte-by-byte loop:
+This locates the correct end marker by sniffing the first bytes of the file:
 
 ```powershell
-$b = [System.IO.File]::ReadAllBytes("C:\path\to\output.png")
+$path = "C:\path\to\output.png"   # or .jpg / .jpeg / .jfif
+$b = [System.IO.File]::ReadAllBytes((Resolve-Path $path))
 $s = [System.Text.Encoding]::GetEncoding("iso-8859-1").GetString($b)
-$marker = [string]([char]0x49 + [char]0x45 + [char]0x4E + [char]0x44 + [char]0xAE + [char]0x42 + [char]0x60 + [char]0x82)
+
+if ($b[0] -eq 0x89 -and $b[1] -eq 0x50) {
+    # PNG: IEND + CRC, 8-byte marker, skip 8
+    $marker = [string]([char]0x49 + [char]0x45 + [char]0x4E + [char]0x44 + [char]0xAE + [char]0x42 + [char]0x60 + [char]0x82)
+    $skip = 8
+} elseif ($b[0] -eq 0xFF -and $b[1] -eq 0xD8) {
+    # JPEG/JFIF: EOI, 2-byte marker, skip 2
+    $marker = [string]([char]0xFF + [char]0xD9)
+    $skip = 2
+} else {
+    throw "Unsupported image format (not PNG or JPEG)"
+}
+
 $idx = $s.LastIndexOf($marker)
-if ($idx -ge 0 -and $idx + 8 -lt $b.Length) {
-    [System.Text.Encoding]::UTF8.GetString($b, $idx + 8, $b.Length - $idx - 8)
+if ($idx -ge 0 -and $idx + $skip -lt $b.Length) {
+    [System.Text.Encoding]::UTF8.GetString($b, $idx + $skip, $b.Length - $idx - $skip)
 }
 ```
 
-`LastIndexOf` is used because the literal bytes `49 45 4E 44 AE 42 60 82` only ever appear once in a valid PNG (as the trailing chunk), but using `LastIndexOf` is robust if anything weird shows up.
+`LastIndexOf` matters more for JPEG than PNG — the 2-byte sequence `FF D9` can appear inside JPEG entropy-coded scan data, but the *real* EOI is always the final occurrence. (For PNG, `IEND` + CRC only ever appears once, but `LastIndexOf` is harmless and keeps the code uniform.)
 
-### Reading when you already know the payload length
+### Reading when you already know the payload length (format-agnostic)
 
 ```powershell
-$bytes = [System.IO.File]::ReadAllBytes("C:\path\to\output.png")
-$len = 17  # length of the payload in bytes
-[System.Text.Encoding]::UTF8.GetString($bytes, $bytes.Length - $len, $len)
+$b = [System.IO.File]::ReadAllBytes("C:\path\to\output.png")
+$len = 4139  # known payload length in bytes
+[System.Text.Encoding]::UTF8.GetString($b, $b.Length - $len, $len)
 ```
+
+## Converting PNG → JFIF (so cartridges can be posted on X/Twitter)
+
+X/Twitter accepts PNG uploads but typically re-encodes them, which would destroy the cartridge. JPEG uploads (`.jpg` / `.jpeg` / `.jfif`) are more often passed through when they're already within the platform's size/quality budget. Convert your PNG to JFIF first, then embed the payload.
+
+### Native PowerShell (no external dependencies)
+
+```powershell
+Add-Type -AssemblyName System.Drawing
+$src = "C:\path\to\input.png"
+$dst = "C:\path\to\output.jfif"
+$img = [System.Drawing.Image]::FromFile((Resolve-Path $src))
+$img.Save($dst, [System.Drawing.Imaging.ImageFormat]::Jpeg)
+$img.Dispose()
+```
+
+For a specific JPEG quality (default ~75 is fine; bump to 90+ if you care about visible loss):
+
+```powershell
+Add-Type -AssemblyName System.Drawing
+$src = "C:\path\to\input.png"
+$dst = "C:\path\to\output.jfif"
+$img = [System.Drawing.Image]::FromFile((Resolve-Path $src))
+$codec = [System.Drawing.Imaging.ImageCodecInfo]::GetImageEncoders() | Where-Object { $_.MimeType -eq 'image/jpeg' }
+$params = New-Object System.Drawing.Imaging.EncoderParameters(1)
+$params.Param[0] = New-Object System.Drawing.Imaging.EncoderParameter([System.Drawing.Imaging.Encoder]::Quality, [long]90)
+$img.Save($dst, $codec, $params)
+$img.Dispose()
+```
+
+### ImageMagick (if installed)
+
+```powershell
+magick "input.png" -quality 90 "output.jfif"
+```
+
+### ffmpeg (if installed)
+
+```powershell
+ffmpeg -i input.png -q:v 2 output.jfif
+```
+
+### After conversion
+
+Append your payload to the new `.jfif` using the write snippet above. The recipient extracts it with the auto-detect reader.
+
+### Honest caveat about X/Twitter
+
+Platforms re-encode images at their discretion based on dimensions, file size, and account/upload settings. Cartridges only survive when the image bytes are stored unchanged on the platform's CDN. Test by uploading, downloading the served file, and running the reader on it. If the payload is gone, the platform re-encoded — try smaller dimensions, lower file size, or X's "high-quality images" account setting.
 
 ## Python alternative (portable, no quoting headaches)
 
-If PowerShell quoting is causing trouble, drop to Python:
+### Read (auto-detect)
 
 ```python
-data = open(r"C:\path\to\output.png", "rb").read()
-idx = data.rfind(b"IEND\xae\x42\x60\x82")
-print(data[idx + 8:].decode("utf-8"))
+def read_cartridge(path):
+    data = open(path, "rb").read()
+    if data[:2] == b"\x89P":           # PNG
+        marker, skip = b"IEND\xae\x42\x60\x82", 8
+    elif data[:2] == b"\xff\xd8":      # JPEG / JFIF
+        marker, skip = b"\xff\xd9", 2
+    else:
+        raise ValueError("Not a PNG or JPEG file")
+    idx = data.rfind(marker)
+    if idx < 0:
+        raise ValueError("End marker not found")
+    return data[idx + skip:].decode("utf-8")
+
+print(read_cartridge("output.jfif"))
 ```
 
-Writing in Python:
+### Write
 
 ```python
 import shutil
-shutil.copyfile(r"C:\path\to\input.png", r"C:\path\to\output.png")
-with open(r"C:\path\to\output.png", "ab") as f:
+shutil.copyfile("input.jfif", "output.jfif")
+with open("output.jfif", "ab") as f:
     f.write("the text to embed".encode("utf-8"))
+```
+
+### Convert PNG → JFIF
+
+```python
+from PIL import Image
+Image.open("input.png").convert("RGB").save("output.jfif", "JPEG", quality=90)
 ```
 
 ## Notes
 
-- The PNG remains visually identical and opens in any viewer.
+- The image remains visually identical (or visually equivalent after JPEG conversion) and opens in any viewer.
 - Use UTF-8 for non-ASCII text to round-trip safely.
-- Avoid `Add-Content` / `Set-Content` for binary appends — they re-encode and can corrupt the file. Use `[System.IO.File]::Open(..., "Append")` or Python's `"ab"` mode instead.
-- This is not encryption or steganography — the payload is plainly visible to anyone who looks at the file bytes. Use it for fun/labeling, not secrecy.
+- Avoid `Add-Content` / `Set-Content` for binary appends — they re-encode and corrupt the file. Use `[System.IO.File]::Open(..., "Append")` or Python `"ab"` mode.
+- This is not encryption or steganography — the payload is plainly visible to anyone who looks at the file bytes. Use for fun/labeling/skill-sharing, not secrecy.
