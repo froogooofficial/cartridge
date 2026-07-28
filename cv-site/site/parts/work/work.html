@@ -1,1 +1,53 @@
-<section class="section wrap" id="work"><h2 class="h2">work (stub)</h2></section>
+<section id="work" class="work section wrap" aria-labelledby="work-title">
+  <h2 class="eyebrow work-eyebrow reveal" id="work-title">Selected work</h2>
+
+  <ol class="work-list" role="list" data-stagger="72">
+    {{#each work}}
+    <li class="work-card reveal">
+      <p class="work-meta">
+        <span class="work-kicker">{{kicker}}</span>
+        <span class="work-index num" aria-hidden="true"></span>
+      </p>
+
+      <h3 class="work-title">{{title}}</h3>
+
+      <p class="work-summary">{{summary}}</p>
+
+      <p class="work-tags"><span class="work-tag">{{tags.0}}</span>{{#if tags.1}}<span class="work-tag">{{tags.1}}</span>{{/if}}{{#if tags.2}}<span class="work-tag">{{tags.2}}</span>{{/if}}{{#if tags.3}}<span class="work-tag">{{tags.3}}</span>{{/if}}</p>
+
+      <dl class="work-metrics">
+        <div class="work-metric">
+          <dt class="work-metric-label">{{metrics.0.label}}</dt>
+          <dd class="work-metric-value num">{{metrics.0.value}}</dd>
+        </div>
+        {{#if metrics.1}}
+        <div class="work-metric">
+          <dt class="work-metric-label">{{metrics.1.label}}</dt>
+          <dd class="work-metric-value num">{{metrics.1.value}}</dd>
+        </div>
+        {{/if}}
+        {{#if metrics.2}}
+        <div class="work-metric">
+          <dt class="work-metric-label">{{metrics.2.label}}</dt>
+          <dd class="work-metric-value num">{{metrics.2.value}}</dd>
+        </div>
+        {{/if}}
+      </dl>
+
+      {{#if detail}}
+      <details class="work-more">
+        <summary class="work-more-btn tap">
+          <span class="work-more-label">How it was built</span>
+          <svg class="work-chev" viewBox="0 0 16 16" width="16" height="16" fill="none" aria-hidden="true" focusable="false">
+            <path d="M4 6.25 8 10.25 12 6.25" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </summary>
+        <div class="work-detail">
+          <p class="work-detail-text">{{detail}}</p>
+        </div>
+      </details>
+      {{/if}}
+    </li>
+    {{/each}}
+  </ol>
+</section>

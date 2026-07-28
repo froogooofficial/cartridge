@@ -1,1 +1,91 @@
-/* skills */
+/* ── skills ────────────────────────────────────────────────────────────────
+   Supporting evidence, not the main event. Four groups carry the weight
+   (24px, primary ink); the items sit under them as one quiet run of 17px
+   secondary text — no pills, no boxes, no per-item chrome.
+   Type tiers, all >= 1.25x apart: 33 / 24 / 17 / 13.
+   The only accent in the section is the 1px sheen at the head of the list.
+   Nothing animates but the shared .reveal (transform + opacity).
+   ------------------------------------------------------------------------ */
+
+.sk-eyebrow { margin-bottom: var(--s-3); }
+
+.sk-title {
+  color: var(--tx);
+  margin-bottom: var(--s-10);
+  text-wrap: balance;
+}
+
+/* ── The list ───────────────────────────────────────────────────────────── */
+.sk-list {
+  position: relative;
+  counter-reset: sk;
+}
+
+/* Head rule: the same 1px hairline that separates the groups below it, so the
+   list reads as one ruled block. This was an accent-to-transparent gradient —
+   a fifth accent placement once the parts were composed, and the only gradient
+   on the page that was nameable as "a gradient" at a glance (SPEC §2.4). */
+.sk-list::before {
+  content: '';
+  position: absolute;
+  inset: 0 0 auto;
+  height: 1px;                       /* hairline */
+  background: var(--line);
+}
+
+.sk-group {
+  display: grid;
+  grid-template-columns: var(--s-6) 1fr;
+  column-gap: var(--s-4);
+  align-items: baseline;
+  counter-increment: sk;
+  padding-block: var(--s-6);
+}
+.sk-group + .sk-group { border-top: 1px solid var(--line); }  /* hairline */
+.sk-group:last-child { padding-bottom: 0; }
+
+/* ── Tier 4 (13px): the hanging index. Decorative, hidden from AT. ─────── */
+.sk-idx {
+  grid-column: 1;
+  grid-row: 1;
+  font-family: var(--font-num);
+  font-variant-numeric: tabular-nums;
+  font-size: var(--f-eyebrow);
+  font-weight: var(--w-med);
+  letter-spacing: 0;
+  line-height: var(--lh-head);
+  color: var(--tx-faint);
+}
+.sk-idx::before { content: counter(sk, decimal-leading-zero); }
+
+/* ── Tier 2 (24px): the group. This is what the section is made of. ─────── */
+.sk-name {
+  grid-column: 2;
+  grid-row: 1;
+  font-size: var(--f-h2);
+  font-weight: var(--w-semi);
+  line-height: var(--lh-head);
+  letter-spacing: var(--ls-head);
+  color: var(--tx);
+}
+
+/* ── Tier 3 (17px): the items, quiet, in one flowing run. ──────────────── */
+/* Separation is space, not punctuation and not boxes: a 20px gap against a
+   ~4px word space reads as a break without adding a single mark to the page,
+   and no line can ever end on a dangling separator. */
+.sk-items {
+  grid-column: 2;
+  grid-row: 2;
+  display: flex;
+  flex-wrap: wrap;
+  column-gap: var(--s-5);
+  row-gap: var(--s-2);
+  max-width: var(--measure);
+  margin-top: var(--s-4);
+  font-size: var(--f-body);
+  line-height: var(--lh-tight);
+  letter-spacing: var(--ls-body);
+  color: var(--tx-dim);
+}
+/* An item is one unit: never break "WebGL / Canvas" across two lines. */
+.sk-items li { white-space: nowrap; }

@@ -75,6 +75,19 @@ printed JSON alone is worthless and will be discarded. Look at the pixels. Then 
 the motion frames in order and describe what actually moved — if all six frames are identical,
 either nothing animates or the reveal already completed, and you should say which.
 
+CALIBRATION — READ THIS BEFORE YOU REPORT A VISUAL DEFECT. These PNGs are 1179x2556 and are
+downscaled before you see them. That downscaling has already produced at least one convincing
+phantom: two separate agents independently reported a faint envelope icon in the top-right of
+the hero. It is not there. Measured, that region has a maximum luminance of 25 against 177 for
+the real icon, and document.elementFromPoint returns the bare section. It was an artifact of
+the viewing pipeline, not of the page.
+So: before you report ANY small-scale visual defect — a stray mark, a mis-rendered glyph, a
+hairline in the wrong place, a duplicated element — you must confirm it numerically. Sample
+the region with a canvas, or query the DOM with page.evaluate, and quote the number. If you
+cannot confirm it, do not report it. Large-scale judgements (layout, hierarchy, spacing,
+weight, colour relationships, whether a section has one idea) ARE reliable from the downscaled
+image — judge those freely and confidently. This warning is about small marks only.
+
 HOW TO JUDGE:
   1. Name in three words the one thing this piece is about (SPEC 1.1). If you cannot, it fails.
   2. Walk SPEC sections 1-4 and record every rule broken, each with the MEASURED value that

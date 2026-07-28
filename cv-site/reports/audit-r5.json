@@ -1,0 +1,30 @@
+{
+  "url": "http://127.0.0.1:4173/",
+  "tapTargets": {
+    "min": 44,
+    "failures": [],
+    "pass": true
+  },
+  "overflow": {
+    "scrollWidth": 393,
+    "viewport": 393,
+    "offenders": [],
+    "pass": true
+  },
+  "scroll": {
+    "frameCount": 356,
+    "droppedFrames": 0,
+    "jankPct": 0,
+    "p95FrameMs": 16.8,
+    "longestFrameMs": 16.8,
+    "pass": true
+  },
+  "cls": {
+    "value": 0,
+    "pass": true
+  },
+  "longTasks": [
+    172
+  ],
+  "pass": true
+}

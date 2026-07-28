@@ -13,11 +13,37 @@
   }
   if (!pairs.length) return;
 
-  function activate(link) {
+  // Several entries can report intersecting in one callback; without this the
+  // spy rewrites all four attributes on every one of them, mid-fling.
+  var current = null;
+  var pending = null;
+  var scheduled = 0;
+
+  // The observer fires while the page is moving. Writing the attribute there
+  // puts a style recalc and an accessibility-tree update inside a frame the
+  // compositor is already using to scroll, and it was measurably costing a
+  // dropped frame. The decision stays scroll-driven — IntersectionObserver
+  // still makes it, and scrubbing back up reverses it exactly — only the write
+  // is moved to the first idle moment after the flick settles.
+  var defer =
+    window.requestIdleCallback ||
+    function (fn) { return setTimeout(fn, 120); };
+
+  function commit() {
+    scheduled = 0;
+    if (pending === current) return;
+    current = pending;
     for (var i = 0; i < pairs.length; i++) {
-      if (pairs[i].link === link) pairs[i].link.setAttribute('aria-current', 'page');
+      if (pairs[i].link === current) pairs[i].link.setAttribute('aria-current', 'page');
       else pairs[i].link.removeAttribute('aria-current');
     }
+  }
+
+  function activate(link) {
+    pending = link;
+    if (scheduled) return;
+    scheduled = 1;
+    defer(commit, { timeout: 300 });
   }
 
   var io = new IntersectionObserver(

@@ -1,1 +1,23 @@
-<section class="section wrap" id="skills"><h2 class="h2">skills (stub)</h2></section>
+<section class="sk section" id="skills" aria-labelledby="sk-title">
+  <div class="wrap">
+    <p class="eyebrow sk-eyebrow reveal">Capabilities</p>
+    <h2 class="h1 sk-title reveal" id="sk-title">The tools,<br>and the habits.</h2>
+
+    <ol class="sk-list" data-stagger="70">
+      {{#each skills}}
+      <li class="sk-group reveal">
+        <span class="sk-idx" aria-hidden="true"></span>
+        <h3 class="sk-name">{{group}}</h3>
+        <ul class="sk-items">
+          {{#if items.0}}<li>{{items.0}}</li>{{/if}}
+          {{#if items.1}}<li>{{items.1}}</li>{{/if}}
+          {{#if items.2}}<li>{{items.2}}</li>{{/if}}
+          {{#if items.3}}<li>{{items.3}}</li>{{/if}}
+          {{#if items.4}}<li>{{items.4}}</li>{{/if}}
+          {{#if items.5}}<li>{{items.5}}</li>{{/if}}
+        </ul>
+      </li>
+      {{/each}}
+    </ol>
+  </div>
+</section>

@@ -1,1 +1,199 @@
-/* work */
+/* work — selected work, as three cards.
+   One idea per card: the title. Proof under a hairline. Tags are the floor tier.
+   Cards are raised by light (--lift-2: 1px top sheen + soft ambient shadow),
+   never by a stroke on four sides (SPEC §2.2).
+
+   Type tiers used here, all >=1.25x apart (SPEC §1.2):
+     24  card title        (--f-h2)
+     17  prose + metric + control (--f-body)  24/17 = 1.41
+     13  kicker / labels   (--f-eyebrow)      17/13 = 1.31
+   The card title was --f-h1 (33/680) — the identical size and weight as the
+   .xp-title and .sk-title *section* headlines. Composed, "Canvas Editor" and
+   "The roles, in order." read as the same rank, so a card announced itself as
+   loudly as a section. It now sits on the page's item-title tier, the same
+   24/590 as .xp-co (company) and .sk-name (skill group). Dropping it collided
+   with the 24px metric value, so the metric moved to 17/590: it is already set
+   apart from the 17/400 summary by weight, by tabular figures, and by sitting
+   above its own label.
+   The uppercase eyebrow appears exactly once in the section (the heading);
+   card kickers are sentence case so they don't become a second eyebrow tier.
+   No accent in this section — the chevron was a fifth accent placement once
+   all seven parts were on one page, and it is duplicated across three cards.
+   Scroll-margin now comes from the shared .section rule in base.css, so every
+   dock destination lands the same way instead of only this one. */
+
+.work-eyebrow {
+  margin-bottom: var(--s-10);   /* headline-to-content, page-wide */
+}
+
+.work-list {
+  counter-reset: workn;
+  display: grid;
+  gap: var(--s-8);
+}
+
+/* --- The card ------------------------------------------------------------ */
+.work-card {
+  counter-increment: workn;
+  position: relative;
+  padding: var(--s-5);
+  background: var(--surface-1);
+  border-radius: var(--r-card);
+  box-shadow: var(--lift-2);
+}
+
+/* --- Byline row: source on the left, curated index on the right ---------- */
+.work-meta {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--s-3);
+  font-size: var(--f-eyebrow);
+  line-height: var(--lh-tight);
+}
+.work-kicker {
+  color: var(--tx-dim);
+  font-weight: var(--w-med);
+}
+/* Decorative sequence marker; aria-hidden in the markup. */
+.work-index {
+  flex: none;
+  color: var(--tx-faint);
+}
+.work-index::before {
+  content: counter(workn, decimal-leading-zero);
+}
+
+/* --- The one idea -------------------------------------------------------- */
+.work-title {
+  margin-top: var(--s-3);
+  font-size: var(--f-h2);
+  font-weight: var(--w-semi);
+  line-height: var(--lh-head);
+  letter-spacing: var(--ls-head);
+  text-wrap: balance;
+}
+
+/* Prose runs loose (SPEC §2.3). Primary text — this is the claim. */
+.work-summary {
+  margin-top: var(--s-4);
+  font-size: var(--f-body);
+  line-height: var(--lh-body);
+  color: var(--tx);
+  text-wrap: pretty;
+}
+
+/* --- Floor tier: no chrome, no chips, just a quiet dotted list ----------- */
+.work-tags {
+  margin-top: var(--s-3);
+  font-size: var(--f-eyebrow);
+  line-height: var(--lh-tight);
+  color: var(--tx-dim);
+}
+.work-tag + .work-tag::before {
+  content: '\00B7';
+  padding-inline: var(--s-2);
+  color: var(--tx-faint);
+}
+
+/* --- Proof: reads as data, under its own hairline ------------------------ */
+.work-metrics {
+  margin-top: var(--s-6);
+  padding-top: var(--s-5);
+  border-top: 1px solid var(--line);
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(8rem, 1fr));
+  gap: var(--s-5) var(--s-4);
+}
+/* DOM order is name-then-value so the <dl> reads correctly to a screen reader
+   ("Time to first render: 380ms"); column-reverse puts the number on top,
+   where the eye needs it. */
+.work-metric {
+  display: grid;
+  align-content: start;
+}
+.work-metric-value {
+  grid-row: 1;
+  font-size: var(--f-body);
+  font-weight: var(--w-semi);
+  line-height: var(--lh-tight);
+  color: var(--tx);
+}
+.work-metric-label {
+  grid-row: 2;
+  margin-top: var(--s-1);
+  font-size: var(--f-eyebrow);
+  line-height: var(--lh-tight);
+  color: var(--tx-dim);
+}
+
+/* --- Progressive disclosure: a real <details>, full-bleed at the card foot,
+       so the strip is card-wide and sits in the thumb zone (SPEC §3.1).
+       Height changes instantly on open — only the inner block animates,
+       and only opacity + transform (SPEC §1.3). ------------------------- */
+.work-more {
+  margin-top: var(--s-5);
+  margin-inline: calc(-1 * var(--s-5));
+  margin-bottom: calc(-1 * var(--s-5));
+  border-top: 1px solid var(--line);
+}
+.work-more-btn {
+  display: flex;
+  width: 100%;
+  min-height: var(--tap-good);
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--s-3);
+  padding-inline: var(--s-5);
+  padding-block: var(--s-2);
+  color: var(--tx);
+  font-size: var(--f-body);
+  font-weight: var(--w-med);
+  list-style: none;
+  cursor: pointer;
+  border-end-start-radius: var(--r-card);
+  border-end-end-radius: var(--r-card);
+}
+.work-more-btn::-webkit-details-marker {
+  display: none;
+}
+/* Touch feedback — opacity only. */
+.work-more-btn:active {
+  opacity: 0.65;
+}
+.work-chev {
+  flex: none;
+  width: 1em;
+  height: 1em;
+  color: var(--tx-dim);
+  transition: transform var(--d-base) var(--ease-out);
+}
+.work-more[open] .work-chev {
+  transform: rotate(180deg);
+}
+
+.work-detail {
+  padding-top: var(--s-1);
+  padding-inline: var(--s-5);
+  padding-bottom: var(--s-5);
+}
+.work-more[open] .work-detail {
+  animation: work-detail-in var(--d-base) var(--ease-out) both;
+}
+.work-detail-text {
+  font-size: var(--f-body);
+  line-height: var(--lh-body);
+  color: var(--tx-dim);
+  text-wrap: pretty;
+}
+
+@keyframes work-detail-in {
+  from {
+    opacity: 0;
+    transform: translate3d(0, calc(-1 * var(--s-1)), 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}

@@ -1,1 +1,161 @@
-/* experience */
+/* ── experience ────────────────────────────────────────────────────────────
+   A timeline spine. One hairline rail at --line, a node per role, and four
+   type tiers only: 33 / 24 / 17 / 13 (each jump >= 1.25x).
+   The single accent appears exactly once: the node of the current role.
+   Nothing animates here except the shared .reveal (transform + opacity).
+   ------------------------------------------------------------------------ */
+
+.xp-eyebrow { margin-bottom: var(--s-3); }
+
+/* 40px headline-to-content, the same gap skills, proof and work now use. */
+.xp-title {
+  color: var(--tx);
+  margin-bottom: var(--s-10);
+  text-wrap: balance;
+}
+
+/* ── The rail ───────────────────────────────────────────────────────────── */
+.xp-list {
+  --rail: var(--s-6);          /* 24px: rail-to-text indent */
+  padding-left: var(--rail);
+}
+
+.xp-item {
+  position: relative;
+  padding-bottom: var(--s-16);
+}
+.xp-item:last-child { padding-bottom: 0; }
+
+/* 1px hairline, never heavier (SPEC 2.1). Sits under the node dot. */
+.xp-item::before {
+  content: '';
+  position: absolute;
+  left: calc(var(--rail) * -1);
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: var(--line);
+}
+.xp-item:first-child::before { top: 0.55em; }
+.xp-item:last-child::before  { bottom: auto; height: 100%; }
+
+/* ── Tier 4 (13px): the skim line — period + place ─────────────────────── */
+.xp-meta {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 0 var(--s-3);
+  font-size: var(--f-eyebrow);
+  line-height: 1.2;
+  font-weight: var(--w-semi);
+  letter-spacing: var(--ls-eyebrow);
+  text-transform: uppercase;
+  color: var(--tx-dim);
+  margin-bottom: var(--s-3);
+}
+
+.xp-period { font-family: var(--font-num); font-variant-numeric: tabular-nums; }
+.xp-loc    { letter-spacing: var(--ls-eyebrow); }
+/* Decorative separator only — the text either side carries the meaning. */
+.xp-loc::before {
+  content: '\00B7';
+  color: var(--tx-faint);
+  margin-right: var(--s-3);
+}
+
+/* The current role was marked twice in accent — the period text and the node.
+   Composed with the other parts that is one accent too many, and the node is
+   the stronger of the two because it sits on the rail where the eye tracks.
+   The period keeps the --tx-dim of every other period. */
+
+/* The node. Hollow ring on the rail; filled with the one accent for "now".
+   This is the page's single non-CTA accent placement (SPEC §2.1). */
+.xp-node {
+  position: absolute;
+  left: calc(var(--s-6) * -1);
+  top: 0.35em;
+  width: var(--s-2);
+  height: var(--s-2);
+  transform: translateX(-50%);
+  border-radius: var(--r-pill);
+  background: var(--bg);
+  border: 1px solid var(--line-strong);
+}
+.xp-node.is-now {
+  background: var(--accent);
+  border-color: var(--accent);
+  box-shadow: 0 0 0 var(--s-1) var(--accent-soft);
+}
+
+/* ── Tier 2 (24px): the skim anchor ────────────────────────────────────── */
+.xp-co {
+  font-size: var(--f-h2);
+  font-weight: var(--w-semi);
+  line-height: var(--lh-head);
+  letter-spacing: var(--ls-head);
+  color: var(--tx);
+}
+
+/* ── Tier 3 (17px): role, lede, and the substance ──────────────────────── */
+.xp-role {
+  font-size: var(--f-body);
+  font-weight: var(--w-med);
+  line-height: var(--lh-tight);
+  color: var(--tx);
+  margin-top: var(--s-1);
+}
+
+.xp-blurb {
+  max-width: var(--measure);
+  color: var(--tx-dim);
+  line-height: var(--lh-body);
+  margin-top: var(--s-4);
+}
+
+.xp-hl {
+  max-width: var(--measure);
+  margin-top: var(--s-6);
+}
+.xp-hl > li {
+  position: relative;
+  padding-left: var(--s-6);
+  color: var(--tx);
+  font-size: var(--f-body);
+  line-height: var(--lh-body);
+}
+.xp-hl > li + li { margin-top: var(--s-4); }
+
+/* A hairline dash, optically centred on the first line of the highlight. */
+.xp-hl > li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.78em;
+  width: var(--s-3);
+  height: 1px;
+  background: var(--line-strong);
+}
+
+/* ── Tier 4 (13px): the lowest tier — stack chips ──────────────────────── */
+.xp-stack {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-2);
+  margin-top: var(--s-6);
+}
+.xp-stack > li {
+  font-size: var(--f-eyebrow);
+  font-weight: var(--w-med);
+  line-height: 1.25;
+  letter-spacing: 0;
+  color: var(--tx-dim);
+  background: var(--surface-1);
+  border: 1px solid var(--line);
+  border-radius: var(--r-pill);
+  padding: var(--s-2);
+  padding-inline: var(--s-3);
+}
+/* Keep a 5-chip stack on one row at 393px instead of orphaning the last chip. */
+@media (max-width: 420px) {
+  .xp-stack > li { padding-inline: var(--s-2); }
+}

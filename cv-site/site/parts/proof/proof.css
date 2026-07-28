@@ -1,1 +1,65 @@
-/* proof */
+/* proof — the credibility strip. Type carries it; no boxes, no rules. */
+
+/* Section rhythm is base.css's job: .section + .section already collapses the
+   top pad so hero's 80px trailing gap is the only seam. Nothing overridden here.
+
+   --- Eyebrow -------------------------------------------------------------
+   This carried an accent dot. Composed, the accent already appears on the
+   primary CTA (hero, dock, contact) and on the current-role node; SPEC §2.1
+   allows the CTA, focus rings and at most one other place, so the dot went.
+   It was also the only eyebrow on the page with a marker beside it. */
+.proof-eyebrow {
+  margin-bottom: var(--s-10);
+}
+
+/* --- The numbers --------------------------------------------------------- */
+.proof-list {
+  display: grid;
+  /* 48px between stats against 8px number→label: the grouping is spacing, not
+     a rule or a box (SPEC §1.2). */
+  gap: var(--s-12);
+}
+
+/* The display tier, not a private multiple of it. This was
+   calc(--f-display * 1.15) = 55.1px against the hero headline's 47.9px, which
+   made a supporting stat strip the largest type on the page — the one thing
+   the part could not see when it was built alone. */
+.proof-value {
+  font-size: var(--f-display);
+  font-weight: var(--w-bold);
+  line-height: var(--lh-display);
+  letter-spacing: var(--ls-display);
+  color: var(--tx);
+  white-space: nowrap;
+}
+
+/* .num gives tabular figures; the mono stack renders a slashed/dotted zero at
+   display size on Android, so the numerals stay in the UI face. */
+.proof-value.num {
+  font-family: var(--font);
+}
+
+.proof-unit {
+  font-size: var(--f-h2);
+  font-weight: var(--w-med);
+  letter-spacing: var(--ls-head);
+  color: var(--tx-dim);
+  margin-inline-start: 0.1em;
+}
+
+.proof-label {
+  margin-top: var(--s-2);
+  max-inline-size: 26ch;
+  font-size: var(--f-body);
+  line-height: var(--lh-tight);
+  color: var(--tx-dim);
+  text-wrap: balance;
+}
+
+/* Reveal: nothing declared here on purpose. data-stagger="72" on .proof-list
+   makes runtime.js write --reveal-delay of 0 / 72 / 144ms onto the three <li>,
+   and base.css's .reveal drives opacity + translateY over --d-reveal/--ease-out.
+   IntersectionObserver unobserves on first hit, so scrubbing back up and down
+   again cannot re-fire it. Do not add a transition-delay override here: the
+   build's CSS minifier strips the spaces around "+", so calc(a + b) becomes
+   invalid at computed-value time and silently zeroes the whole stagger. */

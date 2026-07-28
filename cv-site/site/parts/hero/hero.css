@@ -7,7 +7,9 @@
   display: flex;
   flex-direction: column;
   min-height: min(100svh, 46rem);
-  padding-top: calc(var(--s-20) + env(safe-area-inset-top, 0px));
+  /* NB: no calc() with +/- here — the build minifier strips the whitespace
+     around the operator, which makes the expression invalid. */
+  padding-top: var(--s-20);
   padding-bottom: var(--section-gap);
 }
 
@@ -21,23 +23,20 @@
   z-index: -1;
   pointer-events: none;
   background:
-    radial-gradient(92% 44% at 4% 10%,
-      color-mix(in srgb, var(--accent) 10%, transparent), transparent 70%),
-    radial-gradient(64% 34% at 98% 2%,
-      color-mix(in srgb, var(--tx) 5%, transparent), transparent 72%);
+    radial-gradient(98% 42% at 2% 16%,
+      color-mix(in srgb, var(--accent) 15%, transparent), transparent 72%),
+    radial-gradient(70% 30% at 100% 0%,
+      color-mix(in srgb, var(--tx) 7%, transparent), transparent 74%);
 }
 
 /* --- Headline block ------------------------------------------------------ */
 .hero-title { display: block; }
 
+/* Inherits size/weight/tracking/case from the shared .eyebrow primitive;
+   only the name itself is lifted to primary text. */
 .hero-kicker {
   display: block;
   margin-bottom: var(--s-5);
-  font-size: var(--f-eyebrow);
-  font-weight: var(--w-semi);
-  letter-spacing: var(--ls-eyebrow);
-  line-height: 1.2;
-  text-transform: uppercase;
   color: var(--tx);
 }
 .hero-sep {
@@ -79,7 +78,7 @@
 }
 
 .hero-cta {
-  padding-inline: var(--s-8);
+  padding-inline: var(--s-10);
   border-radius: var(--r-ctl);
   background: var(--accent);
   color: var(--accent-ink);
@@ -92,27 +91,7 @@
 }
 .hero-cta:active { transform: scale(0.97); }
 
-.hero-links {
-  display: flex;
-  flex-wrap: wrap;
-  column-gap: var(--s-6);
-}
-.hero-link {
-  color: var(--tx-dim);
-  text-decoration: underline;
-  text-decoration-thickness: 1px; /* hairline — no token for stroke width */
-  text-decoration-color: var(--line-strong);
-  text-underline-offset: 0.3em;
-  transition: transform var(--d-fast) var(--ease-out);
-}
-.hero-link:active { transform: scale(0.97); }
-
-/* --- The quiet cue: a hairline that keeps going past the fold ------------ */
-.hero-cue {
-  position: absolute;
-  left: var(--gutter);
-  bottom: 0;
-  width: 1px; /* hairline */
-  height: var(--s-20);
-  background: linear-gradient(to bottom, var(--tx-faint), transparent);
-}
+/* The .hero-links row and the .hero-cue hairline both lived here. The links
+   duplicated the contact section's link list; the cue was a 64px decorative
+   rule floating in the gap above the proof eyebrow, which SPEC §1.2 rules out
+   and which composed into a stray mark between two sections. Both removed. */

@@ -1,0 +1,45 @@
+{
+  "url": "http://127.0.0.1:4173/",
+  "label": "r1",
+  "loadMs": 565,
+  "docHeight": 5885,
+  "screens": 7,
+  "depths": [
+    {
+      "index": 0,
+      "scrollY": 0,
+      "file": "captures/r1/r1-000.png"
+    },
+    {
+      "index": 1,
+      "scrollY": 852,
+      "file": "captures/r1/r1-001.png"
+    },
+    {
+      "index": 2,
+      "scrollY": 1704,
+      "file": "captures/r1/r1-002.png"
+    },
+    {
+      "index": 3,
+      "scrollY": 2556,
+      "file": "captures/r1/r1-003.png"
+    },
+    {
+      "index": 4,
+      "scrollY": 3408,
+      "file": "captures/r1/r1-004.png"
+    },
+    {
+      "index": 5,
+      "scrollY": 4260,
+      "file": "captures/r1/r1-005.png"
+    },
+    {
+      "index": 6,
+      "scrollY": 5033,
+      "file": "captures/r1/r1-006.png"
+    }
+  ],
+  "video": "captures/r1/r1-scroll.webm"
+}

@@ -1,1 +1,143 @@
-/* contact */
+/* ---------------------------------------------------------------------------
+   contact — the close.
+   One idea per viewport (SPEC §1.1): the accent CTA is the only saturated thing
+   on screen; everything else is the two text colours. Three type levels only —
+   13 eyebrow / 17 body / display headline — so every jump is >= 1.3x.
+   Only transform + opacity ever animate.
+--------------------------------------------------------------------------- */
+
+.ct {
+  /* The section's own closing air. It was 80px on the assumption that <body>
+     also reserved 80px for the dock; that reservation was in fact dropped by
+     the build (see nav.css) and is now a real 96px, so 80 here double-counted
+     and left ~100px of dead space under the last row. 48 + the dock reserve
+     puts a section-sized breath between "Back to top" and the dock. */
+  padding-bottom: var(--s-12);
+}
+
+/* The accent radial wash that lived here is gone. SPEC §2.4 sanctions an
+   atmospheric wash "behind the hero" — the hero has one, and a second one at
+   the foot of the page made it a motif rather than atmosphere, on top of being
+   another accent placement. The CTA is the only saturated thing here now. */
+
+/* --- Headline block ------------------------------------------------------ */
+/* 12px eyebrow-to-headline and 24px headline-to-lede, matching the experience,
+   skills and hero blocks; this section used 20 and 20. */
+.ct-title {
+  margin-top: var(--s-3);
+  max-width: 9ch;
+  font-size: var(--f-display);
+  font-weight: var(--w-bold);
+  line-height: var(--lh-display);
+  letter-spacing: var(--ls-display);
+  text-wrap: balance;
+}
+
+.ct-lede {
+  margin-top: var(--s-6);
+  color: var(--tx-dim);
+  text-wrap: pretty;
+}
+
+/* --- Primary action: the one accent (SPEC §2.1) -------------------------- */
+.ct-cta {
+  margin-top: var(--s-10);
+  display: flex;
+  width: 100%;
+  min-height: var(--s-16);          /* 64 — well over the 44 floor */
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--s-4);
+  padding-inline: var(--s-5);
+  border-radius: var(--r-ctl);
+  background: var(--accent);
+  color: var(--accent-ink);
+  font-weight: var(--w-semi);
+  text-decoration: none;
+  box-shadow: var(--lift-1);
+  transition: transform var(--d-fast) var(--ease-out);
+}
+.ct-cta:active { transform: scale(0.985); }
+
+.ct-cta-tx {
+  min-width: 0;
+  overflow-wrap: anywhere;
+  letter-spacing: var(--ls-head);
+}
+
+/* --- Secondary links: 48px rows, 8px apart (SPEC §3.3) ------------------- */
+.ct-links {
+  display: grid;
+  gap: var(--s-2);                  /* 8 between adjacent targets */
+  margin-top: var(--s-5);           /* 20 — the CTA is not part of this list */
+}
+.ct-item { display: flex; }
+
+.ct-row {
+  flex: 1 1 auto;
+  width: 100%;
+  min-height: var(--tap-good);      /* 48 */
+  justify-content: space-between;
+  gap: var(--s-4);
+  padding-inline: var(--s-5);
+  border-radius: var(--r-ctl);
+  background: var(--surface-2);
+  box-shadow: var(--lift-1);        /* raised by light, not by a stroke (§2.2) */
+  color: var(--tx);
+  text-decoration: none;
+  transition: transform var(--d-fast) var(--ease-out);
+}
+.ct-row:active { transform: scale(0.985); }
+.ct-row-lb { font-weight: var(--w-med); }
+
+.ct-ico {
+  flex: none;
+  width: var(--s-5);                /* 20px glyph inside a >=48px hit area */
+  height: var(--s-5);
+  color: var(--tx-faint);
+}
+.ct-ico-cta { color: currentColor; opacity: 0.7; }
+
+/* --- Quiet footer: education, location, a proper end --------------------- */
+.ct-foot {
+  margin-top: var(--s-12);
+  padding-top: var(--s-6);
+  border-top: 1px solid var(--line);   /* 1px hairline — no token for 1px */
+  color: var(--tx-dim);
+  line-height: var(--lh-tight);
+}
+
+/* Education, stated once and quietly. Two deliberate lines so the credential
+   never wraps raggedly against the school. */
+.ct-edu-a, .ct-edu-b { display: block; }
+.ct-edu-b { margin-top: var(--s-1); }
+/* Separator only — decorative, never carries meaning (so --tx-faint is safe). */
+.ct-dot { margin-inline: var(--s-2); color: var(--tx-faint); }
+
+.ct-end {
+  margin-top: var(--s-6);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--s-4);
+}
+.ct-loc { flex: 0 1 auto; min-width: 0; }
+
+/* The only interactive thing in the footer, so it is the only bright thing —
+   the location beside it stays dim and clearly non-tappable. */
+.ct-top {
+  flex: none;
+  justify-content: flex-end;
+  gap: var(--s-2);
+  color: var(--tx);
+  font-weight: var(--w-med);
+  text-decoration: none;
+  transition: transform var(--d-fast) var(--ease-out);
+}
+.ct-top .ct-ico { color: currentColor; opacity: 0.6; }
+.ct-top:active { transform: scale(0.97); }
+
+@media (prefers-reduced-motion: reduce) {
+  .ct-cta, .ct-row, .ct-top { transition: none; }
+  .ct-cta:active, .ct-row:active, .ct-top:active { transform: none; }
+}

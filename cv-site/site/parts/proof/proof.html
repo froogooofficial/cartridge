@@ -1,1 +1,12 @@
-<section class="section wrap" id="proof"><h2 class="h2">proof (stub)</h2></section>
+<section id="proof" class="proof section wrap" aria-labelledby="proof-title">
+  <h2 class="eyebrow proof-eyebrow reveal" id="proof-title">Track record</h2>
+
+  <ul class="proof-list" role="list" data-stagger="72">
+    {{#each stats}}
+    <li class="proof-item reveal">
+      <p class="proof-value num">{{value}}{{#if unit}}<span class="proof-unit">{{unit}}</span>{{/if}}</p>
+      <p class="proof-label">{{label}}</p>
+    </li>
+    {{/each}}
+  </ul>
+</section>

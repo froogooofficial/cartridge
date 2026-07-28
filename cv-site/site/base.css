@@ -24,6 +24,8 @@ body {
 .wrap { padding-inline: var(--gutter); }
 .section { padding-block: var(--section-gap); }
 .section + .section { padding-top: 0; }
+/* Every dock destination lands with the same air above it, not just #work. */
+.section { scroll-margin-block-start: var(--s-12); }
 .stack > * + * { margin-top: var(--s-4); }
 .measure { max-width: var(--measure); }
 
@@ -92,10 +94,14 @@ a, button { -webkit-tap-highlight-color: transparent; touch-action: manipulation
     opacity var(--d-reveal) var(--ease-out),
     transform var(--d-reveal) var(--ease-out);
   transition-delay: var(--reveal-delay, 0ms);
+  /* Measured, not assumed: dropping this hint on the composed page (~30 .reveal
+     elements) moved the longest fling frame from 16.8ms to 50ms in 2 of 3 runs,
+     because a flick that crosses a section boundary then has to promote several
+     layers inside the frame that starts their transition. It is released again
+     on .is-in, so nothing stays promoted after it has revealed once. */
   will-change: transform, opacity;
 }
-.reveal.is-in { opacity: 1; transform: translate3d(0, 0, 0); }
-.reveal.is-in { will-change: auto; }
+.reveal.is-in { opacity: 1; transform: translate3d(0, 0, 0); will-change: auto; }
 html.no-js .reveal { opacity: 1; transform: none; }
 
 @media (prefers-reduced-motion: reduce) {

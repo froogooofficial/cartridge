@@ -58,10 +58,16 @@ const tokens = await read(join(ROOT, 'tokens.css'));
 const base = await read(join(ROOT, 'base.css'));
 const runtime = await read(join(ROOT, 'runtime.js'));
 
+// NOTE: `+`, `>` and `~` must NOT be collapsed here. They are selector combinators
+// but they are also calc() operators, where CSS *requires* the surrounding spaces —
+// collapsing them turns `calc(a + b)` into `calc(a+b)`, which is invalid and makes
+// the browser drop the whole declaration silently. That cost a builder a debugging
+// round and left the fixed dock overlapping the last element of the page.
 const minCss = (s) =>
   s
     .replace(/\/\*[\s\S]*?\*\//g, '')
-    .replace(/\s*([{}:;,>~+])\s*/g, '$1')
+    .replace(/\s*([{};,])\s*/g, '$1')
+    .replace(/:\s+/g, ':')
     .replace(/;\}/g, '}')
     .replace(/\s+/g, ' ')
     .trim();

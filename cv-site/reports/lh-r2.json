@@ -1,0 +1,17 @@
+{
+  "url": "http://127.0.0.1:4173/",
+  "performance": 100,
+  "accessibility": 100,
+  "bestPractices": 100,
+  "metrics": {
+    "FCP": 899.022,
+    "LCP": 899.022,
+    "TBT": 12,
+    "CLS": 0,
+    "SI": 899.022,
+    "TTI": 963.922
+  },
+  "opportunities": [],
+  "failedA11y": [],
+  "pass": true
+}

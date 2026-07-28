@@ -1,1 +1,48 @@
-<section class="section wrap" id="contact"><h2 class="h2">contact (stub)</h2></section>
+<!-- contact — the close. One idea: send the email.
+     The primary link (kind "primary") becomes the accent CTA and carries the
+     address itself as its label; the rest are 48px rows, 8px apart. -->
+<section id="contact" class="ct section wrap" aria-labelledby="ct-title" data-stagger="72">
+  <p class="eyebrow ct-eyebrow reveal">Contact</p>
+
+  <h2 class="ct-title reveal" id="ct-title">Let&rsquo;s talk.</h2>
+
+  <p class="ct-lede measure reveal">The fastest way in is email. Tell me what you&rsquo;re building and where it hurts &mdash; I answer every one.</p>
+
+  {{#each person.links}}{{#if @first}}<a class="ct-cta tap reveal" href="{{href}}" aria-label="{{label}} {{person.name}} at {{person.email}}">
+    <span class="ct-cta-tx">{{person.email}}</span>
+    <svg class="ct-ico ct-ico-cta" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+      <path d="M4 12h15"/>
+      <path d="m13 6 6 6-6 6"/>
+    </svg>
+  </a>{{/if}}{{/each}}
+
+  <ul class="ct-links reveal" role="list">
+    {{#each person.links}}{{#if @index}}<li class="ct-item">
+      <a class="ct-row tap" href="{{href}}">
+        <span class="ct-row-lb">{{label}}</span>
+        <svg class="ct-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+          <path d="M8 16 16 8"/>
+          <path d="M9.25 8H16v6.75"/>
+        </svg>
+      </a>
+    </li>{{/if}}{{/each}}
+  </ul>
+
+  <footer class="ct-foot reveal">
+    {{#each education}}<p class="ct-edu">
+      <span class="ct-edu-a">{{credential}}</span>
+      <span class="ct-edu-b">{{school}}<span class="ct-dot" aria-hidden="true">&middot;</span>{{period}}</span>
+    </p>{{/each}}
+
+    <div class="ct-end">
+      <p class="ct-loc">{{person.location}}</p>
+      <a class="ct-top tap" href="#main">
+        <span>Back to top</span>
+        <svg class="ct-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+          <path d="M12 19V5"/>
+          <path d="m6 11 6-6 6 6"/>
+        </svg>
+      </a>
+    </div>
+  </footer>
+</section>

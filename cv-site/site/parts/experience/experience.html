@@ -1,1 +1,39 @@
-<section class="section wrap" id="experience"><h2 class="h2">experience (stub)</h2></section>
+<section class="xp section" id="experience" aria-labelledby="xp-title">
+  <div class="wrap">
+    <p class="eyebrow xp-eyebrow reveal">Experience</p>
+    <h2 class="h1 xp-title reveal" id="xp-title">The roles,<br>in order.</h2>
+
+    <ol class="xp-list" data-stagger="70">
+      {{#each experience}}
+      <li class="xp-item reveal">
+        <p class="xp-meta">
+          <span class="xp-node{{#if @first}} is-now{{/if}}" aria-hidden="true"></span>
+          <span class="xp-period">{{period}}</span>
+          <span class="xp-loc">{{location}}</span>
+        </p>
+
+        <h3 class="xp-co">{{company}}</h3>
+        <p class="xp-role">{{role}}</p>
+        <p class="xp-blurb">{{blurb}}</p>
+
+        <ul class="xp-hl">
+          {{#if highlights.0}}<li>{{highlights.0}}</li>{{/if}}
+          {{#if highlights.1}}<li>{{highlights.1}}</li>{{/if}}
+          {{#if highlights.2}}<li>{{highlights.2}}</li>{{/if}}
+          {{#if highlights.3}}<li>{{highlights.3}}</li>{{/if}}
+          {{#if highlights.4}}<li>{{highlights.4}}</li>{{/if}}
+        </ul>
+
+        <ul class="xp-stack" aria-label="Stack at {{company}}">
+          {{#if stack.0}}<li>{{stack.0}}</li>{{/if}}
+          {{#if stack.1}}<li>{{stack.1}}</li>{{/if}}
+          {{#if stack.2}}<li>{{stack.2}}</li>{{/if}}
+          {{#if stack.3}}<li>{{stack.3}}</li>{{/if}}
+          {{#if stack.4}}<li>{{stack.4}}</li>{{/if}}
+          {{#if stack.5}}<li>{{stack.5}}</li>{{/if}}
+        </ul>
+      </li>
+      {{/each}}
+    </ol>
+  </div>
+</section>
