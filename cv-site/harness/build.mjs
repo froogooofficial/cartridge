@@ -8,7 +8,12 @@ const ROOT = new URL('../site', import.meta.url).pathname.replace(/\/$/, '');
 const read = async (p, fallback = '') => { try { return await readFile(p, 'utf8'); } catch { return fallback; } };
 const exists = async (p) => { try { await stat(p); return true; } catch { return false; } };
 
-const order = JSON.parse(await read(join(ROOT, 'parts', 'order.json'), '[]'));
+// ORDER/OUT env overrides let a single part be built in isolation without
+// touching shared files — parallel builders must never race on order.json.
+const order = process.env.ORDER
+  ? JSON.parse(process.env.ORDER)
+  : JSON.parse(await read(join(ROOT, 'parts', 'order.json'), '[]'));
+const OUT_FILE = process.env.OUT || join(ROOT, 'index.html');
 const content = JSON.parse(await read(join(ROOT, 'content.json'), '{}'));
 
 // {{person.name}} / {{#each experience}}…{{/each}} — a deliberately tiny template
@@ -86,7 +91,7 @@ ${js ? `<script>${js}</script>` : ''}
 </html>
 `;
 
-await writeFile(join(ROOT, 'index.html'), html);
+await writeFile(OUT_FILE, html);
 const bytes = Buffer.byteLength(html);
-console.log(`built site/index.html — ${parts.length} parts, ${(bytes / 1024).toFixed(1)} KB (css ${(Buffer.byteLength(css) / 1024).toFixed(1)} KB, js ${(Buffer.byteLength(js) / 1024).toFixed(1)} KB)`);
+console.log(`built ${OUT_FILE} — ${parts.length} parts, ${(bytes / 1024).toFixed(1)} KB (css ${(Buffer.byteLength(css) / 1024).toFixed(1)} KB, js ${(Buffer.byteLength(js) / 1024).toFixed(1)} KB)`);
 for (const p of parts) console.log(`   · ${p.name}`);

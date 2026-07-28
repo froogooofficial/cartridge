@@ -18,20 +18,13 @@ const PORT = Number(portArg || 4200 + (part.charCodeAt(0) % 90));
 
 const read = async (p, f = '') => { try { return await readFile(p, 'utf8'); } catch { return f; } };
 
-// Reuse build.mjs's template engine by shelling out to a one-part order.
-const orderPath = join(ROOT, 'site', 'parts', 'order.json');
-const realOrder = await read(orderPath, '[]');
+// Build just this part, to its own file. No shared state is touched, so any
+// number of builders can preview at the same time.
 const outFile = join(ROOT, 'site', `.preview-${part}.html`);
-
-await writeFile(orderPath, JSON.stringify([part]));
-let built;
-try {
-  execFileSync('node', [join(ROOT, 'harness', 'build.mjs')], { stdio: 'pipe' });
-  built = await read(join(ROOT, 'site', 'index.html'));
-} finally {
-  await writeFile(orderPath, realOrder); // always restore the real order
-}
-await writeFile(outFile, built);
+execFileSync('node', [join(ROOT, 'harness', 'build.mjs')], {
+  stdio: 'pipe',
+  env: { ...process.env, ORDER: JSON.stringify([part]), OUT: outFile },
+});
 
 const server = createServer(async (req, res) => {
   const name = req.url === '/' ? `.preview-${part}.html` : req.url.slice(1);
