@@ -1,1 +1,118 @@
-/* hero */
+/* hero — the first viewport. One idea: the tagline.
+   Type does the work: exactly three levels (13 / 17 / display). */
+
+.hero {
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  flex-direction: column;
+  min-height: min(100svh, 46rem);
+  padding-top: calc(var(--s-20) + env(safe-area-inset-top, 0px));
+  padding-bottom: var(--section-gap);
+}
+
+/* Atmosphere, not decoration (SPEC §2.4): two very low-contrast washes,
+   both anchored off-canvas so neither has a nameable edge. Static — nothing
+   about this animates. */
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    radial-gradient(92% 44% at 4% 10%,
+      color-mix(in srgb, var(--accent) 10%, transparent), transparent 70%),
+    radial-gradient(64% 34% at 98% 2%,
+      color-mix(in srgb, var(--tx) 5%, transparent), transparent 72%);
+}
+
+/* --- Headline block ------------------------------------------------------ */
+.hero-title { display: block; }
+
+.hero-kicker {
+  display: block;
+  margin-bottom: var(--s-5);
+  font-size: var(--f-eyebrow);
+  font-weight: var(--w-semi);
+  letter-spacing: var(--ls-eyebrow);
+  line-height: 1.2;
+  text-transform: uppercase;
+  color: var(--tx);
+}
+.hero-sep {
+  margin-inline: var(--s-2);
+  color: var(--tx-faint);
+}
+
+.hero-display {
+  display: block;
+  max-width: 13ch;
+  font-size: var(--f-display);
+  font-weight: var(--w-bold);
+  line-height: var(--lh-display);
+  letter-spacing: var(--ls-display);
+  text-wrap: balance;
+}
+
+/* --- Lede: role runs in white, summary continues dim --------------------- */
+.hero-lede {
+  margin-top: var(--s-6);
+  max-width: var(--measure);
+  color: var(--tx-dim);
+  line-height: var(--lh-body);
+  text-wrap: pretty;
+}
+.hero-role {
+  color: var(--tx);
+  font-weight: var(--w-med);
+}
+
+/* --- Actions: pushed into the thumb zone (SPEC §3.1) --------------------- */
+.hero-actions {
+  margin-top: auto;
+  padding-top: var(--s-10);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--s-3);
+}
+
+.hero-cta {
+  padding-inline: var(--s-8);
+  border-radius: var(--r-ctl);
+  background: var(--accent);
+  color: var(--accent-ink);
+  font-size: var(--f-body);
+  font-weight: var(--w-semi);
+  letter-spacing: var(--ls-body);
+  text-decoration: none;
+  box-shadow: var(--lift-1);
+  transition: transform var(--d-fast) var(--ease-out);
+}
+.hero-cta:active { transform: scale(0.97); }
+
+.hero-links {
+  display: flex;
+  flex-wrap: wrap;
+  column-gap: var(--s-6);
+}
+.hero-link {
+  color: var(--tx-dim);
+  text-decoration: underline;
+  text-decoration-thickness: 1px; /* hairline — no token for stroke width */
+  text-decoration-color: var(--line-strong);
+  text-underline-offset: 0.3em;
+  transition: transform var(--d-fast) var(--ease-out);
+}
+.hero-link:active { transform: scale(0.97); }
+
+/* --- The quiet cue: a hairline that keeps going past the fold ------------ */
+.hero-cue {
+  position: absolute;
+  left: var(--gutter);
+  bottom: 0;
+  width: 1px; /* hairline */
+  height: var(--s-20);
+  background: linear-gradient(to bottom, var(--tx-faint), transparent);
+}
