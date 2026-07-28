@@ -1,1 +1,126 @@
-/* nav */
+/* ---------------------------------------------------------------------------
+   nav — persistent bottom dock (SPEC §3.1 the thumb owns the bottom third).
+   Fixed shell carries the safe-area padding (SPEC §3.2); the visual pill floats
+   inside it so the blurred surface stays small and static.
+   Only transform + opacity ever animate.
+--------------------------------------------------------------------------- */
+
+/* Reserve the dock's footprint once, at load, so nothing ever shifts (CLS 0)
+   and the last line of content is never trapped under the bar. */
+body {
+  padding-bottom: calc(var(--s-20) + env(safe-area-inset-bottom));
+}
+
+.dock-shell {
+  position: fixed;
+  inset: auto 0 0 0;
+  z-index: 50;
+  padding-inline: var(--gutter);
+  padding-bottom: env(safe-area-inset-bottom);
+  pointer-events: none; /* the gutter beside the pill stays scrollable */
+}
+
+.dock {
+  pointer-events: auto;
+  display: flex;
+  align-items: center;
+  gap: var(--s-3);              /* 12px — CTA is set apart from the tabs */
+  margin-bottom: var(--s-3);
+  padding: var(--s-2);
+  border-radius: var(--r-pill);
+  background: var(--surface-2);
+  box-shadow: 0 0 0 1px var(--line), var(--lift-2); /* 1px hairline ring */
+}
+
+@supports (backdrop-filter: blur(4px)) {
+  /* Small (353x64) and static, so the composite cost stays bounded. */
+  .dock {
+    background: color-mix(in srgb, var(--surface-2) 78%, transparent);
+    backdrop-filter: blur(14px) saturate(1.5);
+    -webkit-backdrop-filter: blur(14px) saturate(1.5);
+  }
+}
+
+/* Visually hidden landmark heading. */
+.dock-hd {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.dock-tabs {
+  display: flex;
+  flex: 1 1 auto;
+  align-items: center;
+  gap: var(--s-2);              /* 8px between adjacent targets (SPEC §3.3) */
+  min-width: 0;
+}
+.dock-slot { flex: 1 1 0; min-width: 0; display: flex; }
+
+/* --- Destination tabs ----------------------------------------------------- */
+.dock-tab {
+  flex: 1 1 auto;
+  flex-direction: column;
+  gap: var(--s-1);
+  isolation: isolate;
+  border-radius: var(--r-pill);
+  color: var(--tx-dim);
+  text-decoration: none;
+  transition: color var(--d-base) var(--ease-out),
+              transform var(--d-fast) var(--ease-out);
+}
+
+/* Active pill: opacity only — no layout, no paint of a moving box. */
+.dock-tab::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: var(--r-pill);
+  background: var(--surface-3);
+  box-shadow: inset 0 1px 0 var(--sheen);
+  opacity: 0;
+  transition: opacity var(--d-base) var(--ease-out);
+}
+
+.dock-tab[aria-current='page'] { color: var(--tx); }
+.dock-tab[aria-current='page']::before { opacity: 1; }
+
+.dock-ico {
+  width: var(--s-5);            /* 20px glyph inside a 48px hit area */
+  height: var(--s-5);
+  flex: none;
+}
+
+.dock-lb {
+  font-size: var(--f-eyebrow);  /* 13 */
+  font-weight: var(--w-med);
+  letter-spacing: var(--ls-body);
+  line-height: 1;
+}
+
+/* --- Primary action: the one accent on the page chrome (SPEC §2.1) -------- */
+.dock-cta {
+  flex: none;
+  width: var(--tap-good);
+  height: var(--tap-good);
+  border-radius: var(--r-pill);
+  background: var(--accent);
+  color: var(--accent-ink);
+  text-decoration: none;
+  box-shadow: var(--lift-1);
+  transition: transform var(--d-fast) var(--ease-out);
+}
+.dock-cta .dock-ico { width: var(--s-6); height: var(--s-6); } /* 24px */
+
+/* Press feedback — transform only. */
+.dock-tab:active { transform: scale(0.93); }
+.dock-cta:active { transform: scale(0.92); }
+
+@media (prefers-reduced-motion: reduce) {
+  .dock-tab, .dock-tab::before, .dock-cta { transition: none; }
+  .dock-tab:active, .dock-cta:active { transform: none; }
+}
