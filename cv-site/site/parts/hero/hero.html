@@ -1,1 +1,17 @@
-<section class="section wrap" id="hero"><h2 class="h2">hero (stub)</h2></section>
+<section id="hero" class="hero section wrap" aria-labelledby="hero-title" data-stagger="72">
+  <h1 class="hero-title" id="hero-title">
+    <span class="hero-kicker">{{person.name}}<span class="hero-sep" aria-hidden="true">·</span><span class="dim">{{person.location}}</span></span>
+    <span class="hero-display">{{person.tagline}}</span>
+  </h1>
+
+  <p class="hero-lede reveal"><span class="hero-role">{{person.title}}.</span> {{person.summary}}</p>
+
+  <div class="hero-actions reveal">
+    {{#each person.links}}{{#if @first}}<a class="hero-cta tap" href="{{href}}">{{label}}</a>{{/if}}{{/each}}
+    <ul class="hero-links" role="list">
+      {{#each person.links}}{{#if @index}}<li><a class="hero-link tap" href="{{href}}">{{label}}</a></li>{{/if}}{{/each}}
+    </ul>
+  </div>
+
+  <span class="hero-cue reveal" aria-hidden="true"></span>
+</section>
