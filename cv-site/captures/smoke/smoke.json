@@ -1,0 +1,15 @@
+{
+  "url": "http://127.0.0.1:4173/",
+  "label": "smoke",
+  "loadMs": 562,
+  "docHeight": 852,
+  "screens": 1,
+  "depths": [
+    {
+      "index": 0,
+      "scrollY": 0,
+      "file": "captures/smoke/smoke-000.png"
+    }
+  ],
+  "video": "captures/smoke/smoke-scroll.webm"
+}

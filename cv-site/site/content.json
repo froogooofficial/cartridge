@@ -1,0 +1,104 @@
+{
+  "_note": "PLACEHOLDER CONTENT — structured for a senior product/engineering CV. Every string here is invented and marked so it can be swapped without touching layout. Replace values; do not change keys.",
+  "person": {
+    "name": "Your Name",
+    "title": "Senior Product Engineer",
+    "tagline": "I build the parts people actually touch.",
+    "summary": "Twelve years turning ambiguous product bets into interfaces that ship, scale, and stay fast. Most recently owning the end-to-end surface of a video personalization platform used by 400+ enterprise brands.",
+    "location": "Tel Aviv, Israel",
+    "email": "you@example.com",
+    "links": [
+      { "label": "Email", "href": "mailto:you@example.com", "kind": "primary" },
+      { "label": "LinkedIn", "href": "https://linkedin.com/in/example", "kind": "secondary" },
+      { "label": "GitHub", "href": "https://github.com/example", "kind": "secondary" },
+      { "label": "Résumé (PDF)", "href": "#", "kind": "secondary" }
+    ]
+  },
+  "stats": [
+    { "value": "12", "unit": "yrs", "label": "Shipping product" },
+    { "value": "400", "unit": "+", "label": "Enterprise brands served" },
+    { "value": "8", "unit": "", "label": "Engineers led" }
+  ],
+  "experience": [
+    {
+      "company": "Idomoo",
+      "role": "Staff Product Engineer",
+      "period": "2021 — Present",
+      "location": "Tel Aviv",
+      "blurb": "Own the creative-tooling surface: the editor, the render pipeline's front end, and the APIs brands build against.",
+      "highlights": [
+        "Rebuilt the template editor around a canvas renderer — time-to-first-render fell from 4.1s to 380ms.",
+        "Led the move to a tokenized design system across three products; cut CSS payload 62%.",
+        "Grew the platform team from 3 to 8, established the review and on-call practice they still run."
+      ],
+      "stack": ["TypeScript", "React", "WebGL", "Node", "Go"]
+    },
+    {
+      "company": "Wix",
+      "role": "Senior Frontend Engineer",
+      "period": "2017 — 2021",
+      "location": "Tel Aviv",
+      "blurb": "Editor performance and the component library used by every vertical team.",
+      "highlights": [
+        "Drove a 40% reduction in editor interaction latency by moving layout off the main thread.",
+        "Authored the accessibility baseline adopted org-wide; took the editor from 61 to 98 on audits."
+      ],
+      "stack": ["TypeScript", "React", "Web Workers"]
+    },
+    {
+      "company": "Freelance",
+      "role": "Product Engineer",
+      "period": "2014 — 2017",
+      "location": "Remote",
+      "blurb": "Interface work for early-stage teams — design systems, marketing surfaces, and the first version of several products.",
+      "highlights": [
+        "Shipped 14 production front ends across fintech, media, and developer tooling."
+      ],
+      "stack": ["JavaScript", "CSS", "Rails"]
+    }
+  ],
+  "work": [
+    {
+      "title": "Canvas Editor",
+      "kicker": "Idomoo · 2023",
+      "summary": "A real-time video template editor that renders 4K compositions in the browser at 60fps.",
+      "detail": "Replaced a DOM-based editor with a WebGL scene graph and an off-main-thread layout pass. The whole surface — timeline, layers, property inspector — was rebuilt around a single immutable document model.",
+      "metrics": [
+        { "value": "380ms", "label": "Time to first render" },
+        { "value": "60fps", "label": "Sustained on mid-tier hardware" }
+      ],
+      "tags": ["WebGL", "Performance", "Design systems"]
+    },
+    {
+      "title": "Token Pipeline",
+      "kicker": "Idomoo · 2022",
+      "summary": "One source of truth for color, type, and motion across three products and two native apps.",
+      "detail": "Design tokens authored once, compiled to CSS custom properties, Swift, and Kotlin. Contrast and tap-target rules are enforced at build time, so a violation fails CI rather than review.",
+      "metrics": [
+        { "value": "62%", "label": "CSS payload removed" },
+        { "value": "3", "label": "Products unified" }
+      ],
+      "tags": ["Design systems", "Tooling", "Accessibility"]
+    },
+    {
+      "title": "Editor Latency Program",
+      "kicker": "Wix · 2019",
+      "summary": "A year-long effort to make a very large editor feel instant on low-end Android.",
+      "detail": "Profiling infrastructure first, then a sequence of targeted fixes: layout off the main thread, virtualized panels, and a strict budget enforced per pull request.",
+      "metrics": [
+        { "value": "40%", "label": "Interaction latency cut" },
+        { "value": "98", "label": "Accessibility score, from 61" }
+      ],
+      "tags": ["Performance", "Accessibility"]
+    }
+  ],
+  "skills": [
+    { "group": "Languages", "items": ["TypeScript", "JavaScript", "Go", "Swift", "SQL"] },
+    { "group": "Interface", "items": ["React", "WebGL / Canvas", "CSS architecture", "Motion design", "Accessibility"] },
+    { "group": "Platform", "items": ["Node", "Design systems", "Build tooling", "Performance budgets", "CI"] },
+    { "group": "Practice", "items": ["Team leadership", "Technical writing", "Product discovery", "Mentoring"] }
+  ],
+  "education": [
+    { "school": "Tel Aviv University", "credential": "B.Sc. Computer Science", "period": "2010 — 2013" }
+  ]
+}

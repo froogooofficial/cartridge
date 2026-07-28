@@ -1,0 +1,3 @@
+node_modules/
+cv-site/site/.preview-*.html
+cv-site/reports/*.tmp

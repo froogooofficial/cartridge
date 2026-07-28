@@ -1,0 +1,83 @@
+/* Design tokens — the single source of truth. Owned by the orchestrator.
+   Builders consume these; they do not add raw hex or raw px to their part CSS. */
+:root {
+  color-scheme: dark;
+
+  /* --- Surface: near-black, one step up per tier (SPEC §2.1) --- */
+  --bg:            #08090A;
+  --surface-1:     #0E0F11;
+  --surface-2:     #141619;
+  --surface-3:     #1A1D21;
+  --line:          rgba(255, 255, 255, 0.075);
+  --line-strong:   rgba(255, 255, 255, 0.12);
+  --sheen:         rgba(255, 255, 255, 0.055);
+
+  /* --- Text: two colors carry the page --- */
+  --tx:            #F7F8F8;   /* 18.9:1 on --bg */
+  --tx-dim:        #9096A1;   /* 6.4:1  on --bg */
+  --tx-faint:      #62676F;   /*  3.3:1 — decorative / large only */
+
+  /* --- Exactly one accent (SPEC §2.1) --- */
+  --accent:        #7C8CFF;
+  --accent-ink:    #0A0B14;
+  --accent-soft:   rgba(124, 140, 255, 0.13);
+  --accent-line:   rgba(124, 140, 255, 0.34);
+
+  /* --- Type scale. Jumps are >=1.25x between adjacent levels (SPEC §1.2) --- */
+  --f-display:     clamp(2.75rem, 12.2vw, 3.5rem);  /* 44 -> 56 */
+  --f-h1:          2.0625rem;  /* 33 */
+  --f-h2:          1.5rem;     /* 24 */
+  --f-h3:          1.1875rem;  /* 19 */
+  --f-body:        1.0625rem;  /* 17 — the iOS body size */
+  --f-sm:          0.9375rem;  /* 15 — the floor for prose */
+  --f-eyebrow:     0.8125rem;  /* 13 */
+
+  --lh-display:    1.06;
+  --lh-head:       1.16;
+  --lh-body:       1.55;
+  --lh-tight:      1.28;
+
+  --ls-display:    -0.038em;
+  --ls-head:       -0.022em;
+  --ls-body:       -0.011em;
+  --ls-eyebrow:    0.085em;
+
+  --w-reg:         400;
+  --w-med:         510;
+  --w-semi:        590;
+  --w-bold:        680;
+
+  /* --- Spacing: one scale, visibly obeyed (SPEC §1.4) --- */
+  --s-1:  0.25rem;  --s-2:  0.5rem;   --s-3:  0.75rem;  --s-4:  1rem;
+  --s-5:  1.25rem;  --s-6:  1.5rem;   --s-8:  2rem;     --s-10: 2.5rem;
+  --s-12: 3rem;     --s-16: 4rem;     --s-20: 5rem;     --s-24: 6rem;
+
+  --gutter:        1.25rem;             /* 20px page gutters */
+  --section-gap:   var(--s-20);         /* 80px between major sections */
+  --measure:       34ch;                /* prose measure at 393px */
+
+  /* --- Shape --- */
+  --r-card:        1rem;      /* 16 */
+  --r-ctl:         0.625rem;  /* 10 */
+  --r-pill:        999px;
+
+  /* --- Touch (SPEC §3.3) --- */
+  --tap:           2.75rem;   /* 44 — the floor */
+  --tap-good:      3rem;      /* 48 — the target */
+
+  /* --- Motion (SPEC §1.3). Only transform/opacity ever use these. --- */
+  --ease-out:      cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-inout:    cubic-bezier(0.65, 0, 0.35, 1);
+  --d-fast:        180ms;
+  --d-base:        320ms;
+  --d-reveal:      620ms;
+  --stagger:       72ms;
+
+  /* --- Elevation: light, not lines (SPEC §2.2) --- */
+  --lift-1: inset 0 1px 0 var(--sheen), 0 1px 2px rgba(0, 0, 0, 0.5);
+  --lift-2: inset 0 1px 0 var(--sheen), 0 4px 20px -4px rgba(0, 0, 0, 0.65);
+
+  --font: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Segoe UI', Roboto,
+          system-ui, 'Helvetica Neue', Arial, sans-serif;
+  --font-num: ui-monospace, 'SF Mono', SFMono-Regular, Menlo, monospace;
+}
