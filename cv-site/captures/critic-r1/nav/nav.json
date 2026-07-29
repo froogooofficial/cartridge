@@ -1,0 +1,124 @@
+{
+  "id": "nav",
+  "url": "http://127.0.0.1:4173/",
+  "box": {
+    "x": 0,
+    "y": 776,
+    "width": 393,
+    "height": 76
+  },
+  "viewportShots": [
+    "/home/user/cartridge/cv-site/captures/critic-r1/nav/nav-viewport-000.png"
+  ],
+  "motionShots": [
+    "/home/user/cartridge/cv-site/captures/critic-r1/nav/nav-motion-000.png",
+    "/home/user/cartridge/cv-site/captures/critic-r1/nav/nav-motion-001.png",
+    "/home/user/cartridge/cv-site/captures/critic-r1/nav/nav-motion-002.png",
+    "/home/user/cartridge/cv-site/captures/critic-r1/nav/nav-motion-003.png",
+    "/home/user/cartridge/cv-site/captures/critic-r1/nav/nav-motion-004.png",
+    "/home/user/cartridge/cv-site/captures/critic-r1/nav/nav-motion-005.png"
+  ],
+  "element": "/home/user/cartridge/cv-site/captures/critic-r1/nav/nav-element.png",
+  "measured": {
+    "textNodes": [
+      {
+        "tag": "h2",
+        "cls": "dock-hd",
+        "text": "Sections",
+        "fontPx": 25.5,
+        "weight": "700",
+        "lineHeight": "39.525px",
+        "letterSpacing": "-0.187px",
+        "color": "rgb(247, 248, 248)",
+        "w": 1,
+        "h": 1
+      },
+      {
+        "tag": "span",
+        "cls": "dock-lb",
+        "text": "Work",
+        "fontPx": 13,
+        "weight": "510",
+        "lineHeight": "13px",
+        "letterSpacing": "-0.143px",
+        "color": "rgb(247, 248, 248)",
+        "w": 32,
+        "h": 13
+      },
+      {
+        "tag": "span",
+        "cls": "dock-lb",
+        "text": "Career",
+        "fontPx": 13,
+        "weight": "510",
+        "lineHeight": "13px",
+        "letterSpacing": "-0.143px",
+        "color": "rgb(247, 248, 248)",
+        "w": 43,
+        "h": 13
+      },
+      {
+        "tag": "span",
+        "cls": "dock-lb",
+        "text": "Skills",
+        "fontPx": 13,
+        "weight": "510",
+        "lineHeight": "13px",
+        "letterSpacing": "-0.143px",
+        "color": "rgb(247, 248, 248)",
+        "w": 33,
+        "h": 13
+      },
+      {
+        "tag": "span",
+        "cls": "dock-lb",
+        "text": "Contact",
+        "fontPx": 13,
+        "weight": "510",
+        "lineHeight": "13px",
+        "letterSpacing": "-0.143px",
+        "color": "rgb(247, 248, 248)",
+        "w": 50,
+        "h": 13
+      }
+    ],
+    "taps": [
+      {
+        "tag": "a",
+        "text": "Work",
+        "w": 62,
+        "h": 48,
+        "ok": true
+      },
+      {
+        "tag": "a",
+        "text": "Career",
+        "w": 62,
+        "h": 48,
+        "ok": true
+      },
+      {
+        "tag": "a",
+        "text": "Skills",
+        "w": 62,
+        "h": 48,
+        "ok": true
+      },
+      {
+        "tag": "a",
+        "text": "Contact",
+        "w": 62,
+        "h": 48,
+        "ok": true
+      },
+      {
+        "tag": "a",
+        "text": "",
+        "w": 48,
+        "h": 48,
+        "ok": true
+      }
+    ],
+    "sectionHeight": 76
+  }
+}

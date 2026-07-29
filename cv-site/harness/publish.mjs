@@ -29,12 +29,12 @@ const shrink = (buf) =>
       c.getContext('2d').drawImage(img, 0, 0, c.width, c.height);
       return c.toDataURL('image/webp', q);
     },
-    { b64: buf.toString('base64'), w: 400, q: 0.72 }
+    { b64: buf.toString('base64'), w: 300, q: 0.55 }
   );
 
 const capRoot = join(ROOT, 'captures');
 const labels = (await exists(capRoot))
-  ? (await readdir(capRoot, { withFileTypes: true })).filter((d) => d.isDirectory() && d.name !== 'parts').map((d) => d.name).sort()
+  ? (await readdir(capRoot, { withFileTypes: true })).filter((d) => d.isDirectory() && d.name !== 'parts').map((d) => d.name).sort().slice(-2)
   : [];
 
 const rounds = [];

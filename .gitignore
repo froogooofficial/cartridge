@@ -1,3 +1,4 @@
 node_modules/
 cv-site/site/.preview-*.html
 cv-site/reports/*.tmp
+cv-site/progress/standalone.html

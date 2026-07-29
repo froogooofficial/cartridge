@@ -1,0 +1,589 @@
+<title>Your Name — Senior Product Engineer</title>
+<style>
+:root, :root[data-theme="light"], :root[data-theme="dark"] { color-scheme: dark; }
+html, body { background: #08090A; }
+:root{color-scheme:dark;--bg:#08090A;--surface-1:#0E0F11;--surface-2:#141619;--surface-3:#1A1D21;--line:rgba(255,255,255,0.075);--line-strong:rgba(255,255,255,0.12);--sheen:rgba(255,255,255,0.055);--tx:#F7F8F8;--tx-dim:#9096A1;--tx-faint:#62676F;--accent:#7C8CFF;--accent-ink:#0A0B14;--accent-soft:rgba(124,140,255,0.13);--accent-line:rgba(124,140,255,0.34);--f-display:clamp(2.75rem,12.2vw,3.5rem);--f-h1:2.0625rem;--f-h2:1.5rem;--f-h3:1.1875rem;--f-body:1.0625rem;--f-sm:0.9375rem;--f-eyebrow:0.8125rem;--lh-display:1.06;--lh-head:1.16;--lh-body:1.55;--lh-tight:1.28;--ls-display:-0.038em;--ls-head:-0.022em;--ls-body:-0.011em;--ls-eyebrow:0.085em;--w-reg:400;--w-med:510;--w-semi:590;--w-bold:680;--s-1:0.25rem;--s-2:0.5rem;--s-3:0.75rem;--s-4:1rem;--s-5:1.25rem;--s-6:1.5rem;--s-8:2rem;--s-10:2.5rem;--s-12:3rem;--s-16:4rem;--s-20:5rem;--s-24:6rem;--gutter:1.25rem;--section-gap:var(--s-20);--measure:34ch;--r-card:1rem;--r-ctl:0.625rem;--r-pill:999px;--tap:2.75rem;--tap-good:3rem;--ease-out:cubic-bezier(0.16,1,0.3,1);--ease-inout:cubic-bezier(0.65,0,0.35,1);--d-fast:180ms;--d-base:320ms;--d-reveal:620ms;--stagger:72ms;--lift-1:inset 0 1px 0 var(--sheen),0 1px 2px rgba(0,0,0,0.5);--lift-2:inset 0 1px 0 var(--sheen),0 4px 20px -4px rgba(0,0,0,0.65);--font:-apple-system,BlinkMacSystemFont,'SF Pro Text','Segoe UI',Roboto,system-ui,'Helvetica Neue',Arial,sans-serif;--font-num:ui-monospace,'SF Mono',SFMono-Regular,Menlo,monospace}*,*::before,*::after{box-sizing:border-box}html{-webkit-text-size-adjust:100%}body,h1,h2,h3,h4,p,ul,ol,figure,blockquote,dl,dd{margin:0}ul,ol{padding:0;list-style:none}img,svg,video{display:block;max-width:100%}button,input,textarea,select{font:inherit;color:inherit}body{background:var(--bg);color:var(--tx);font-family:var(--font);font-size:var(--f-body);line-height:var(--lh-body);letter-spacing:var(--ls-body);font-weight:var(--w-reg);-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;overflow-x:clip}.wrap{padding-inline:var(--gutter)}.section{padding-block:var(--section-gap)}.section + .section{padding-top:0}.section{scroll-margin-block-start:var(--s-12)}.stack > * + *{margin-top:var(--s-4)}.measure{max-width:var(--measure)}.eyebrow{font-size:var(--f-eyebrow);font-weight:var(--w-semi);letter-spacing:var(--ls-eyebrow);text-transform:uppercase;color:var(--tx-dim);line-height:1.2}.h1{font-size:var(--f-h1);font-weight:var(--w-bold);line-height:var(--lh-head);letter-spacing:var(--ls-head)}.h2{font-size:var(--f-h2);font-weight:var(--w-semi);line-height:var(--lh-head);letter-spacing:var(--ls-head)}.h3{font-size:var(--f-h3);font-weight:var(--w-semi);line-height:var(--lh-tight);letter-spacing:var(--ls-head)}.dim{color:var(--tx-dim)}.num{font-family:var(--font-num);font-variant-numeric:tabular-nums;letter-spacing:-0.02em}a,button{-webkit-tap-highlight-color:transparent;touch-action:manipulation}.tap{position:relative;display:inline-flex;align-items:center;justify-content:center;min-height:var(--tap-good);min-width:var(--tap-good)}.tap-pad::after{content:'';position:absolute;inset:50% 0 auto;height:var(--tap);transform:translateY(-50%)}:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:var(--s-1)}.skip{position:absolute;left:var(--gutter);top:0;transform:translateY(-150%);background:var(--surface-2);color:var(--tx);padding:var(--s-3) var(--s-4);border-radius:var(--r-ctl);z-index:100;text-decoration:none;transition:transform var(--d-fast) var(--ease-out)}.skip:focus{transform:translateY(var(--s-3))}.reveal{opacity:0;transform:translate3d(0,18px,0);transition:opacity var(--d-reveal) var(--ease-out),transform var(--d-reveal) var(--ease-out);transition-delay:var(--reveal-delay,0ms);will-change:transform,opacity}.reveal.is-in{opacity:1;transform:translate3d(0,0,0);will-change:auto}html.no-js .reveal{opacity:1;transform:none}@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:0.01ms !important;animation-iteration-count:1 !important;transition-duration:0.01ms !important;scroll-behavior:auto !important}.reveal{opacity:1;transform:none}}body{padding-bottom:var(--s-24)}main{margin-bottom:env(safe-area-inset-bottom)}.dock-shell{position:fixed;inset:auto 0 0 0;z-index:50;padding-inline:var(--gutter);padding-bottom:env(safe-area-inset-bottom);pointer-events:none}.dock{pointer-events:auto;display:flex;align-items:center;gap:var(--s-4);margin-bottom:var(--s-3);padding:var(--s-2);border-radius:var(--r-pill);background:var(--surface-2);box-shadow:0 0 0 1px var(--line),var(--lift-2)}.dock-hd{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}.dock-tabs{display:flex;flex:1 1 auto;align-items:center;gap:var(--s-2);min-width:0}.dock-slot{flex:1 1 0;min-width:0;display:flex}.dock-tab{flex:1 1 auto;flex-direction:column;gap:var(--s-1);isolation:isolate;border-radius:var(--r-pill);color:var(--tx);opacity:0.58;text-decoration:none;transition:opacity var(--d-base) var(--ease-out),transform var(--d-fast) var(--ease-out);will-change:opacity}.dock-tab::before{content:'';position:absolute;inset:0;z-index:-1;border-radius:var(--r-pill);background:var(--surface-3);box-shadow:inset 0 1px 0 var(--sheen);opacity:0;transition:opacity var(--d-base) var(--ease-out);will-change:opacity}.dock-tab[aria-current='page']{opacity:1}.dock-tab[aria-current='page']::before{opacity:1}.dock-ico{width:var(--s-6);height:var(--s-6);flex:none}.dock-lb{font-size:var(--f-eyebrow);font-weight:var(--w-med);letter-spacing:var(--ls-body);line-height:1}.dock-cta{flex:none;width:var(--tap-good);height:var(--tap-good);border-radius:var(--r-pill);background:var(--accent);color:var(--accent-ink);text-decoration:none;box-shadow:var(--lift-1);transition:transform var(--d-fast) var(--ease-out)}.dock-cta .dock-ico{width:var(--s-5);height:var(--s-5)}.dock-tab:active{transform:scale(0.93)}.dock-cta:active{transform:scale(0.92)}@media (prefers-reduced-motion:reduce){.dock-tab,.dock-tab::before,.dock-cta{transition:none}.dock-tab:active,.dock-cta:active{transform:none}}.hero{position:relative;isolation:isolate;display:flex;flex-direction:column;min-height:min(100svh,46rem);padding-top:var(--s-20);padding-bottom:var(--section-gap)}.hero::before{content:'';position:absolute;inset:0;z-index:-1;pointer-events:none;background:radial-gradient(98% 42% at 2% 16%,color-mix(in srgb,var(--accent) 15%,transparent),transparent 72%),radial-gradient(70% 30% at 100% 0%,color-mix(in srgb,var(--tx) 7%,transparent),transparent 74%)}.hero-title{display:block}.hero-kicker{display:block;margin-bottom:var(--s-5);color:var(--tx)}.hero-sep{margin-inline:var(--s-2);color:var(--tx-faint)}.hero-display{display:block;max-width:13ch;font-size:var(--f-display);font-weight:var(--w-bold);line-height:var(--lh-display);letter-spacing:var(--ls-display);text-wrap:balance}.hero-lede{margin-top:var(--s-6);max-width:var(--measure);color:var(--tx-dim);line-height:var(--lh-body);text-wrap:pretty}.hero-role{color:var(--tx);font-weight:var(--w-med)}.hero-actions{margin-top:auto;padding-top:var(--s-10);display:flex;flex-direction:column;align-items:flex-start;gap:var(--s-3)}.hero-cta{padding-inline:var(--s-10);border-radius:var(--r-ctl);background:var(--accent);color:var(--accent-ink);font-size:var(--f-body);font-weight:var(--w-semi);letter-spacing:var(--ls-body);text-decoration:none;box-shadow:var(--lift-1);transition:transform var(--d-fast) var(--ease-out)}.hero-cta:active{transform:scale(0.97)}.proof-eyebrow{margin-bottom:var(--s-10)}.proof-list{display:grid;gap:var(--s-12)}.proof-value{font-size:var(--f-display);font-weight:var(--w-bold);line-height:var(--lh-display);letter-spacing:var(--ls-display);color:var(--tx);white-space:nowrap}.proof-value.num{font-family:var(--font)}.proof-unit{font-size:var(--f-h2);font-weight:var(--w-med);letter-spacing:var(--ls-head);color:var(--tx-dim);margin-inline-start:0.1em}.proof-label{margin-top:var(--s-2);max-inline-size:26ch;font-size:var(--f-body);line-height:var(--lh-tight);color:var(--tx-dim);text-wrap:balance}.work-eyebrow{margin-bottom:var(--s-10)}.work-list{counter-reset:workn;display:grid;gap:var(--s-8)}.work-card{counter-increment:workn;position:relative;padding:var(--s-5);background:var(--surface-1);border-radius:var(--r-card);box-shadow:var(--lift-2)}.work-meta{display:flex;align-items:baseline;justify-content:space-between;gap:var(--s-3);font-size:var(--f-eyebrow);line-height:var(--lh-tight)}.work-kicker{color:var(--tx-dim);font-weight:var(--w-med)}.work-index{flex:none;color:var(--tx-faint)}.work-index::before{content:counter(workn,decimal-leading-zero)}.work-title{margin-top:var(--s-3);font-size:var(--f-h2);font-weight:var(--w-semi);line-height:var(--lh-head);letter-spacing:var(--ls-head);text-wrap:balance}.work-summary{margin-top:var(--s-4);font-size:var(--f-body);line-height:var(--lh-body);color:var(--tx);text-wrap:pretty}.work-tags{margin-top:var(--s-3);font-size:var(--f-eyebrow);line-height:var(--lh-tight);color:var(--tx-dim)}.work-tag + .work-tag::before{content:'\00B7';padding-inline:var(--s-2);color:var(--tx-faint)}.work-metrics{margin-top:var(--s-6);padding-top:var(--s-5);border-top:1px solid var(--line);display:grid;grid-template-columns:repeat(auto-fit,minmax(8rem,1fr));gap:var(--s-5) var(--s-4)}.work-metric{display:grid;align-content:start}.work-metric-value{grid-row:1;font-size:var(--f-body);font-weight:var(--w-semi);line-height:var(--lh-tight);color:var(--tx)}.work-metric-label{grid-row:2;margin-top:var(--s-1);font-size:var(--f-eyebrow);line-height:var(--lh-tight);color:var(--tx-dim)}.work-more{margin-top:var(--s-5);margin-inline:calc(-1 * var(--s-5));margin-bottom:calc(-1 * var(--s-5));border-top:1px solid var(--line)}.work-more-btn{display:flex;width:100%;min-height:var(--tap-good);align-items:center;justify-content:space-between;gap:var(--s-3);padding-inline:var(--s-5);padding-block:var(--s-2);color:var(--tx);font-size:var(--f-body);font-weight:var(--w-med);list-style:none;cursor:pointer;border-end-start-radius:var(--r-card);border-end-end-radius:var(--r-card)}.work-more-btn::-webkit-details-marker{display:none}.work-more-btn:active{opacity:0.65}.work-chev{flex:none;width:1em;height:1em;color:var(--tx-dim);transition:transform var(--d-base) var(--ease-out)}.work-more[open] .work-chev{transform:rotate(180deg)}.work-detail{padding-top:var(--s-1);padding-inline:var(--s-5);padding-bottom:var(--s-5)}.work-more[open] .work-detail{animation:work-detail-in var(--d-base) var(--ease-out) both}.work-detail-text{font-size:var(--f-body);line-height:var(--lh-body);color:var(--tx-dim);text-wrap:pretty}@keyframes work-detail-in{from{opacity:0;transform:translate3d(0,calc(-1 * var(--s-1)),0)}to{opacity:1;transform:translate3d(0,0,0)}}.xp-eyebrow{margin-bottom:var(--s-3)}.xp-title{color:var(--tx);margin-bottom:var(--s-10);text-wrap:balance}.xp-list{--rail:var(--s-6);padding-left:var(--rail)}.xp-item{position:relative;padding-bottom:var(--s-16)}.xp-item:last-child{padding-bottom:0}.xp-item::before{content:'';position:absolute;left:calc(var(--rail) * -1);top:0;bottom:0;width:1px;background:var(--line)}.xp-item:first-child::before{top:0.55em}.xp-item:last-child::before{bottom:auto;height:100%}.xp-meta{display:flex;align-items:baseline;flex-wrap:wrap;gap:0 var(--s-3);font-size:var(--f-eyebrow);line-height:1.2;font-weight:var(--w-semi);letter-spacing:var(--ls-eyebrow);text-transform:uppercase;color:var(--tx-dim);margin-bottom:var(--s-3)}.xp-period{font-family:var(--font-num);font-variant-numeric:tabular-nums}.xp-loc{letter-spacing:var(--ls-eyebrow)}.xp-loc::before{content:'\00B7';color:var(--tx-faint);margin-right:var(--s-3)}.xp-node{position:absolute;left:calc(var(--s-6) * -1);top:0.35em;width:var(--s-2);height:var(--s-2);transform:translateX(-50%);border-radius:var(--r-pill);background:var(--bg);border:1px solid var(--line-strong)}.xp-node.is-now{background:var(--accent);border-color:var(--accent);box-shadow:0 0 0 var(--s-1) var(--accent-soft)}.xp-co{font-size:var(--f-h2);font-weight:var(--w-semi);line-height:var(--lh-head);letter-spacing:var(--ls-head);color:var(--tx)}.xp-role{font-size:var(--f-body);font-weight:var(--w-med);line-height:var(--lh-tight);color:var(--tx);margin-top:var(--s-1)}.xp-blurb{max-width:var(--measure);color:var(--tx-dim);line-height:var(--lh-body);margin-top:var(--s-4)}.xp-hl{max-width:var(--measure);margin-top:var(--s-6)}.xp-hl > li{position:relative;padding-left:var(--s-6);color:var(--tx);font-size:var(--f-body);line-height:var(--lh-body)}.xp-hl > li + li{margin-top:var(--s-4)}.xp-hl > li::before{content:'';position:absolute;left:0;top:0.78em;width:var(--s-3);height:1px;background:var(--line-strong)}.xp-stack{display:flex;flex-wrap:wrap;gap:var(--s-2);margin-top:var(--s-6)}.xp-stack > li{font-size:var(--f-eyebrow);font-weight:var(--w-med);line-height:1.25;letter-spacing:0;color:var(--tx-dim);background:var(--surface-1);border:1px solid var(--line);border-radius:var(--r-pill);padding:var(--s-2);padding-inline:var(--s-3)}@media (max-width:420px){.xp-stack > li{padding-inline:var(--s-2)}}.sk-eyebrow{margin-bottom:var(--s-3)}.sk-title{color:var(--tx);margin-bottom:var(--s-10);text-wrap:balance}.sk-list{position:relative;counter-reset:sk}.sk-list::before{content:'';position:absolute;inset:0 0 auto;height:1px;background:var(--line)}.sk-group{display:grid;grid-template-columns:var(--s-6) 1fr;column-gap:var(--s-4);align-items:baseline;counter-increment:sk;padding-block:var(--s-6)}.sk-group + .sk-group{border-top:1px solid var(--line)}.sk-group:last-child{padding-bottom:0}.sk-idx{grid-column:1;grid-row:1;font-family:var(--font-num);font-variant-numeric:tabular-nums;font-size:var(--f-eyebrow);font-weight:var(--w-med);letter-spacing:0;line-height:var(--lh-head);color:var(--tx-faint)}.sk-idx::before{content:counter(sk,decimal-leading-zero)}.sk-name{grid-column:2;grid-row:1;font-size:var(--f-h2);font-weight:var(--w-semi);line-height:var(--lh-head);letter-spacing:var(--ls-head);color:var(--tx)}.sk-items{grid-column:2;grid-row:2;display:flex;flex-wrap:wrap;column-gap:var(--s-5);row-gap:var(--s-2);max-width:var(--measure);margin-top:var(--s-4);font-size:var(--f-body);line-height:var(--lh-tight);letter-spacing:var(--ls-body);color:var(--tx-dim)}.sk-items li{white-space:nowrap}.ct{padding-bottom:var(--s-12)}.ct-title{margin-top:var(--s-3);max-width:9ch;font-size:var(--f-display);font-weight:var(--w-bold);line-height:var(--lh-display);letter-spacing:var(--ls-display);text-wrap:balance}.ct-lede{margin-top:var(--s-6);color:var(--tx-dim);text-wrap:pretty}.ct-cta{margin-top:var(--s-10);display:flex;width:100%;min-height:var(--s-16);justify-content:space-between;align-items:center;gap:var(--s-4);padding-inline:var(--s-5);border-radius:var(--r-ctl);background:var(--accent);color:var(--accent-ink);font-weight:var(--w-semi);text-decoration:none;box-shadow:var(--lift-1);transition:transform var(--d-fast) var(--ease-out)}.ct-cta:active{transform:scale(0.985)}.ct-cta-tx{min-width:0;overflow-wrap:anywhere;letter-spacing:var(--ls-head)}.ct-links{display:grid;gap:var(--s-2);margin-top:var(--s-5)}.ct-item{display:flex}.ct-row{flex:1 1 auto;width:100%;min-height:var(--tap-good);justify-content:space-between;gap:var(--s-4);padding-inline:var(--s-5);border-radius:var(--r-ctl);background:var(--surface-2);box-shadow:var(--lift-1);color:var(--tx);text-decoration:none;transition:transform var(--d-fast) var(--ease-out)}.ct-row:active{transform:scale(0.985)}.ct-row-lb{font-weight:var(--w-med)}.ct-ico{flex:none;width:var(--s-5);height:var(--s-5);color:var(--tx-faint)}.ct-ico-cta{color:currentColor;opacity:0.7}.ct-foot{margin-top:var(--s-12);padding-top:var(--s-6);border-top:1px solid var(--line);color:var(--tx-dim);line-height:var(--lh-tight)}.ct-edu-a,.ct-edu-b{display:block}.ct-edu-b{margin-top:var(--s-1)}.ct-dot{margin-inline:var(--s-2);color:var(--tx-faint)}.ct-end{margin-top:var(--s-6);display:flex;align-items:center;justify-content:space-between;gap:var(--s-4)}.ct-loc{flex:0 1 auto;min-width:0}.ct-top{flex:none;justify-content:flex-end;gap:var(--s-2);color:var(--tx);font-weight:var(--w-med);text-decoration:none;transition:transform var(--d-fast) var(--ease-out)}.ct-top .ct-ico{color:currentColor;opacity:0.6}.ct-top:active{transform:scale(0.97)}@media (prefers-reduced-motion:reduce){.ct-cta,.ct-row,.ct-top{transition:none}.ct-cta:active,.ct-row:active,.ct-top:active{transform:none}}
+</style>
+<a class="skip" href="#main">Skip to content</a>
+<main id="main">
+<!-- part:nav -->
+<!-- Persistent bottom dock. Fixed, safe-area aware, 4 destinations + 1 primary action. -->
+<div class="dock-shell">
+  <nav class="dock" aria-label="Section navigation">
+    <h2 class="dock-hd">Sections</h2>
+
+    <ul class="dock-tabs">
+      <li class="dock-slot">
+        <a class="tap dock-tab" href="#work" data-spy>
+          <svg class="dock-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+            <rect x="3.25" y="3.25" width="7.5" height="7.5" rx="2.2"/>
+            <rect x="13.25" y="3.25" width="7.5" height="7.5" rx="2.2"/>
+            <rect x="3.25" y="13.25" width="7.5" height="7.5" rx="2.2"/>
+            <rect x="13.25" y="13.25" width="7.5" height="7.5" rx="2.2"/>
+          </svg>
+          <span class="dock-lb">Work</span>
+        </a>
+      </li>
+
+      <li class="dock-slot">
+        <a class="tap dock-tab" href="#experience" data-spy>
+          <svg class="dock-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+            <rect x="2.75" y="6.75" width="18.5" height="14" rx="2.6"/>
+            <path d="M8.75 6.75V5.5A1.75 1.75 0 0 1 10.5 3.75h3A1.75 1.75 0 0 1 15.25 5.5v1.25"/>
+            <path d="M2.75 12.25h18.5"/>
+          </svg>
+          <span class="dock-lb">Career</span>
+        </a>
+      </li>
+
+      <li class="dock-slot">
+        <a class="tap dock-tab" href="#skills" data-spy>
+          <svg class="dock-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+            <path d="M5 20v-5.5"/>
+            <path d="M12 20V4"/>
+            <path d="M19 20v-9"/>
+          </svg>
+          <span class="dock-lb">Skills</span>
+        </a>
+      </li>
+
+      <li class="dock-slot">
+        <a class="tap dock-tab" href="#contact" data-spy>
+          <svg class="dock-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+            <path d="M20.75 11.6a8.35 8.35 0 0 1-12.1 7.45L3.6 20.4l1.4-4.9A8.35 8.35 0 1 1 20.75 11.6Z"/>
+          </svg>
+          <span class="dock-lb">Contact</span>
+        </a>
+      </li>
+    </ul>
+
+    <a class="tap dock-cta" href="mailto:you@example.com" aria-label="Email Your Name">
+      <svg class="dock-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+        <rect x="2.75" y="4.75" width="18.5" height="14.5" rx="2.6"/>
+        <path d="m3.6 7.4 7.35 5.1a1.85 1.85 0 0 0 2.1 0l7.35-5.1"/>
+      </svg>
+    </a>
+  </nav>
+</div>
+
+<!-- part:hero -->
+<section id="hero" class="hero section wrap" aria-labelledby="hero-title" data-stagger="72">
+  <h1 class="hero-title" id="hero-title">
+    <span class="eyebrow hero-kicker">Your Name<span class="hero-sep" aria-hidden="true">·</span><span class="dim">Tel Aviv, Israel</span></span>
+    <span class="hero-display">I build the parts people actually touch.</span>
+  </h1>
+
+  <p class="hero-lede reveal"><span class="hero-role">Senior Product Engineer.</span> Twelve years turning ambiguous product bets into interfaces that ship, scale, and stay fast. Most recently owning the end-to-end surface of a video personalization platform used by 400+ enterprise brands.</p>
+
+  <!-- Only the primary action. The secondary links (LinkedIn / GitHub / Résumé)
+       used to be rendered here too, and the contact section renders the exact
+       same three again as 48px rows — the same content twice on one page. The
+       close owns the full link set; the hero keeps its one idea. -->
+  <div class="hero-actions reveal">
+    <a class="hero-cta tap" href="mailto:you@example.com">Email</a>
+  </div>
+</section>
+
+<!-- part:proof -->
+<section id="proof" class="proof section wrap" aria-labelledby="proof-title">
+  <h2 class="eyebrow proof-eyebrow reveal" id="proof-title">Track record</h2>
+
+  <ul class="proof-list" role="list" data-stagger="72">
+    
+    <li class="proof-item reveal">
+      <p class="proof-value num">12<span class="proof-unit">yrs</span></p>
+      <p class="proof-label">Shipping product</p>
+    </li>
+    
+    <li class="proof-item reveal">
+      <p class="proof-value num">400<span class="proof-unit">+</span></p>
+      <p class="proof-label">Enterprise brands served</p>
+    </li>
+    
+    <li class="proof-item reveal">
+      <p class="proof-value num">8</p>
+      <p class="proof-label">Engineers led</p>
+    </li>
+    
+  </ul>
+</section>
+
+<!-- part:work -->
+<section id="work" class="work section wrap" aria-labelledby="work-title">
+  <h2 class="eyebrow work-eyebrow reveal" id="work-title">Selected work</h2>
+
+  <ol class="work-list" role="list" data-stagger="72">
+    
+    <li class="work-card reveal">
+      <p class="work-meta">
+        <span class="work-kicker">Idomoo · 2023</span>
+        <span class="work-index num" aria-hidden="true"></span>
+      </p>
+
+      <h3 class="work-title">Canvas Editor</h3>
+
+      <p class="work-summary">A real-time video template editor that renders 4K compositions in the browser at 60fps.</p>
+
+      <p class="work-tags"><span class="work-tag">WebGL</span><span class="work-tag">Performance</span><span class="work-tag">Design systems</span></p>
+
+      <dl class="work-metrics">
+        <div class="work-metric">
+          <dt class="work-metric-label">Time to first render</dt>
+          <dd class="work-metric-value num">380ms</dd>
+        </div>
+        
+        <div class="work-metric">
+          <dt class="work-metric-label">Sustained on mid-tier hardware</dt>
+          <dd class="work-metric-value num">60fps</dd>
+        </div>
+        
+        
+      </dl>
+
+      
+      <details class="work-more">
+        <summary class="work-more-btn tap">
+          <span class="work-more-label">How it was built</span>
+          <svg class="work-chev" viewBox="0 0 16 16" width="16" height="16" fill="none" aria-hidden="true" focusable="false">
+            <path d="M4 6.25 8 10.25 12 6.25" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </summary>
+        <div class="work-detail">
+          <p class="work-detail-text">Replaced a DOM-based editor with a WebGL scene graph and an off-main-thread layout pass. The whole surface — timeline, layers, property inspector — was rebuilt around a single immutable document model.</p>
+        </div>
+      </details>
+      
+    </li>
+    
+    <li class="work-card reveal">
+      <p class="work-meta">
+        <span class="work-kicker">Idomoo · 2022</span>
+        <span class="work-index num" aria-hidden="true"></span>
+      </p>
+
+      <h3 class="work-title">Token Pipeline</h3>
+
+      <p class="work-summary">One source of truth for color, type, and motion across three products and two native apps.</p>
+
+      <p class="work-tags"><span class="work-tag">Design systems</span><span class="work-tag">Tooling</span><span class="work-tag">Accessibility</span></p>
+
+      <dl class="work-metrics">
+        <div class="work-metric">
+          <dt class="work-metric-label">CSS payload removed</dt>
+          <dd class="work-metric-value num">62%</dd>
+        </div>
+        
+        <div class="work-metric">
+          <dt class="work-metric-label">Products unified</dt>
+          <dd class="work-metric-value num">3</dd>
+        </div>
+        
+        
+      </dl>
+
+      
+      <details class="work-more">
+        <summary class="work-more-btn tap">
+          <span class="work-more-label">How it was built</span>
+          <svg class="work-chev" viewBox="0 0 16 16" width="16" height="16" fill="none" aria-hidden="true" focusable="false">
+            <path d="M4 6.25 8 10.25 12 6.25" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </summary>
+        <div class="work-detail">
+          <p class="work-detail-text">Design tokens authored once, compiled to CSS custom properties, Swift, and Kotlin. Contrast and tap-target rules are enforced at build time, so a violation fails CI rather than review.</p>
+        </div>
+      </details>
+      
+    </li>
+    
+    <li class="work-card reveal">
+      <p class="work-meta">
+        <span class="work-kicker">Wix · 2019</span>
+        <span class="work-index num" aria-hidden="true"></span>
+      </p>
+
+      <h3 class="work-title">Editor Latency Program</h3>
+
+      <p class="work-summary">A year-long effort to make a very large editor feel instant on low-end Android.</p>
+
+      <p class="work-tags"><span class="work-tag">Performance</span><span class="work-tag">Accessibility</span></p>
+
+      <dl class="work-metrics">
+        <div class="work-metric">
+          <dt class="work-metric-label">Interaction latency cut</dt>
+          <dd class="work-metric-value num">40%</dd>
+        </div>
+        
+        <div class="work-metric">
+          <dt class="work-metric-label">Accessibility score, from 61</dt>
+          <dd class="work-metric-value num">98</dd>
+        </div>
+        
+        
+      </dl>
+
+      
+      <details class="work-more">
+        <summary class="work-more-btn tap">
+          <span class="work-more-label">How it was built</span>
+          <svg class="work-chev" viewBox="0 0 16 16" width="16" height="16" fill="none" aria-hidden="true" focusable="false">
+            <path d="M4 6.25 8 10.25 12 6.25" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </summary>
+        <div class="work-detail">
+          <p class="work-detail-text">Profiling infrastructure first, then a sequence of targeted fixes: layout off the main thread, virtualized panels, and a strict budget enforced per pull request.</p>
+        </div>
+      </details>
+      
+    </li>
+    
+  </ol>
+</section>
+
+<!-- part:experience -->
+<section class="xp section" id="experience" aria-labelledby="xp-title">
+  <div class="wrap">
+    <p class="eyebrow xp-eyebrow reveal">Experience</p>
+    <h2 class="h1 xp-title reveal" id="xp-title">The roles,<br>in order.</h2>
+
+    <ol class="xp-list" data-stagger="70">
+      
+      <li class="xp-item reveal">
+        <p class="xp-meta">
+          <span class="xp-node is-now" aria-hidden="true"></span>
+          <span class="xp-period">2021 — Present</span>
+          <span class="xp-loc">Tel Aviv</span>
+        </p>
+
+        <h3 class="xp-co">Idomoo</h3>
+        <p class="xp-role">Staff Product Engineer</p>
+        <p class="xp-blurb">Own the creative-tooling surface: the editor, the render pipeline's front end, and the APIs brands build against.</p>
+
+        <ul class="xp-hl">
+          <li>Rebuilt the template editor around a canvas renderer — time-to-first-render fell from 4.1s to 380ms.</li>
+          <li>Led the move to a tokenized design system across three products; cut CSS payload 62%.</li>
+          <li>Grew the platform team from 3 to 8, established the review and on-call practice they still run.</li>
+          
+          
+        </ul>
+
+        <ul class="xp-stack" aria-label="Stack at Idomoo">
+          <li>TypeScript</li>
+          <li>React</li>
+          <li>WebGL</li>
+          <li>Node</li>
+          <li>Go</li>
+          
+        </ul>
+      </li>
+      
+      <li class="xp-item reveal">
+        <p class="xp-meta">
+          <span class="xp-node" aria-hidden="true"></span>
+          <span class="xp-period">2017 — 2021</span>
+          <span class="xp-loc">Tel Aviv</span>
+        </p>
+
+        <h3 class="xp-co">Wix</h3>
+        <p class="xp-role">Senior Frontend Engineer</p>
+        <p class="xp-blurb">Editor performance and the component library used by every vertical team.</p>
+
+        <ul class="xp-hl">
+          <li>Drove a 40% reduction in editor interaction latency by moving layout off the main thread.</li>
+          <li>Authored the accessibility baseline adopted org-wide; took the editor from 61 to 98 on audits.</li>
+          
+          
+          
+        </ul>
+
+        <ul class="xp-stack" aria-label="Stack at Wix">
+          <li>TypeScript</li>
+          <li>React</li>
+          <li>Web Workers</li>
+          
+          
+          
+        </ul>
+      </li>
+      
+      <li class="xp-item reveal">
+        <p class="xp-meta">
+          <span class="xp-node" aria-hidden="true"></span>
+          <span class="xp-period">2014 — 2017</span>
+          <span class="xp-loc">Remote</span>
+        </p>
+
+        <h3 class="xp-co">Freelance</h3>
+        <p class="xp-role">Product Engineer</p>
+        <p class="xp-blurb">Interface work for early-stage teams — design systems, marketing surfaces, and the first version of several products.</p>
+
+        <ul class="xp-hl">
+          <li>Shipped 14 production front ends across fintech, media, and developer tooling.</li>
+          
+          
+          
+          
+        </ul>
+
+        <ul class="xp-stack" aria-label="Stack at Freelance">
+          <li>JavaScript</li>
+          <li>CSS</li>
+          <li>Rails</li>
+          
+          
+          
+        </ul>
+      </li>
+      
+    </ol>
+  </div>
+</section>
+
+<!-- part:skills -->
+<section class="sk section" id="skills" aria-labelledby="sk-title">
+  <div class="wrap">
+    <p class="eyebrow sk-eyebrow reveal">Capabilities</p>
+    <h2 class="h1 sk-title reveal" id="sk-title">The tools,<br>and the habits.</h2>
+
+    <ol class="sk-list" data-stagger="70">
+      
+      <li class="sk-group reveal">
+        <span class="sk-idx" aria-hidden="true"></span>
+        <h3 class="sk-name">Languages</h3>
+        <ul class="sk-items">
+          <li>TypeScript</li>
+          <li>JavaScript</li>
+          <li>Go</li>
+          <li>Swift</li>
+          <li>SQL</li>
+          
+        </ul>
+      </li>
+      
+      <li class="sk-group reveal">
+        <span class="sk-idx" aria-hidden="true"></span>
+        <h3 class="sk-name">Interface</h3>
+        <ul class="sk-items">
+          <li>React</li>
+          <li>WebGL / Canvas</li>
+          <li>CSS architecture</li>
+          <li>Motion design</li>
+          <li>Accessibility</li>
+          
+        </ul>
+      </li>
+      
+      <li class="sk-group reveal">
+        <span class="sk-idx" aria-hidden="true"></span>
+        <h3 class="sk-name">Platform</h3>
+        <ul class="sk-items">
+          <li>Node</li>
+          <li>Design systems</li>
+          <li>Build tooling</li>
+          <li>Performance budgets</li>
+          <li>CI</li>
+          
+        </ul>
+      </li>
+      
+      <li class="sk-group reveal">
+        <span class="sk-idx" aria-hidden="true"></span>
+        <h3 class="sk-name">Practice</h3>
+        <ul class="sk-items">
+          <li>Team leadership</li>
+          <li>Technical writing</li>
+          <li>Product discovery</li>
+          <li>Mentoring</li>
+          
+          
+        </ul>
+      </li>
+      
+    </ol>
+  </div>
+</section>
+
+<!-- part:contact -->
+<!-- contact — the close. One idea: send the email.
+     The primary link (kind "primary") becomes the accent CTA and carries the
+     address itself as its label; the rest are 48px rows, 8px apart. -->
+<section id="contact" class="ct section wrap" aria-labelledby="ct-title" data-stagger="72">
+  <p class="eyebrow ct-eyebrow reveal">Contact</p>
+
+  <h2 class="ct-title reveal" id="ct-title">Let&rsquo;s talk.</h2>
+
+  <p class="ct-lede measure reveal">The fastest way in is email. Tell me what you&rsquo;re building and where it hurts &mdash; I answer every one.</p>
+
+  <a class="ct-cta tap reveal" href="mailto:you@example.com" aria-label="Email Your Name at you@example.com">
+    <span class="ct-cta-tx">you@example.com</span>
+    <svg class="ct-ico ct-ico-cta" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+      <path d="M4 12h15"/>
+      <path d="m13 6 6 6-6 6"/>
+    </svg>
+  </a>
+
+  <ul class="ct-links reveal" role="list">
+    <li class="ct-item">
+      <a class="ct-row tap" href="https://linkedin.com/in/example">
+        <span class="ct-row-lb">LinkedIn</span>
+        <svg class="ct-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+          <path d="M8 16 16 8"/>
+          <path d="M9.25 8H16v6.75"/>
+        </svg>
+      </a>
+    </li><li class="ct-item">
+      <a class="ct-row tap" href="https://github.com/example">
+        <span class="ct-row-lb">GitHub</span>
+        <svg class="ct-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+          <path d="M8 16 16 8"/>
+          <path d="M9.25 8H16v6.75"/>
+        </svg>
+      </a>
+    </li><li class="ct-item">
+      <a class="ct-row tap" href="#">
+        <span class="ct-row-lb">Résumé (PDF)</span>
+        <svg class="ct-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+          <path d="M8 16 16 8"/>
+          <path d="M9.25 8H16v6.75"/>
+        </svg>
+      </a>
+    </li>
+  </ul>
+
+  <footer class="ct-foot reveal">
+    <p class="ct-edu">
+      <span class="ct-edu-a">B.Sc. Computer Science</span>
+      <span class="ct-edu-b">Tel Aviv University<span class="ct-dot" aria-hidden="true">&middot;</span>2010 — 2013</span>
+    </p>
+
+    <div class="ct-end">
+      <p class="ct-loc">Tel Aviv, Israel</p>
+      <a class="ct-top tap" href="#main">
+        <span>Back to top</span>
+        <svg class="ct-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+          <path d="M12 19V5"/>
+          <path d="m6 11 6-6 6 6"/>
+        </svg>
+      </a>
+    </div>
+  </footer>
+</section>
+
+</main>
+<script>// Shared runtime. Deliberately tiny: an IntersectionObserver and nothing else.
+// No scroll listener anywhere — a scroll handler that reads layout is the most
+// likely cause of a 60fps failure (SPEC §4).
+(function () {
+  'use strict';
+
+  var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function revealAll() {
+    var els = document.querySelectorAll('.reveal');
+    for (var i = 0; i < els.length; i++) els[i].classList.add('is-in');
+  }
+
+  if (reduced || !('IntersectionObserver' in window)) {
+    revealAll();
+    return;
+  }
+
+  // Stagger is assigned per group so siblings cascade (SPEC §1.3).
+  var groups = document.querySelectorAll('[data-stagger]');
+  for (var g = 0; g < groups.length; g++) {
+    var kids = groups[g].querySelectorAll(':scope > .reveal');
+    var step = parseInt(groups[g].getAttribute('data-stagger'), 10) || 72;
+    for (var k = 0; k < kids.length; k++) {
+      kids[k].style.setProperty('--reveal-delay', k * step + 'ms');
+    }
+  }
+
+  var io = new IntersectionObserver(
+    function (entries) {
+      for (var i = 0; i < entries.length; i++) {
+        if (entries[i].isIntersecting) {
+          entries[i].target.classList.add('is-in');
+          io.unobserve(entries[i].target); // nothing animates twice
+        }
+      }
+    },
+    // Fire slightly before the element reaches the fold so the reveal reads as
+    // a consequence of scrolling, not as a pop-in after arrival.
+    { rootMargin: '0px 0px -12% 0px', threshold: 0.01 }
+  );
+
+  var targets = document.querySelectorAll('.reveal');
+  for (var t = 0; t < targets.length; t++) {
+    // Anything already on screen at load reveals immediately — no entrance
+    // animation may delay the LCP paint (SPEC §4).
+    var r = targets[t].getBoundingClientRect();
+    if (r.top < window.innerHeight * 0.9) targets[t].classList.add('is-in');
+    else io.observe(targets[t]);
+  }
+})();
+
+// nav — scroll-spy. IntersectionObserver only; no scroll listener anywhere.
+// A thin band across the reading area decides which section is "current".
+(function () {
+  'use strict';
+  if (!('IntersectionObserver' in window)) return;
+
+  var links = document.querySelectorAll('.dock-tab[data-spy]');
+  var pairs = [];
+  for (var i = 0; i < links.length; i++) {
+    var href = links[i].getAttribute('href') || '';
+    var sec = href.charAt(0) === '#' ? document.getElementById(href.slice(1)) : null;
+    if (sec) pairs.push({ link: links[i], el: sec });
+  }
+  if (!pairs.length) return;
+
+  // Several entries can report intersecting in one callback; without this the
+  // spy rewrites all four attributes on every one of them, mid-fling.
+  var current = null;
+  var pending = null;
+  var scheduled = 0;
+
+  // The observer fires while the page is moving. Writing the attribute there
+  // puts a style recalc and an accessibility-tree update inside a frame the
+  // compositor is already using to scroll, and it was measurably costing a
+  // dropped frame. The decision stays scroll-driven — IntersectionObserver
+  // still makes it, and scrubbing back up reverses it exactly — only the write
+  // is moved to the first idle moment after the flick settles.
+  var defer =
+    window.requestIdleCallback ||
+    function (fn) { return setTimeout(fn, 120); };
+
+  function commit() {
+    scheduled = 0;
+    if (pending === current) return;
+    current = pending;
+    for (var i = 0; i < pairs.length; i++) {
+      if (pairs[i].link === current) pairs[i].link.setAttribute('aria-current', 'page');
+      else pairs[i].link.removeAttribute('aria-current');
+    }
+  }
+
+  function activate(link) {
+    pending = link;
+    if (scheduled) return;
+    scheduled = 1;
+    defer(commit, { timeout: 300 });
+  }
+
+  var io = new IntersectionObserver(
+    function (entries) {
+      for (var i = 0; i < entries.length; i++) {
+        if (!entries[i].isIntersecting) continue;
+        for (var j = 0; j < pairs.length; j++) {
+          if (pairs[j].el === entries[i].target) activate(pairs[j].link);
+        }
+      }
+    },
+    // Only a ~10% band around 45% of the viewport counts, so at most one
+    // section is current and scrubbing backwards reverses it exactly.
+    { rootMargin: '-42% 0px -48% 0px', threshold: 0 }
+  );
+
+  for (var k = 0; k < pairs.length; k++) io.observe(pairs[k].el);
+})();
+</script>
