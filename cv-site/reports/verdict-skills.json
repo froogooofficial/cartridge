@@ -1,0 +1,60 @@
+{
+  "round": 1,
+  "piece": "#skills — the capabilities section",
+  "threeWords": "Capabilities, grouped, listed",
+  "wins": false,
+  "score": 6,
+  "motion": "Six frames at 130ms intervals. Frame 000: section entering from below, eyebrow + headline at partial opacity (glyphs visibly dimmed toward the page background, translated down). Frame 001-002: eyebrow and h2 resolve to full #F7F8F8 with translateY settled at matrix(1,0,0,1,0,0). Frames 003, 004 and 005 are byte-identical (213909 bytes each) — the reveal has completed; the four .sk-group rows had not yet crossed the observer threshold at that scroll depth (group 1 top sits at ~759 CSS px, under the 776px dock), so the filmstrip shows the headline reveal only. Verified separately by scrolling to the section and holding 3s: all four groups reach opacity 1, transform matrix(1,0,0,1,0,0). Transition property is exactly 'opacity, transform', duration 0.62s, cubic-bezier(0.16, 1, 0.3, 1); transition-delay across the four groups is 0s / 0.07s / 0.14s / 0.21s = 70ms stagger. Under prefers-reduced-motion: reduce, .sk-group is opacity 1, no transform, transition-duration 1e-05s. Motion is fully compliant with SPEC 1.3.",
+  "biggestGap": "Delete the 01–04 ordinal rail on .sk-idx and pull the .sk-name headings back to the 20px page gutter, because that rail measures 3.47:1 contrast (#62676F on #08090A — under the 4.5:1 floor), repeats the caption tier at exactly the eyebrow's 13px, and pushes every group heading to x=60 against the headline's x=20, giving the section two competing left edges.",
+  "violations": [
+    {
+      "rule": "2.1 body text contrast >= 4.5:1 against the actual surface",
+      "measured": ".sk-idx colour rgb(98,103,111) on body background rgb(8,9,10) = 3.47:1 at 13px / weight 510 (not large text, which needs >=18.66px bold or >=24px)",
+      "where": "span.sk-idx — the '01' '02' '03' '04' ordinals at x=20, w=24, h=15",
+      "severity": "blocker"
+    },
+    {
+      "rule": "1.2 caption / eyebrow used at most once per section",
+      "measured": "5 caption-tier elements at 13px in one section: p.sk-eyebrow ('CAPABILITIES', 13px/590/uppercase/ls 1.105px = 0.085em) plus 4 x span.sk-idx (13px/510)",
+      "where": "p.eyebrow.sk-eyebrow at y=8 and the four span.sk-idx at y=187, 331, 505, 679",
+      "severity": "major"
+    },
+    {
+      "rule": "1.2 two levels within 3px of each other is a hierarchy failure / adjacent-level jump must be >= 1.25x",
+      "measured": "eyebrow 13px vs sk-idx 13px = 0px apart, ratio 1.00x against the 1.25x floor. (The rest of the ramp is clean: h2 33px / h3 24px = 1.375x, h3 24px / li 17px = 1.412x, li 17px / eyebrow 13px = 1.308x.)",
+      "where": "p.sk-eyebrow vs span.sk-idx",
+      "severity": "major"
+    },
+    {
+      "rule": "1.4 optical alignment beats mathematical alignment / single visibly-obeyed spacing scale",
+      "measured": "h2.sk-title and p.sk-eyebrow left edge x=20; h3.sk-name and ul.sk-items left edge x=60. 40px delta (24px ordinal column + 16px column-gap) creates a second left margin for 100% of the section's content",
+      "where": "div.wrap children (x=20) vs ol.sk-list grid content column (x=60)",
+      "severity": "major"
+    },
+    {
+      "rule": "1.2 hierarchy comes from size and weight jumps, not from boxes; almost no decorative rules",
+      "measured": "4 hairlines in one 836px section: ol.sk-list::before (height 1px, background rgba(255,255,255,0.075)) plus border-top 1px rgba(255,255,255,0.075) on groups 2, 3 and 4. Alpha and weight are inside the 2.1 band (0.06-0.10, 1px), but they are the only structural device separating four otherwise typographically identical rows",
+      "where": "ol.sk-list::before at y=152; li.sk-group border-top at y=296, 470, 644",
+      "severity": "minor"
+    },
+    {
+      "rule": "1.2 section headline weight 600",
+      "measured": "h2.sk-title is 33px / weight 680 / line-height 38.28px (1.16) / letter-spacing -0.726px (-0.022em). Size, line-height and tracking are in band; weight 680 is 80 above the specified 600. Its class is 'h1' but 33px is below the 40-56px display band, so it is judged as a section headline",
+      "where": "h2.h1.sk-title, rect x=20 y=36 w=353 h=77",
+      "severity": "minor"
+    },
+    {
+      "rule": "1.2 body 17px, line-height 1.47-1.6 (vs 2.3 labels 1.2-1.3)",
+      "measured": "ul.sk-items li: 17px / 400 / line-height 21.76px = 1.28. Legal as labels under 2.3, but these wrap across 2-3 lines with only a 20px column-gap (~4.6 word-spaces at 17px) and no token treatment, so they render as wrapped prose at prose-illegal leading: 'React  WebGL / Canvas' / 'CSS architecture  Motion design' / 'Accessibility'",
+      "where": "ul.sk-items (column-gap 20px, row-gap 8px, line pitch measured 30px between item rows at y=364, 394, 424)",
+      "severity": "minor"
+    },
+    {
+      "rule": "1.1 / 2.x internal consistency — one system, not two",
+      "measured": "The same content type is rendered two ways 200px apart: #experience renders skill tags as bordered rounded pills ('TypeScript', 'React', 'Web Workers', 'JavaScript', 'CSS', 'Rails' — visible in skills-motion-002.png at y=207 and y=1211 of 2556), while #skills renders 'TypeScript', 'JavaScript', 'React', 'CSS architecture' as bare unstyled 17px grey words",
+      "where": "ul.sk-items li vs the pill treatment in the preceding #experience section",
+      "severity": "major"
+    }
+  ],
+  "evidence": "Captured myself with harness/shot.mjs at 393x852 DPR3 / 4x CPU throttle. Opened and looked at: /home/user/cartridge/cv-site/captures/critic-r1/skills/skills-element.png, skills-viewport-000.png, skills-motion-000.png, skills-motion-002.png, skills-motion-003.png, skills-motion-005.png, and two probe screenshots I took myself after scrolling the section fully into view and holding 3s (/home/user/cartridge/cv-site/captures/critic-r1/skills/probe-full.png, probe3.png). NOTE on a phantom I caught and did not report: skills-element.png and the motion filmstrip both show the section body as empty black below the hairline. That is a capture artifact, not a defect — Playwright's element screenshot and the filmstrip fired before the IntersectionObserver threshold for .sk-group was crossed. Verified via page.evaluate after a 3s hold: all four li.sk-group return opacity '1', transform 'matrix(1, 0, 0, 1, 0, 0)', visibility 'visible', and the content paints (probe-full.png). Numeric confirmations: body background rgb(8,9,10); document.documentElement.scrollWidth = 393 (no horizontal overflow); harness reported taps: [] (no interactive targets in this section, so 3.3 is not applicable); section box 393x836 with the dock occupying y=776-852, leaving 12px clearance below the last group; group padding 24px top/bottom, gutters 20px, section padding-bottom 80px, gap to the preceding #experience content measured ~85px (inside the 72-96px band)."
+}

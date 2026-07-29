@@ -1,0 +1,196 @@
+{
+  "id": "contact",
+  "url": "http://127.0.0.1:4173/",
+  "box": {
+    "x": 0,
+    "y": 5024.1513671875,
+    "width": 393,
+    "height": 705.97900390625
+  },
+  "viewportShots": [
+    "/home/user/cartridge/cv-site/captures/critic-r1/contact/contact-viewport-000.png"
+  ],
+  "motionShots": [
+    "/home/user/cartridge/cv-site/captures/critic-r1/contact/contact-motion-000.png",
+    "/home/user/cartridge/cv-site/captures/critic-r1/contact/contact-motion-001.png",
+    "/home/user/cartridge/cv-site/captures/critic-r1/contact/contact-motion-002.png",
+    "/home/user/cartridge/cv-site/captures/critic-r1/contact/contact-motion-003.png",
+    "/home/user/cartridge/cv-site/captures/critic-r1/contact/contact-motion-004.png",
+    "/home/user/cartridge/cv-site/captures/critic-r1/contact/contact-motion-005.png"
+  ],
+  "element": "/home/user/cartridge/cv-site/captures/critic-r1/contact/contact-element.png",
+  "measured": {
+    "textNodes": [
+      {
+        "tag": "p",
+        "cls": "eyebrow ct-eyebrow reveal is-in",
+        "text": "Contact",
+        "fontPx": 13,
+        "weight": "590",
+        "lineHeight": "15.6px",
+        "letterSpacing": "1.105px",
+        "color": "rgb(144, 150, 161)",
+        "w": 353,
+        "h": 16
+      },
+      {
+        "tag": "h2",
+        "cls": "ct-title reveal is-in",
+        "text": "Let’s talk.",
+        "fontPx": 47.9,
+        "weight": "680",
+        "lineHeight": "50.8228px",
+        "letterSpacing": "-1.82195px",
+        "color": "rgb(247, 248, 248)",
+        "w": 300,
+        "h": 51
+      },
+      {
+        "tag": "p",
+        "cls": "ct-lede measure reveal is-in",
+        "text": "The fastest way in is email. Tell me wha",
+        "fontPx": 17,
+        "weight": "400",
+        "lineHeight": "26.35px",
+        "letterSpacing": "-0.187px",
+        "color": "rgb(144, 150, 161)",
+        "w": 353,
+        "h": 79
+      },
+      {
+        "tag": "span",
+        "cls": "ct-cta-tx",
+        "text": "you@example.com",
+        "fontPx": 17,
+        "weight": "590",
+        "lineHeight": "26.35px",
+        "letterSpacing": "-0.374px",
+        "color": "rgb(10, 11, 20)",
+        "w": 173,
+        "h": 26
+      },
+      {
+        "tag": "span",
+        "cls": "ct-row-lb",
+        "text": "LinkedIn",
+        "fontPx": 17,
+        "weight": "510",
+        "lineHeight": "26.35px",
+        "letterSpacing": "-0.187px",
+        "color": "rgb(247, 248, 248)",
+        "w": 70,
+        "h": 26
+      },
+      {
+        "tag": "span",
+        "cls": "ct-row-lb",
+        "text": "GitHub",
+        "fontPx": 17,
+        "weight": "510",
+        "lineHeight": "26.35px",
+        "letterSpacing": "-0.187px",
+        "color": "rgb(247, 248, 248)",
+        "w": 58,
+        "h": 26
+      },
+      {
+        "tag": "span",
+        "cls": "ct-row-lb",
+        "text": "Résumé (PDF)",
+        "fontPx": 17,
+        "weight": "510",
+        "lineHeight": "26.35px",
+        "letterSpacing": "-0.187px",
+        "color": "rgb(247, 248, 248)",
+        "w": 118,
+        "h": 26
+      },
+      {
+        "tag": "span",
+        "cls": "ct-edu-a",
+        "text": "B.Sc. Computer Science",
+        "fontPx": 17,
+        "weight": "400",
+        "lineHeight": "21.76px",
+        "letterSpacing": "-0.187px",
+        "color": "rgb(144, 150, 161)",
+        "w": 353,
+        "h": 22
+      },
+      {
+        "tag": "span",
+        "cls": "ct-dot",
+        "text": "·",
+        "fontPx": 17,
+        "weight": "400",
+        "lineHeight": "21.76px",
+        "letterSpacing": "-0.187px",
+        "color": "rgb(98, 103, 111)",
+        "w": 5,
+        "h": 20
+      },
+      {
+        "tag": "p",
+        "cls": "ct-loc",
+        "text": "Tel Aviv, Israel",
+        "fontPx": 17,
+        "weight": "400",
+        "lineHeight": "21.76px",
+        "letterSpacing": "-0.187px",
+        "color": "rgb(144, 150, 161)",
+        "w": 118,
+        "h": 22
+      },
+      {
+        "tag": "span",
+        "cls": "",
+        "text": "Back to top",
+        "fontPx": 17,
+        "weight": "510",
+        "lineHeight": "21.76px",
+        "letterSpacing": "-0.187px",
+        "color": "rgb(247, 248, 248)",
+        "w": 95,
+        "h": 22
+      }
+    ],
+    "taps": [
+      {
+        "tag": "a",
+        "text": "you@example.com",
+        "w": 353,
+        "h": 64,
+        "ok": true
+      },
+      {
+        "tag": "a",
+        "text": "LinkedIn",
+        "w": 353,
+        "h": 48,
+        "ok": true
+      },
+      {
+        "tag": "a",
+        "text": "GitHub",
+        "w": 353,
+        "h": 48,
+        "ok": true
+      },
+      {
+        "tag": "a",
+        "text": "Résumé (PDF)",
+        "w": 353,
+        "h": 48,
+        "ok": true
+      },
+      {
+        "tag": "a",
+        "text": "Back to top",
+        "w": 123,
+        "h": 48,
+        "ok": true
+      }
+    ],
+    "sectionHeight": 706
+  }
+}

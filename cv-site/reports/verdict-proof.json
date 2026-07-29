@@ -1,0 +1,42 @@
+{
+  "round": 1,
+  "piece": "#proof — the credibility strip and its scroll reveal",
+  "threeWords": "Three big numbers",
+  "wins": false,
+  "score": 6,
+  "biggestGap": "Collapse `#proof .proof-list` from its single 353px column with 48px row gaps into a 3-up `grid-template-columns: repeat(3, 1fr)` row with the values dropped from 47.9px to ~32px so \"400+\" fits a 117px cell — that turns three stacked announcements that each waste 67–91% of the content band into one 180px-tall set the eye reads at once, and frees the vertical room for the 28–34px section headline the section currently has no room for.",
+  "motion": "Real, and correctly built. Frame 000 shows only the first item (\"12 yrs / Shipping product\") at reduced opacity and roughly 18px lower than its settled position; frames 001–005 are pixel-identical and fully settled — the 0.62s reveal completes inside one sampling interval, so 5 of 6 frames show a finished state. Scrubbing confirms the mechanism: opacity 0→1 plus translateY(18px)→0, transition-property `opacity, transform` only, duration 0.62s, cubic-bezier(0.16, 1, 0.3, 1); no re-animation when scrolled back to y=0 (is-in persists, opacity stays 1); prefers-reduced-motion: reduce collapses duration to 1e-05s with no transform and all three items already in at y=0; will-change is correctly released to `auto` after is-in lands. The failure is not the animation, it is that the coded 72ms/144ms sibling stagger never executes — the three items cross their observer thresholds at scrollY 50–75, 175–200 and 300–325, so item 1 is fully at opacity 1.00 by y=175, 25px of scroll before item 2 even begins.",
+  "violations": [
+    {
+      "rule": "1.1 one idea per viewport — a screenshot at any depth has a single obvious subject",
+      "measured": "Section box is 393x473.3 CSS px inside an 852px viewport (55%), so it can never own a screen. proof-viewport-000.png holds five competing zones at once: the hero's accent Email CTA (the only saturated colour on screen), three co-equal 47.946px/weight-680 numbers, the \"SELECTED WORK\" eyebrow, the top of the Canvas Editor card, and the fixed bottom dock.",
+      "where": "section#proof, rect {x:0, y:736, w:393, h:473.33}",
+      "severity": "blocker"
+    },
+    {
+      "rule": "1.3 stagger between siblings 60–90ms; more than 120ms reads as slow",
+      "measured": "Coded transition-delay is 0s / 0.072s / 0.144s, but each .proof-item has its own observer: item 1 gains is-in between scrollY 50 and 75, item 2 between 175 and 200, item 3 between 300 and 325 — ~125 scroll px apart. Item 1 measured opacity 1.00 at y=175 while items 2 and 3 are still 0.00. The declared 72ms stagger is dead code; the user sees three unrelated one-at-a-time fades.",
+      "where": "#proof .proof-item.reveal, nth-child delays 0/72/144ms",
+      "severity": "major"
+    },
+    {
+      "rule": "1.2 hierarchy comes from size and weight jumps — heading levels",
+      "measured": "The section's only heading, h2.eyebrow.proof-eyebrow, is 13px/590 — 0.76x the 17px body it introduces, an inverted heading. The 28–34px section-headline level SPEC 1.2 defines is entirely absent, so the loudest element in the section (47.946px/680) is a bare digit with no claim attached to it: \"12 yrs / Shipping product\" is a label, not a statement.",
+      "where": "h2.eyebrow.proof-eyebrow (13px) vs p.proof-label (17px) vs p.proof-value (47.946px)",
+      "severity": "major"
+    },
+    {
+      "rule": "1.4 optical alignment beats mathematical alignment; 1.2 type does the work",
+      "measured": "Content band is 353px (x 20→373). Measured ink right edges: \"12 yrs\" 120.5px, \"400+\" 136.6px, \"8\" 51.5px — the number rows use 28.5%, 33.0% and 8.9% of the band, leaving 67–91% dead on every row; the widest ink in the whole section is \"Enterprise brands served\" at 230px, still 40.5% short. Digit-run widths 63.1 / 94.6 / 31.5px are a 3x spread, left-aligned with no right edge, rule or shared column to close them. font-variant-numeric: tabular-nums is declared on all three values but buys nothing in a single-column stack (grid-template-columns: 353px).",
+      "where": "ul.proof-list (display:grid, grid-template-columns:353px, gap:48px) and its three p.proof-value.num",
+      "severity": "major"
+    },
+    {
+      "rule": "1.2 type scale — levels must be nameable and adjacent jumps >= 1.25x",
+      "measured": "Four sizes measured: 47.946 / 24 / 17 / 13px, ratios 2.00x, 1.41x, 1.31x — all pass 1.25x. But span.proof-unit at 24px/510 sits below the 28–34px section-headline band and above body, a fifth size belonging to no named level in SPEC 1.2.",
+      "where": "span.proof-unit (\"yrs\", \"+\") 24px/510/-0.528px",
+      "severity": "minor"
+    }
+  ],
+  "evidence": "Captured myself via `node harness/shot.mjs proof captures/critic-r1/proof http://127.0.0.1:4173/` at 393x852 DPR3, 4x CPU throttle. Opened with the Read tool: /home/user/cartridge/cv-site/captures/critic-r1/proof/proof-element.png, proof-viewport-000.png, and all six frames proof-motion-000.png through proof-motion-005.png in order. Numerically confirmed with three throttled Playwright probes against the running page: full computed-style dump of every #proof descendant (bg rgb(8,9,10); section padding 0px 20px 80px; ul grid gap 48px, grid-template-columns 353px; values 47.946px/680/-1.82195px ls/50.8228px lh = 1.06; labels 17px/400/21.76px; eyebrow 13px/590/1.105px ls; secondary rgb(144,150,161) = 6.70:1 on rgb(8,9,10), primary rgb(247,248,248) = ~18:1; document.scrollWidth 393; zero elements in the section carry any background, border, shadow or gradient; zero accent hues; harness reported taps: [] so there is nothing interactive to fail the 44px floor); a 0–500px scroll scrub logging is-in and opacity per item at 25px steps, in both normal and prefers-reduced-motion contexts; and Range.getBoundingClientRect ink measurement of every text node."
+}

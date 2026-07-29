@@ -1,0 +1,112 @@
+{
+  "id": "proof",
+  "url": "http://127.0.0.1:4173/",
+  "box": {
+    "x": 0,
+    "y": 736,
+    "width": 393,
+    "height": 473.3333740234375
+  },
+  "viewportShots": [
+    "/home/user/cartridge/cv-site/captures/critic-r1/proof/proof-viewport-000.png"
+  ],
+  "motionShots": [
+    "/home/user/cartridge/cv-site/captures/critic-r1/proof/proof-motion-000.png",
+    "/home/user/cartridge/cv-site/captures/critic-r1/proof/proof-motion-001.png",
+    "/home/user/cartridge/cv-site/captures/critic-r1/proof/proof-motion-002.png",
+    "/home/user/cartridge/cv-site/captures/critic-r1/proof/proof-motion-003.png",
+    "/home/user/cartridge/cv-site/captures/critic-r1/proof/proof-motion-004.png",
+    "/home/user/cartridge/cv-site/captures/critic-r1/proof/proof-motion-005.png"
+  ],
+  "element": "/home/user/cartridge/cv-site/captures/critic-r1/proof/proof-element.png",
+  "measured": {
+    "textNodes": [
+      {
+        "tag": "h2",
+        "cls": "eyebrow proof-eyebrow reveal is-in",
+        "text": "Track record",
+        "fontPx": 13,
+        "weight": "590",
+        "lineHeight": "15.6px",
+        "letterSpacing": "1.105px",
+        "color": "rgb(144, 150, 161)",
+        "w": 353,
+        "h": 16
+      },
+      {
+        "tag": "span",
+        "cls": "proof-unit",
+        "text": "yrs",
+        "fontPx": 24,
+        "weight": "510",
+        "lineHeight": "25.44px",
+        "letterSpacing": "-0.528px",
+        "color": "rgb(144, 150, 161)",
+        "w": 35,
+        "h": 28
+      },
+      {
+        "tag": "p",
+        "cls": "proof-label",
+        "text": "Shipping product",
+        "fontPx": 17,
+        "weight": "400",
+        "lineHeight": "21.76px",
+        "letterSpacing": "-0.187px",
+        "color": "rgb(144, 150, 161)",
+        "w": 281,
+        "h": 22
+      },
+      {
+        "tag": "span",
+        "cls": "proof-unit",
+        "text": "+",
+        "fontPx": 24,
+        "weight": "510",
+        "lineHeight": "25.44px",
+        "letterSpacing": "-0.528px",
+        "color": "rgb(144, 150, 161)",
+        "w": 20,
+        "h": 28
+      },
+      {
+        "tag": "p",
+        "cls": "proof-label",
+        "text": "Enterprise brands served",
+        "fontPx": 17,
+        "weight": "400",
+        "lineHeight": "21.76px",
+        "letterSpacing": "-0.187px",
+        "color": "rgb(144, 150, 161)",
+        "w": 281,
+        "h": 22
+      },
+      {
+        "tag": "p",
+        "cls": "proof-value num",
+        "text": "8",
+        "fontPx": 47.9,
+        "weight": "680",
+        "lineHeight": "50.8228px",
+        "letterSpacing": "-1.82195px",
+        "color": "rgb(247, 248, 248)",
+        "w": 353,
+        "h": 51
+      },
+      {
+        "tag": "p",
+        "cls": "proof-label",
+        "text": "Engineers led",
+        "fontPx": 17,
+        "weight": "400",
+        "lineHeight": "21.76px",
+        "letterSpacing": "-0.187px",
+        "color": "rgb(144, 150, 161)",
+        "w": 281,
+        "h": 22
+      }
+    ],
+    "taps": [],
+    "sectionHeight": 473
+  }
+}

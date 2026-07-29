@@ -1,0 +1,54 @@
+{
+  "round": 1,
+  "piece": "#contact — closing section and its tap targets",
+  "threeWords": "Email me directly",
+  "wins": false,
+  "score": 7,
+  "biggestGap": "Cut the education block (.ct-edu — \"B.Sc. Computer Science\" / \"Tel Aviv University · 2010 — 2013\") out of #contact entirely and set .ct-loc and the \"Back to top\" label to 13px/590 secondary, so the only 17px type left in the section is the CTA and the three action labels.",
+  "motion": "Frame 000: the whole section is pre-reveal (all six .reveal children measured at opacity 0, transform translateY(18px)) — only a nearly-black \"CONTACT\" eyebrow is discernible. Frame 001: eyebrow, title and lede have faded up and shifted ~15 CSS px; frames 002–005 are identical and complete, so the reveal finishes inside ~2 frames (~260ms of filmstrip) and the last four frames are a settled state, not stasis. Sampling getComputedStyle every ~65ms through the reveal: .ct-eyebrow 0→1 over 620ms from t=0, .ct-title from 72ms, .ct-lede from 144ms, .ct-links from 288ms, .ct-foot from 360ms — all with transition 'opacity .62s cubic-bezier(.16,1,.3,1), transform .62s ...' and translateY 18px→0. The exception is .ct-cta: its computed transitionProperty is 'transform' only, duration 0.18s, delay 0s, so its opacity step-changes 0.00→1.00 between two adjacent samples (t=1405 → t=1472) while .ct-eyebrow was still at 0.30 and .ct-title at 0.00 — the primary button hard-cuts in and lands ahead of the headline that is supposed to introduce it. prefers-reduced-motion: reduce measured correct (.ct-title opacity 1, transform none, duration 1e-05s).",
+  "evidence": "Opened with the Read tool: captures/critic-r1/contact/contact-element.png, contact-viewport-000.png, contact-motion-000..005.png (all six), and my own probe captures probe-bottom.png and probe-maxscroll.png. Note: harness/shot.mjs re-reads el.boundingBox() after it has already scrolled the page, so contact-viewport-000.png is scrolled to the wrong document offset and shows TRACK RECORD / SELECTED WORK, not #contact; and contact-element.png is captured before the staggered children finish, so its blank lower half is a capture artifact, not a rendering defect (probe confirms .ct-links and .ct-foot at opacity 1 after settle). I judged the resting composition from probe-maxscroll.png (scrollY 4974 = document max), where #contact occupies viewport y 50–756. Numbers from harness/_critic_probe_contact.mjs, _contact2, _contact3, _contact4 (getComputedStyle / getBoundingClientRect / Range per-line measurement).",
+  "violations": [
+    {
+      "rule": "1.3 Entrance: opacity 0→1 plus translateY 12–24px, duration 500–700ms; stagger 60–90ms",
+      "measured": ".ct-cta computed transitionProperty = 'transform', transitionDuration = 0.18s, transitionDelay = 0s — no opacity transition at all. Sampled opacity goes 0.00 (t=1405ms) → 1.00 (t=1472ms) with .ct-eyebrow at 0.30 and .ct-title at 0.00 in the same sample; translateY 18→0 completes in ~180ms. Its siblings all measure 0.62s with delays 0 / 0.072 / 0.144 / 0.288 / 0.360s, so the CTA's effective stagger is negative (it arrives ~440ms before .ct-links and before the headline settles).",
+      "where": "a.ct-cta.tap.reveal (the you@example.com button), doc y 5246–5310",
+      "severity": "blocker"
+    },
+    {
+      "rule": "1.2 Section headline: 28–34px",
+      "measured": "h2.ct-title = 47.9px / weight 680 / letter-spacing -1.82px (-0.038em) / line-height 50.82px (1.06). That is 1.41× the page's own h1.hero-title (34px / 700) and 1.45× every other section headline on the page (.xp-title and .sk-title both 33px / 680). The closing CTA is therefore the largest type on the entire site, larger than the hero.",
+      "where": "h2.ct-title \"Let's talk.\", doc y 5052–5103",
+      "severity": "major"
+    },
+    {
+      "rule": "1.2 The jump between adjacent levels must be ≥1.25×; two levels within 3px of each other is a hierarchy failure",
+      "measured": "Font-size histogram for the whole section: 13px ×1, 47.946px ×1, 17px ×9. Nine of eleven text nodes sit at one size. Tertiary metadata .ct-edu-a (17px / 400 / rgb(144,150,161)) against primary action label .ct-row-lb (17px / 510 / rgb(247,248,248)) = 1.00× size jump, 0px apart. \"Back to top\" is 17px / 510 / rgb(247,248,248) — byte-identical type to the LinkedIn / GitHub / Résumé labels, so a utility link is set with primary-action emphasis.",
+      "where": "span.ct-edu-a, span.ct-edu-b, p.ct-loc, a.ct-top span vs span.ct-row-lb — doc y 5330–5682",
+      "severity": "major"
+    },
+    {
+      "rule": "1.1 One idea per viewport — a screenshot at any depth has a single obvious subject",
+      "measured": "At rest (scrollY 4974, the document maximum) the section occupies viewport y 50–756 and carries ten discrete objects. The lower 144px (y 564–708, 17% of the viewport, 20% of the section) is .ct-foot, which introduces information that is not about contacting anyone — degree, university and graduation dates — at the same 17px as the action rows. Purple appears once inside the section (rgb(124,140,255) on .ct-cta only, verified by scanning every computed background/color/fill in #contact), but the dock's envelope FAB puts a second accent-purple 'email me' affordance in the same viewport at y 776–852.",
+      "where": "footer.ct-foot (doc y 5538–5682) inside #contact",
+      "severity": "major"
+    },
+    {
+      "rule": "1.2 Body measure 32–40 characters at this width",
+      "measured": "p.ct-lede is 353px wide (full gutter-to-gutter; .measure applies no cap at 393px). Per-line character counts measured with a Range walk: 42 / 39 / 17. Line 1 is 42 characters, 2 over the ceiling.",
+      "where": "p.ct-lede.measure, doc y 5127–5206",
+      "severity": "minor"
+    },
+    {
+      "rule": "3.1 Primary actions live in the lower 40% of the viewport or in a persistent bottom bar",
+      "measured": "At document max scroll the primary CTA occupies viewport y 272–336; the lower 40% begins at y 511.2. The button sits 175px above the thumb zone, which contains only the three secondary link rows and the footer meta. Partially mitigated: a persistent dock (position: fixed, y 776–852) carries an email FAB.",
+      "where": "a.ct-cta at viewport y 272–336, scrollY 4974",
+      "severity": "minor"
+    },
+    {
+      "rule": "2.1 Body text contrast ≥ 4.5:1 against the actual surface behind it",
+      "measured": "span.ct-dot (the \"·\" separator, 17px) is rgb(98,103,111) on body background rgb(8,9,10) = 3.44:1, below the 4.5:1 floor for non-large text. Everything else clears: rgb(144,150,161) on rgb(8,9,10) = 6.62:1; rgb(10,11,20) on rgb(124,140,255) = 6.53:1.",
+      "where": "span.ct-dot, doc y 5589–5609, x 179",
+      "severity": "minor"
+    }
+  ]
+}

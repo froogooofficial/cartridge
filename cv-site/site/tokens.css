@@ -5,7 +5,9 @@
 
   /* --- Surface: near-black, one step up per tier (SPEC §2.1) --- */
   --bg:            #08090A;
-  --surface-1:     #0E0F11;
+  /* Was #0E0F11 — 1.04:1 against the page, so cards did not read as raised at
+     all. SPEC 2.1 puts surfaces one step up at #111214-#16181B. */
+  --surface-1:     #111214;
   --surface-2:     #141619;
   --surface-3:     #1A1D21;
   --line:          rgba(255, 255, 255, 0.075);
@@ -15,7 +17,11 @@
   /* --- Text: two colors carry the page --- */
   --tx:            #F7F8F8;   /* 18.9:1 on --bg */
   --tx-dim:        #9096A1;   /* 6.4:1  on --bg */
-  --tx-faint:      #62676F;   /*  3.3:1 — decorative / large only */
+  /* Was #62676F at 3.50:1. Two builders used it for 13px text, because a token
+     named "faint" reads as usable text colour. A token that fails when used as
+     its name suggests is a trap, so it now clears 4.5:1 on the page ground and
+     4.66:1 on a card — safe at any size. */
+  --tx-faint:      #7A7F88;   /*  4.95:1 on --bg, 4.66:1 on --surface-1 */
 
   /* --- Exactly one accent (SPEC §2.1) --- */
   --accent:        #7C8CFF;
@@ -24,10 +30,16 @@
   --accent-line:   rgba(124, 140, 255, 0.34);
 
   /* --- Type scale. Jumps are >=1.25x between adjacent levels (SPEC §1.2) --- */
+  /* Every adjacent pair clears the 1.25x jump SPEC 1.2 requires. The previous
+     scale put --f-h3 at 19px against a 17px body — 1.12x, which SPEC itself
+     calls a hierarchy failure. Builders correctly refused to use it and
+     collapsed to three levels instead, which is why six type roles ended up at
+     17px in one card. Ladder: 13 / 17 / 21.5 / 28 / 36 / display.
+       17/13 = 1.31   21.5/17 = 1.26   28/21.5 = 1.30   36/28 = 1.29 */
   --f-display:     clamp(2.75rem, 12.2vw, 3.5rem);  /* 44 -> 56 */
-  --f-h1:          2.0625rem;  /* 33 */
-  --f-h2:          1.5rem;     /* 24 */
-  --f-h3:          1.1875rem;  /* 19 */
+  --f-h1:          2.25rem;    /* 36 */
+  --f-h2:          1.75rem;    /* 28 — the section-headline band, SPEC 1.2 */
+  --f-h3:          1.34375rem; /* 21.5 — the item-title tier */
   --f-body:        1.0625rem;  /* 17 — the iOS body size */
   --f-sm:          0.9375rem;  /* 15 — the floor for prose */
   --f-eyebrow:     0.8125rem;  /* 13 */

@@ -1,0 +1,54 @@
+{
+  "round": 1,
+  "piece": "#work — selected-work cards",
+  "threeWords": "Three project cards",
+  "wins": false,
+  "score": 6,
+  "biggestGap": "Raise .work-metric-value from 17px/590 to ~32px/680 (with .work-metric-label sitting beneath it at 13px) so each card's evidence — 380ms, 60fps, 62%, 40%, 98 — outranks the 17px summary prose instead of measuring exactly the same size as it.",
+  "motion": "Frames 000-002 show the 'SELECTED WORK' eyebrow and card 01 rising together and fading in; frames 003, 004 and 005 are byte-identical (129240 bytes each), so the reveal has fully completed by frame 003 (~390ms into the strip) and nothing moves after that. Measured: transition-property 'opacity, transform', duration 0.62s, cubic-bezier(0.16, 1, 0.3, 1), translateY 18px -> 0, stagger 0s / 0.072s / 0.144s across the three cards. Scrolling back to top leaves .is-in in place (opacity 1) so nothing replays. Under prefers-reduced-motion the transition-duration drops to 1e-05s and transform is matrix(1,0,0,1,0,0). The disclosure's @keyframes work-detail-in animates only opacity and translate3d; details height jumps 49px -> 231px in one frame (measured 231,231,231,231,231) rather than being transitioned. All of section 1.3 passes.",
+  "violations": [
+    {
+      "rule": "1.2 type scale — 'Two levels within 3px of each other is a hierarchy failure'",
+      "measured": "The section uses exactly 3 sizes (24 / 17 / 13px) for 11 distinct type roles. Six roles sit at 17px, 0px apart: .work-summary 17/400, .work-metric-value 17/590, .work-more-label 17/510, .work-detail-text 17/400, chevron 17/510. Five roles sit at 13px, 0px apart: .eyebrow 13/590, .work-kicker 13/510, .work-index 13/400, .work-tag 13/400, .work-metric-label 13/400.",
+      "where": "#work — .work-summary vs .work-metric-value vs .work-more-label; .work-tag vs .work-metric-label vs .work-kicker vs .work-index",
+      "severity": "blocker"
+    },
+    {
+      "rule": "1.2 hierarchy comes from size and weight jumps / 1.1 one thing asks for attention",
+      "measured": ".work-metric-value = 17px/590, .work-summary = 17px/400 -> ratio 1.00x. The same page renders its numeric role at 47.9px/680 in #proof (.proof-value), i.e. 2.82x body. The card's payload (380ms, 60fps, 62%, 3, 40%, 98) is set at prose size and separated from the prose by weight alone.",
+      "where": "#work .work-metric-value (all six instances)",
+      "severity": "blocker"
+    },
+    {
+      "rule": "1.2 section headline 28–34px / hierarchy from size",
+      "measured": "Largest type anywhere in a 1306px-tall section is h3.work-title at 24px/590. That is below the 28–34px section-headline band, and the section's entire ladder is one jump: 24/17 = 1.41x, then 17/13 = 1.31x. The section's own h2 is the 13px eyebrow, so there is no headline level at all.",
+      "where": "#work h2.work-eyebrow (13px) and h3.work-title (24px)",
+      "severity": "major"
+    },
+    {
+      "rule": "1.1 one idea per viewport — a screenshot should have a single obvious subject",
+      "measured": "Three cards measure 353x373, 353x357, 353x373 with identical background rgb(14,15,17), identical border-radius 16px, identical padding 20px, identical box-shadow, and an identical 24/17/13/17/13 type ramp. Nothing distinguishes card 01 from card 03. In work-viewport-001 two complete card blocks compete at equal visual weight.",
+      "where": "#work .work-card x3",
+      "severity": "major"
+    },
+    {
+      "rule": "2.1 surfaces one step up, #111214–#16181B",
+      "measured": "Card background is rgb(14,15,17) = #0E0F11, below the entire specified band. Contrast against the page background rgb(8,9,10) is 1.04:1 — the surface is 3.5% brighter than the page and does not read as a surface on its own.",
+      "where": "#work .work-card background-color",
+      "severity": "major"
+    },
+    {
+      "rule": "2.1 body text contrast >= 4.5:1, large text >= 3:1",
+      "measured": ".work-index renders 01/02/03 via counter() at 13px/400 in rgb(98,103,111) on rgb(14,15,17) = 3.37:1. 13px is not large text, so the 4.5:1 floor applies. It is also the only element distinguishing one card from another.",
+      "where": "#work .work-index.num (top-right of each card)",
+      "severity": "major"
+    },
+    {
+      "rule": "2.2 card top highlight inset 0 1px 0 rgba(255,255,255,0.06)",
+      "measured": "box-shadow reads 'rgba(255,255,255,0.055) 0 1px 0 0 inset, rgba(0,0,0,0.65) 0 4px 20px -4px' — the highlight alpha is 0.055 against the specified 0.06 floor.",
+      "where": "#work .work-card box-shadow",
+      "severity": "minor"
+    }
+  ],
+  "evidence": "Captured myself with harness/shot.mjs into /home/user/cartridge/cv-site/captures/critic-r1/work and opened with the Read tool: work-viewport-000.png, work-viewport-001.png, work-element.png, work-motion-000.png, work-motion-001.png, work-motion-002.png, work-motion-003.png. Every numeric claim above was confirmed with page.evaluate against the running page at 393x852 / DPR 3 / 4x CPU throttle (three probe scripts, since removed). Passing checks I verified and am not listing as violations: measure 33/36/33 max chars per line (32–40 band, computed per line box with Range rects, not by averaging); page gutters 20px/20px; inter-section gap 80px both sides (72–96 band); card gaps 32px; in-card spacing 12/16/12/24/20 on a 4px scale; card padding 20px; radius 16px; hairlines rgba(255,255,255,0.075) 1px; all three summary tap targets 353x48 with min-height 48px; document.scrollWidth 393 (no overflow); zero background-image and zero filter on any node in the section. I also checked the 21 elements carrying transition-property:all — every one has transition-duration 0s, so they are inert and I am not reporting them as a 1.3 breach."
+}

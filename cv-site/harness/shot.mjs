@@ -34,17 +34,35 @@ if (!count) {
 const box = await el.boundingBox();
 const out = { id, url, box, viewportShots: [], motionShots: [], element: null };
 
-// --- Motion filmstrip: scroll the section in from below and sample the reveal ----
-await page.evaluate(() => window.scrollTo({ top: 0, behavior: 'instant' }));
-await page.reload({ waitUntil: 'networkidle' });
-await page.waitForTimeout(900);
-const target = Math.max(0, (await el.boundingBox()).y - VIEWPORT.height * 0.72);
-await page.evaluate((y) => window.scrollTo({ top: y, behavior: 'instant' }), target);
-for (let i = 0; i < 6; i++) {
-  const f = join(outDir, `${id}-motion-${String(i).padStart(3, '0')}.png`);
-  await page.screenshot({ path: f });
-  out.motionShots.push(f);
-  await page.waitForTimeout(130);
+// --- Motion filmstrip -----------------------------------------------------------
+// A section already inside the first viewport never scrolls into view, so its
+// entrance has to be sampled from navigation commit instead. Sampling it the
+// scroll way returned six byte-identical frames and told a critic nothing.
+const aboveFold = box.y < VIEWPORT.height * 0.9;
+out.motionMode = aboveFold ? 'from-load' : 'scrolled-into-view';
+
+if (aboveFold) {
+  // Start capturing the moment the document commits, before reveals finish.
+  await page.goto(url, { waitUntil: 'commit' });
+  for (let i = 0; i < 6; i++) {
+    const f = join(outDir, `${id}-motion-${String(i).padStart(3, '0')}.png`);
+    await page.screenshot({ path: f });
+    out.motionShots.push(f);
+    await page.waitForTimeout(150);
+  }
+  await page.waitForLoadState('networkidle').catch(() => {});
+} else {
+  await page.evaluate(() => window.scrollTo({ top: 0, behavior: 'instant' }));
+  await page.reload({ waitUntil: 'networkidle' });
+  await page.waitForTimeout(900);
+  const target = Math.max(0, (await el.boundingBox()).y - VIEWPORT.height * 0.72);
+  await page.evaluate((y) => window.scrollTo({ top: y, behavior: 'instant' }), target);
+  for (let i = 0; i < 6; i++) {
+    const f = join(outDir, `${id}-motion-${String(i).padStart(3, '0')}.png`);
+    await page.screenshot({ path: f });
+    out.motionShots.push(f);
+    await page.waitForTimeout(130);
+  }
 }
 
 // --- The section as the user sees it, one viewport at a time --------------------

@@ -1,0 +1,54 @@
+{
+  "round": 1,
+  "piece": "nav — persistent bottom dock (div.dock-shell > nav.dock; note: no element with id=\"nav\" exists in the built page, so shot.mjs could not target it and I re-ran the same capture against the .dock-shell selector)",
+  "threeWords": "Jump between sections",
+  "wins": false,
+  "score": 6,
+  "biggestGap": "The selected-tab indicator is invisible — .dock-tab[aria-current=\"page\"]::before paints #1A1D21 on the #141619 pill, a measured 1.072:1 — so delete that chip and instead recolour the active tab's icon and label to var(--accent) #7C8CFF (6.09:1 against the pill), which answers \"where am I\" and stops the accent being spent on a redundant envelope disc.",
+  "violations": [
+    {
+      "rule": "2.1 / 1.2 — surfaces and state must be legible; hierarchy from real contrast, not near-invisible boxes (and WCAG 2.2 1.4.11 requires 3:1 for state indication)",
+      "measured": "Active chip .dock-tab[aria-current=\"page\"]::before background rgb(26,29,33) = #1A1D21 against pill background rgb(20,22,25) = #141619 → contrast 1.072:1. Row scan at CSS y=800 reads luminance 29 inside the active chip vs 22 across the rest of the pill — a 7/255 step. The only other selected-state signal is the tab's opacity 0.58 → 1.0, i.e. rgb(152,153,154) vs rgb(247,248,248) = 2.68:1 (measured glyph stems: 152 vs 193 = 1.60:1). Both below the 3:1 floor.",
+      "where": ".dock-tab[aria-current=\"page\"]::before, CSS x 28–90, y 784–832",
+      "severity": "blocker"
+    },
+    {
+      "rule": "1.1 One idea per viewport — a persistent nav must not answer \"where am I\" with nothing",
+      "measured": "At scrollTop 0 and through the whole hero+proof run (~1.5 viewports), all four .dock-tab elements return aria-current = null and all four ::before chips compute opacity 0. Confirmed in all six motion frames: no chip, four labels at identical 0.58 opacity. The dock is in an indeterminate state for the first ~1.5 screens of a 6-section page.",
+      "where": ".dock-tabs, motion frames 000–005",
+      "severity": "major"
+    },
+    {
+      "rule": "2.1 Exactly one accent, used on the primary CTA, focus rings, and at most one other place",
+      "measured": "Page-wide census of chromatic (max−min ≥ 30) computed colours returns exactly one hue, rgb(124,140,255) — good — but it is painted on 4 distinct elements: a.dock-cta (background), a.hero-cta (background), a.ct-cta (background), span.xp-node.is-now (background + border), plus `outline: 2px solid var(--accent)` focus rings and a color-mix accent-15% hero wash. All three CTAs resolve to the same href, mailto:you@example.com. This dock contributes the third copy: in motion frames 000–005 the purple hero \"Email\" pill and the purple dock envelope disc (48×48, 6.09:1 against the pill — the only saturated object on screen) are visible simultaneously.",
+      "where": "a.dock-cta, CSS x 317–365, y 784–832",
+      "severity": "major"
+    },
+    {
+      "rule": "1.1 / 2.4 — a floating pill with no scrim guillotines the content passing under it",
+      "measured": "The pill sits 12px above the viewport bottom (margin-bottom var(--s-3) = 12px) and .dock-shell has backdrop-filter: none and no gradient scrim. Canvas scan of the 11px band at CSS y 841–851, full width: max luminance 220 against a page background of rgb(12,13,14) (lum 13). That is live page text rendering as a half-cut sliver below the dock — visible as the sliced \"How it was built\" row along the bottom of nav-element.png and nav-viewport-000.png.",
+      "where": "CSS y 841–852, x 0–393, below .dock",
+      "severity": "major"
+    },
+    {
+      "rule": "2.3 Density with air — tight line-heights on labels 1.2–1.3",
+      "measured": ".dock-lb computes font-size 13px / line-height 13px = 1.00, below the 1.2 floor. Also set with letter-spacing -0.143px (var(--ls-body) = -0.011em) at weight 510 — body tracking applied to 13px UI labels, where SPEC 1.2's 12–13px level calls for +0.06–0.1em.",
+      "where": "span.dock-lb ×4, 13px boxes at CSS y 815.5–828.5",
+      "severity": "minor"
+    },
+    {
+      "rule": "1.4 A single spacing scale, visibly obeyed",
+      "measured": "The same floating pill is inset 20px left and 20px right (padding-inline var(--gutter) = 1.25rem) but only 12px from the bottom edge (margin-bottom var(--s-3) = 0.75rem). Three edges of one object, two different scale steps.",
+      "where": "nav.dock rect x 20–373, y 776–840 inside a 393×852 viewport",
+      "severity": "minor"
+    },
+    {
+      "rule": "1.2 Chrome must be optically consistent — Apple/Linear icon sets are weight-unified",
+      "measured": "Five glyphs in one 353px pill carry three stroke weights: computed strokeWidth 1.7px (Work), 1.7px (Career), 2px (Skills), 1.7px (Contact), 1.8px (CTA envelope). The CTA glyph also renders in a 20px box against the 24px box used by the four tabs.",
+      "where": ".dock svg ×5, CSS y 787.5–811.5",
+      "severity": "minor"
+    }
+  ],
+  "motion": "The dock does not move at all. A canvas diff of the dock band (device y 2300–2556) across the six motion frames returns changedSubpixels = 0 and maxDelta = 0 for every consecutive pair — 0→1, 1→2, 2→3, 3→4, 4→5. The page behind it does reveal (the \"12 yrs / Shipping product\" proof stat is dim in frame 000 and fully painted by frame 002), so the filmstrip is sampling a live reveal; the dock is simply painted at full opacity from first paint and never participates. Its only motion is the selected-state crossfade, which is correctly compositable: .dock-tab transitions `opacity 0.32s cubic-bezier(0.16,1,0.3,1), transform 0.18s`, .dock-tab::before transitions `opacity 0.32s`, .dock-cta transitions `transform 0.18s`. No layout, filter, box-shadow or background property animates anywhere in the .dock rules, and a @media (prefers-reduced-motion: reduce) block sets `.dock-tab, .dock-tab::before, .dock-cta { transition: none }`. SPEC 1.3 passes. Also passing: every tap box ≥44 (tabs 62.25×48, CTA 48×48; adjacent gaps 8/8/8/16), .dock-shell has padding-bottom: env(safe-area-inset-bottom) and main has margin-bottom: env(safe-area-inset-bottom) with viewport meta `width=device-width,initial-scale=1,viewport-fit=cover` and no maximum-scale, scrollWidth 393, scroll-behavior auto, and the pill is lit rather than stroked (box-shadow 0 0 0 1px rgba(255,255,255,0.075) + inset 0 1px 0 rgba(255,255,255,0.055) + 0 4px 20px -4px rgba(0,0,0,0.65)).",
+  "evidence": "Opened with the Read tool: /home/user/cartridge/cv-site/captures/critic-r1/nav/nav-element.png, nav-viewport-000.png, nav-motion-000.png, nav-motion-002.png, nav-motion-005.png. Numeric confirmation of every small-scale claim was done in-page rather than from the downscaled PNGs: computed styles and getBoundingClientRect via page.evaluate on the live 393×852 / DPR3 / 4× CPU-throttled profile, a canvas getImageData row scan at CSS y=800 and an 11px band scan at CSS y 841–851 over a fresh screenshot, a canvas frame-diff of the dock band across all six motion PNGs, a whole-document chromatic-colour census, and document.styleSheets rule extraction for the .dock ruleset and the env(safe-area-inset-*) and prefers-reduced-motion declarations. Note on capture: the assigned selector #nav does not exist — the built page's [id] list is main, hero, hero-title, proof, proof-title, work, work-title, experience, xp-title, skills, sk-title, contact, ct-title — so shot.mjs exited 1 and I re-ran the identical script against .dock-shell to produce the files above."
+}

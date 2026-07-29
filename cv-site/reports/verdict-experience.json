@@ -1,0 +1,72 @@
+{
+  "round": 1,
+  "piece": "#experience — the career timeline",
+  "threeWords": "Roles in order",
+  "wins": false,
+  "score": 6,
+  "biggestGap": "Recolour the .xp-hl achievement bullets from rgb(247,248,248) (18.73:1) to the secondary rgb(144,150,161) and promote .xp-blurb to rgb(247,248,248), so the brightest thing in each entry is the one-line role summary instead of the nine lines of supporting detail that currently outweigh the 24px company name.",
+  "motion": "Real and correct. Frame 000 catches the section mid-reveal: eyebrow + 'The roles, in order.' at partial opacity and translated ~13 CSS px lower than their resting position; frame 001 (+130ms) has them at full brightness and final position; frames 002–005 are pixel-identical (003/004/005 are byte-identical, 179984 bytes each), so the reveal completes inside ~260ms of out-expo easing and never re-fires. Measured before entry: .reveal elements sit at transform matrix(1,0,0,1,0,18) / opacity 0, transition-property 'opacity, transform' only, 0.62s, cubic-bezier(0.16,1,0.3,1), stagger 0s / 0.07s / 0.14s = 70ms. Under prefers-reduced-motion: reduce the items load already .is-in with transform none, opacity 1, duration 1e-05s. Nothing animates that is not transform or opacity; no animation-name anywhere in the section. This is the strongest part of the piece and clears SPEC 1.3 outright.",
+  "violations": [
+    {
+      "rule": "1.2 caption/eyebrow used at most once per section",
+      "measured": "7 nodes measured at 13px / weight 590 / letter-spacing 1.105px (0.085em) uppercase: 'Experience', '2021 — Present', 'Tel Aviv', '2017 — 2021', 'Tel Aviv', '2014 — 2017', 'Remote'",
+      "where": ".eyebrow.xp-eyebrow plus .xp-period and .xp-loc on all three .xp-item rows",
+      "severity": "major"
+    },
+    {
+      "rule": "1.2 adjacent type levels must jump >=1.25x; two levels within 3px is a hierarchy failure",
+      "measured": "three distinct levels at 17px = 1.00x apart: .xp-role 17px/510, .xp-blurb 17px/400, .xp-hl li 17px/400 (line-height 26.35px on both of the latter two — identical typography, differing only in colour)",
+      "where": ".xp-role / .xp-blurb / .xp-hl li inside every .xp-item",
+      "severity": "major"
+    },
+    {
+      "rule": "1.1 one idea per viewport / 1.2 hierarchy from size and weight",
+      "measured": "supporting detail is the brightest and largest mass: .xp-hl li = rgb(247,248,248) at 18.73:1 on rgb(8,9,10), occupying 9 of the 22 text lines in viewport 0, while the role summary .xp-blurb = rgb(144,150,161) at 6.70:1 and the company .xp-co is only 24px/590. Hierarchy is inverted — the least important tier has the most visual weight",
+      "where": ".xp-hl li vs .xp-blurb vs .xp-co, first viewport (scroll 2512–3364)",
+      "severity": "major"
+    },
+    {
+      "rule": "1.1 a screenshot at any depth must have a single obvious subject",
+      "measured": "viewport 2 (scroll 3364–4216) holds the tail of the Wix entry (2 bullets + 3 chips) and the whole Freelance entry at identical typographic weight; the largest element, 'Freelance' at 24px/590, is surrounded by 7 lines of 17px rgb(247,248,248). No single subject is nameable",
+      "where": "captures/critic-r1/own/vp-1.png",
+      "severity": "major"
+    },
+    {
+      "rule": "1.2 a fourth 13px treatment sits 0px from the eyebrow tier and matches no defined level",
+      "measured": "11 chip nodes at 13px / weight 510 / letter-spacing normal / mixed case, colour rgb(144,150,161) — 1.00x from the 13px/590/0.085em uppercase caption tier, and neither a caption (needs 590 + 0.06–0.1em + uppercase) nor body (floor is 15px)",
+      "where": ".xp-stack li (TypeScript, React, WebGL, Node, Go, …)",
+      "severity": "minor"
+    },
+    {
+      "rule": "1.2 no boxes — hierarchy from size and weight / 2.2 surfaces defined by light, not by lines",
+      "measured": "15 chips each carry border 1px solid rgba(255,255,255,0.075) on all four sides, background rgb(14,15,17), border-radius 999px. They are the only chrome in an otherwise entirely box-free section (the entries themselves have no card, no stroke, no shadow)",
+      "where": ".xp-stack li",
+      "severity": "minor"
+    },
+    {
+      "rule": "2.1 surfaces one step up from the page background, #111214–#16181B",
+      "measured": "chip background rgb(14,15,17) = #0E0F11, below the specified surface range against a body background of rgb(8,9,10)",
+      "where": ".xp-stack li background-color",
+      "severity": "minor"
+    },
+    {
+      "rule": "1.2 section headline weight 600",
+      "measured": "h2 'The roles, in order.' = 33px / weight 680 (size 33px is in the 28–34 band, letter-spacing -0.726px = -0.022em passes, line-height 38.28/33 = 1.16 passes) — only the weight is out of band",
+      "where": "#experience h2.h1.xp-title",
+      "severity": "minor"
+    },
+    {
+      "rule": "1.4 a single spacing scale, visibly obeyed",
+      "measured": "the timeline rail is drawn per item: .xp-item:nth-child(1)::before computes to height 582.281px inside a 592px item, leaving a 9px break in the rail between Idomoo and Wix, while items 2 and 3 measure 496.583/497px and 363.885/364px = 0px break. Confirmed via getComputedStyle, not from pixels",
+      "where": ".xp-item::before (1px, rgba(255,255,255,0.075), left -24px)",
+      "severity": "minor"
+    },
+    {
+      "rule": "1.1 exactly one thing asking for attention — no compression of older history",
+      "measured": "2014–2017 Freelance is rendered with the identical scale to 2021–Present Staff Product Engineer: same .xp-co 24px/590, same .xp-role 17px/510, same .xp-blurb 17px/400, same chip row. The only measured difference across the three entries is the 8x8px .xp-node fill (rgb(124,140,255) on the current role vs rgb(8,9,10) with a rgba(255,255,255,0.12) ring on the past two)",
+      "where": ".xp-item — all three entries",
+      "severity": "major"
+    }
+  ],
+  "evidence": "Opened with the Read tool: captures/critic-r1/experience/experience-element.png (mid-reveal, entries 2–3 still faded), experience-viewport-000.png and -001.png (these are mis-anchored — shot.mjs measures the boundingBox after scrolling, so it treats the viewport-relative y as a document offset and screenshots scroll 613 and 1465, i.e. the Track Record and Selected Work sections, not #experience), and experience-motion-000 through -003.png. Because the harness viewport shots were wrong I re-captured the section myself at 393x852, DPR 3, 4x CPU throttle via harness/_critic_r1.mjs: captures/critic-r1/own/vp-0.png, vp-1.png and element-revealed.png (full section, all three entries revealed) — all opened and looked at. Numbers quoted come from page.evaluate probes in harness/_critic_r1.mjs, _critic_r1b.mjs and _critic_r1c.mjs (computed styles, bounding boxes, ::before geometry, WCAG contrast against the measured rgb(8,9,10) body background, and a font-size/weight histogram: 13px/590 x7, 24px/590 x3, 17px/510 x3, 17px/400 x9, 13px/510 x11). Passes worth recording: document.scrollWidth = 393 (no overflow), measure 35 characters at 329px on both .xp-blurb and the bullets (32–40 band), page gutter x = 20px, section padding-bottom 80px (72–96 band), exactly one accent hue rgb(124,140,255) used on exactly one element in the section, hairlines at rgba(255,255,255,0.075), and zero interactive elements in the section so there are no tap targets to fail."
+}
