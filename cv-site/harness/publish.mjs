@@ -29,28 +29,57 @@ const shrink = (buf) =>
       c.getContext('2d').drawImage(img, 0, 0, c.width, c.height);
       return c.toDataURL('image/webp', q);
     },
-    { b64: buf.toString('base64'), w: 300, q: 0.55 }
+    { b64: buf.toString('base64'), w: SHOT_W, q: SHOT_Q }
   );
 
+// Hard payload budget. Every capture is a data URI, so it is all parsed before
+// the page paints — lazy-loading cannot help. A 2.3MB page showed a phone nothing
+// but a spinner, so the budget is enforced here rather than hoped for.
+const MAX_BYTES = 900_000;
+const SHOT_W = 360;
+const SHOT_Q = 0.62;
+const MAX_SHOTS = 8;
+const INLINE_VIDEO = false;
+
 const capRoot = join(ROOT, 'captures');
-const labels = (await exists(capRoot))
-  ? (await readdir(capRoot, { withFileTypes: true })).filter((d) => d.isDirectory() && d.name !== 'parts').map((d) => d.name).sort().slice(-2)
-  : [];
+// Newest by mtime, not by name — a lexicographic sort put the old "smoke" stub
+// after "r5" and published the wrong round.
+let labels = [];
+if (await exists(capRoot)) {
+  const dirs = (await readdir(capRoot, { withFileTypes: true }))
+    .filter((d) => d.isDirectory() && d.name !== 'parts')
+    .map((d) => d.name);
+  const stamped = [];
+  for (const name of dirs) {
+    // Only run directories qualify: critic output is nested per piece and has no
+    // PNGs of its own, so it would publish an empty round.
+    const inner = await readdir(join(capRoot, name));
+    if (!inner.some((f) => f.endsWith('.png'))) continue;
+    stamped.push({ name, t: (await stat(join(capRoot, name))).mtimeMs });
+  }
+  stamped.sort((a, b) => b.t - a.t);
+  labels = stamped.slice(0, 1).map((x) => x.name);
+}
 
 const rounds = [];
 for (const label of labels) {
   const dir = join(capRoot, label);
   const files = (await readdir(dir)).sort();
   const shots = [];
-  for (const f of files.filter((x) => x.endsWith('.png'))) {
-    shots.push(await shrink(await readFile(join(dir, f))));
-  }
+  const pngs = files.filter((x) => x.endsWith('.png'));
+  // Sample evenly across scroll depth rather than truncating to the first N,
+  // so the strip still represents the whole page.
+  const step = Math.max(1, Math.ceil(pngs.length / MAX_SHOTS));
+  const picked = pngs.filter((_, i) => i % step === 0).slice(0, MAX_SHOTS);
+  for (const f of picked) shots.push(await shrink(await readFile(join(dir, f))));
+  if (picked.length < pngs.length) console.log(`  note: showing ${picked.length} of ${pngs.length} depths for ${label}`);
+  // The scroll recording stays on disk; base64 video is the single biggest blob
+  // and the filmstrip already shows what the scroll looks like.
   const vidFile = files.find((f) => f.endsWith('.webm'));
   let vid = null;
-  if (vidFile) {
+  if (INLINE_VIDEO && vidFile) {
     const b = await readFile(join(dir, vidFile));
-    // Skip anything that would blow up the page; a scroll recording is normally ~80 KB.
-    if (b.length < 2_500_000) vid = 'data:video/webm;base64,' + b.toString('base64');
+    if (b.length < 400_000) vid = 'data:video/webm;base64,' + b.toString('base64');
   }
   rounds.push({
     label,
@@ -136,5 +165,10 @@ const html = `<title>CV site — build progress</title>
     </div>`).join('') : '<div class="empty">No captures yet.</div>'}
 </section>`;
 
+const bytes = Buffer.byteLength(html);
 await writeFile(OUT, html);
-console.log(`${OUT} — ${(Buffer.byteLength(html) / 1024 / 1024).toFixed(2)} MB, ${rounds.length} rounds, ${verdicts.length} verdicts`);
+console.log(`${OUT} — ${(bytes / 1024).toFixed(0)} KB, ${rounds.length} round(s), ${verdicts.length} verdicts`);
+if (bytes > MAX_BYTES) {
+  console.error(`FAIL: ${(bytes / 1024).toFixed(0)} KB exceeds the ${(MAX_BYTES / 1024).toFixed(0)} KB budget — it will show a phone a spinner.`);
+  process.exit(1);
+}

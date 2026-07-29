@@ -1,0 +1,54 @@
+{
+  "round": 1,
+  "piece": "#hero — first viewport, 393x852 CSS px, DPR 3, 4x CPU throttle",
+  "threeWords": "Product engineer's claim",
+  "wins": false,
+  "score": 6,
+  "motion": "The 6-frame filmstrip is useless by construction and shows nothing: all six hero-motion-*.png files are byte-identical (md5 840d9c20b179b26d3209eea8fa8a40ec, 432832 bytes each), because #hero sits at y=0 so the harness scroll target computes to max(0, 0 - 613) = 0 and no scroll ever happens, and the 900ms post-reload wait outlasts the reveal. Sampling the entrance directly from navigation commit instead: .hero-display is opacity 1 / transform none at every one of 26 samples (it never animates — correct, since SPEC 4 forbids animation delaying LCP paint). .hero-lede and .hero-actions start at opacity 0, translateY(18px) and run to opacity 1, translateY(0) over ~620ms on cubic-bezier(0.16, 1, 0.3, 1), the actions trailing the lede by 72ms (at t=749ms: lede opacity 0.605 / translateY 7.11px, actions opacity 0.110 / translateY 16.01px). Only opacity and transform animate. Under prefers-reduced-motion: reduce the transition collapses to 1e-05s and both sit at opacity 1 / translateY 0. So the reveal itself is exactly to spec; the filmstrip just never caught it.",
+  "biggestGap": "The .hero-kicker eyebrow — the first text on the page, rendered in white at 13px/590 uppercase at x=20,y=80 — still reads the literal placeholder \"YOUR NAME\", so a CV hero never names its subject; replace that string (and the matching mailto:you@example.com on .hero-cta) with the real name and address.",
+  "violations": [
+    {
+      "rule": "1.1 one idea per viewport / content integrity — the section's identity slot is unfilled",
+      "measured": "DOM: <span class=\"eyebrow hero-kicker\">Your Name<span class=\"hero-sep\">·</span><span class=\"dim\">Tel Aviv, Israel</span></span>, rendered uppercase in rgb(247,248,248) at 13px/590, x=20 y=80 w=353 h=16 — the first text node in the section reads \"YOUR NAME\". The CTA is href=\"mailto:you@example.com\" and the bottom-bar FAB is aria-label=\"Email Your Name\".",
+      "where": ".hero-kicker (span.eyebrow.hero-kicker), x=20 y=80; a.hero-cta href",
+      "severity": "blocker"
+    },
+    {
+      "rule": "1.4 a single spacing scale, visibly obeyed",
+      "measured": ".hero-lede bottom = y 501; a.hero-cta top = y 608 -> a 107px void, produced by margin-top:67.0156px on .hero-actions plus padding-top:40px on the same element. Every other internal gap in the section is 20px (eyebrow 96 -> display 116) or 24px (display 319 -> lede 343), and the section's own padding is 80px top/bottom. The largest gap in the hero is therefore inside it, not around it, and 67.0156px is on no scale.",
+      "where": "div.hero-actions (margin-top 67.0156px + padding-top 40px), between p.hero-lede and a.hero-cta",
+      "severity": "major"
+    },
+    {
+      "rule": "1.1 one idea per viewport — the hero does not own the first screen",
+      "measured": "#hero boundingBox height = 736px in an 852px viewport, so 116px of #proof (y=736) is visible at scroll 0. What shows is #proof's orphaned eyebrow \"TRACK RECORD\" alone — glyph row sampled at device y 2215 averages rgb(60,63,68) against the rgb(8,9,10) page — with its content cut off by the floating nav whose pill starts at y=771. The first screenshot therefore contains a hero, a second section's caption with no section under it, and a 5-item nav.",
+      "where": "section#hero height 736 vs viewport 852; #proof eyebrow at CSS y~738",
+      "severity": "major"
+    },
+    {
+      "rule": "2.1 one accent, used sparingly / 1.1 one idea per viewport",
+      "measured": "Two accent-filled email controls are on screen simultaneously: a.hero-cta fill sampled at rgb(124,140,255) (CSS box x=20 y=608 132x48) and the bottom-bar FAB, aria-label \"Email Your Name\", fill sampled at rgb(115,130,236) (CSS box x=317 y=784 48x48) — the same hue, the same action, 128px apart vertically. Inside #hero itself the accent is used exactly once, which passes; composed, the first viewport shows it twice for one job.",
+      "where": "a.hero-cta y=608 and the nav FAB y=784",
+      "severity": "major"
+    },
+    {
+      "rule": "1.2 body measure 32-40 characters at this width",
+      "measured": ".hero-lede is 353px wide at 17px and renders 6 line boxes of 38 / 36 / 44 / 36 / 35 / 40 characters (229 chars total, mean 38.2). Line 3 (\"interfaces that ship, scale, and stay fast.\") is 44 characters, above the 40-character ceiling, and visibly runs to the right gutter.",
+      "where": "p.hero-lede, third line box",
+      "severity": "minor"
+    },
+    {
+      "rule": "2.1 body text contrast >= 4.5:1 against the actual surface",
+      "measured": ".hero-sep · is rgb(98,103,111) on rgb(8,9,10) = 3.50:1, below 4.5:1 at 13px (non-large). For comparison .hero-lede rgb(144,150,161) = 6.70:1 (passes), primary rgb(247,248,248) = 18.73:1 (passes), CTA label rgb(10,11,20) on rgb(124,140,255) = 6.59:1 (passes).",
+      "where": "span.hero-sep at x=126 y=80",
+      "severity": "minor"
+    },
+    {
+      "rule": "2.4 restraint — gradients only as one large, very low-contrast atmospheric wash",
+      "measured": "The top band carries two separate lights, not one. Sampling 40x40 device-px blocks at y=40: x=0 rgb(18,20,30) (blue, B-R = +12), x=600 rgb(12,13,17) (trough), x=1000 rgb(20,21,22) (neutral, B-R = +2). The left wash peaks at device y=400 with rgb(24,27,43), a 4.29x relative-luminance lift over the rgb(8,9,10) page, and is fully gone by device y=1000 (CSS y 333) — i.e. it dies halfway through the headline. Strength is fine; the two-source, asymmetric falloff is not.",
+      "where": "top 333 CSS px of #hero; computed backgroundImage on #hero is 'none', so the wash comes from an ancestor layer",
+      "severity": "minor"
+    }
+  ],
+  "evidence": "Started the site myself (harness/serve.mjs on :4173) and ran harness/shot.mjs hero. Opened with the Read tool and looked at: /home/user/cartridge/cv-site/captures/critic-r1/hero/hero-viewport-000.png, hero-element.png, hero-motion-000.png, hero-motion-002.png. Hashed all six motion frames (identical md5). Then re-instrumented the running page with Playwright on the same profile (393x852, DPR 3, 4x CPU throttle) for computed styles, box geometry, a 26-sample entrance trace from navigation commit, a prefers-reduced-motion pass, per-character line-box counts for the lede, and canvas pixel sampling of hero-viewport-000.png. Phantom check per the calibration note: the top-right region of the hero measures max luminance 26 over a 160x160 device-px block and document.elementFromPoint(360,30) returns the bare <section id=\"hero\">, so there is no envelope icon there and I have not reported one. Passes I confirmed and am not counting against it: display 47.946px / weight 680 / letter-spacing -1.82195px (-0.0380em) / line-height 50.8228px (1.060) all in band; type jumps 47.9->17 = 2.82x and 17->13 = 1.31x, both >= 1.25x; lede 17px / 400 / line-height 26.35px (1.55); eyebrow 13px / 590 / 1.105px (0.085em) uppercase, once per section; CTA 132x48 with 10px radius and no visible stroke; CTA at CSS y 608-656 = 71-77% down the viewport, inside the lower 40%; document.scrollWidth 393 (no overflow); viewport meta 'width=device-width,initial-scale=1,viewport-fit=cover' with no maximum-scale; nav tap boxes 62x48 at 8px spacing."
+}
