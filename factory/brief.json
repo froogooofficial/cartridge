@@ -1,0 +1,40 @@
+{
+  "name": "wrapped",
+  "headline": "One line in, a year of listening out — a personalised Wrapped-style recap, one per row of the feed.",
+  "canvas": { "width": 1080, "height": 1920, "fps": 25 },
+  "safe_margin_pct": 0.06,
+  "fonts": {
+    "display": [
+      "/mnt/skills/examples/canvas-design/canvas-fonts/Boldonse-Regular.ttf",
+      "/mnt/skills/examples/canvas-design/canvas-fonts/BigShoulders-Bold.ttf",
+      "/etc/alternatives/fonts-japanese-gothic.ttf"
+    ],
+    "label": [
+      "/mnt/skills/examples/canvas-design/canvas-fonts/InstrumentSans-Bold.ttf",
+      "/etc/alternatives/fonts-japanese-gothic.ttf"
+    ],
+    "body": [
+      "/mnt/skills/examples/canvas-design/canvas-fonts/InstrumentSans-Regular.ttf",
+      "/etc/alternatives/fonts-japanese-gothic.ttf"
+    ]
+  },
+  "palettes": [
+    { "bg": "#0b0d1a", "ink": "#f7f5ef", "accent": "#ff4f38", "accent2": "#ffd166" },
+    { "bg": "#04170f", "ink": "#f2fff8", "accent": "#25e39a", "accent2": "#c9ff4f" },
+    { "bg": "#1a0620", "ink": "#fdf2ff", "accent": "#c77dff", "accent2": "#4cc9f0" },
+    { "bg": "#12060b", "ink": "#fff4f0", "accent": "#ff8fab", "accent2": "#ffd6a5" },
+    { "bg": "#050d1f", "ink": "#eef4ff", "accent": "#4cc9f0", "accent2": "#f7f5ef" }
+  ],
+  "beats": [
+    { "id": "hook",    "start": 0.0,  "duration": 2.6,
+      "label": "{city} · 2025",              "value": "A YEAR IN SOUND" },
+    { "id": "minutes", "start": 2.6,  "duration": 3.0,
+      "label": "MINUTES LISTENED",            "value": "{minutes}" },
+    { "id": "artist",  "start": 5.6,  "duration": 3.2,
+      "label": "YOUR #1 ARTIST",              "value": "{top_artist}" },
+    { "id": "song",    "start": 8.8,  "duration": 3.0,
+      "label": "ON REPEAT · {top_genre}",     "value": "{top_song}" },
+    { "id": "badge",   "start": 11.8, "duration": 3.2,
+      "label": "{name}, YOU'RE IN THE",       "value": "TOP {top_pct}%" }
+  ]
+}

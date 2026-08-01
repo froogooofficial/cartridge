@@ -1,0 +1,8 @@
+# Batch output — regenerate with factory.py, don't commit 500 scenes and .idm files.
+out/
+
+# Reference stills are copyrighted grading material; keep them local.
+bar/reference/*
+!bar/reference/README.md
+__pycache__/
+*.pyc
