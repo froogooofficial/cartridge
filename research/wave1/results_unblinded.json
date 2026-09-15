@@ -1,0 +1,272 @@
+[
+ {
+  "judge": 1,
+  "cand": "P-A3",
+  "parent": "P-A0",
+  "cand_pts": 8,
+  "par_pts": 2,
+  "pref_cand": true,
+  "ratio": 6.0,
+  "why": "A is LinkedIn thought-leader mush. B has a joke, a mechanism and a 2am detail people will quote back."
+ },
+ {
+  "judge": 1,
+  "cand": "P-A2",
+  "parent": "P-A0",
+  "cand_pts": 7,
+  "par_pts": 2,
+  "pref_cand": true,
+  "ratio": 4.5,
+  "why": "B gives an actionable contrarian move with rhythm; last line is murky. A says nothing checkable."
+ },
+ {
+  "judge": 1,
+  "cand": "P-B2",
+  "parent": "P-B0",
+  "cand_pts": 8,
+  "par_pts": 5,
+  "pref_cand": true,
+  "ratio": 5.0,
+  "why": "B's opening line is a self-demonstrating flex. A buries the same trick under a launch announcement."
+ },
+ {
+  "judge": 1,
+  "cand": "P-B4",
+  "parent": "P-B0",
+  "cand_pts": 8,
+  "par_pts": 5,
+  "pref_cand": true,
+  "ratio": 3.5,
+  "why": "1994 box-art framing earns the nostalgia retweet and still ships the mechanism. A is press release cadence."
+ },
+ {
+  "judge": 1,
+  "cand": "P-B1",
+  "parent": "P-B0",
+  "cand_pts": 8,
+  "par_pts": 5,
+  "pref_cand": true,
+  "ratio": 3.0,
+  "why": "A leads with the fact that makes the trick work; devs love a format-spec reveal. B leads with we-built."
+ },
+ {
+  "judge": 1,
+  "cand": "P-A0p",
+  "parent": "P-A0",
+  "cand_pts": 3,
+  "par_pts": 2,
+  "pref_cand": true,
+  "ratio": 1.15,
+  "why": "Same bland take, B's tense reads marginally less ghostwritten. Neither stops a scroll."
+ },
+ {
+  "judge": 1,
+  "cand": "P-B3",
+  "parent": "P-B0",
+  "cand_pts": 7,
+  "par_pts": 5,
+  "pref_cand": true,
+  "ratio": 2.0,
+  "why": "A is concrete and preempts the security dunk, though the reassurance slightly dampens it. B is generic launch voice."
+ },
+ {
+  "judge": 1,
+  "cand": "P-A4",
+  "parent": "P-A0",
+  "cand_pts": 7,
+  "par_pts": 2,
+  "pref_cand": true,
+  "ratio": 8.0,
+  "why": "The then/now format is pure like bait and the punchline is true. A is a take everyone has read."
+ },
+ {
+  "judge": 1,
+  "cand": "P-A1",
+  "parent": "P-A0",
+  "cand_pts": 8,
+  "par_pts": 2,
+  "pref_cand": true,
+  "ratio": 7.0,
+  "why": "B accuses the reader with numbers and lands skill issue. Spicy, specific, quotable. A is wallpaper."
+ },
+ {
+  "judge": 2,
+  "cand": "P-A4",
+  "parent": "P-A0",
+  "cand_pts": 8,
+  "par_pts": 6,
+  "pref_cand": true,
+  "ratio": 4.0,
+  "why": "B is a witty year:year joke with a concrete punchline; A reads like generic thought-leader filler."
+ },
+ {
+  "judge": 2,
+  "cand": "P-A1",
+  "parent": "P-A0",
+  "cand_pts": 8,
+  "par_pts": 6,
+  "pref_cand": true,
+  "ratio": 3.0,
+  "why": "B's specific numbers and 'skill issue' callout hit harder and are more arguable than A's vague reframe."
+ },
+ {
+  "judge": 2,
+  "cand": "P-B1",
+  "parent": "P-B0",
+  "cand_pts": 8,
+  "par_pts": 7,
+  "pref_cand": true,
+  "ratio": 1.6,
+  "why": "B leads with the surprising technical fact instead of 'we built X'; stronger hook, same payoff."
+ },
+ {
+  "judge": 2,
+  "cand": "P-A3",
+  "parent": "P-A0",
+  "cand_pts": 8,
+  "par_pts": 6,
+  "pref_cand": true,
+  "ratio": 3.0,
+  "why": "A's '2am rewrite' detail and moat punchline are vivid and shareable; B is bland thought-leader prose."
+ },
+ {
+  "judge": 2,
+  "cand": "P-B2",
+  "parent": "P-B0",
+  "cand_pts": 8,
+  "par_pts": 7,
+  "pref_cand": true,
+  "ratio": 2.5,
+  "why": "A's self-referential 'this tweet' hook exploiting the attached image beats B's generic announcement opener."
+ },
+ {
+  "judge": 2,
+  "cand": "P-B4",
+  "parent": "P-B0",
+  "cand_pts": 8,
+  "par_pts": 7,
+  "pref_cand": true,
+  "ratio": 2.8,
+  "why": "A's 1994-shareware analogy is a stronger, more nostalgic hook than B's flat 'we built a way' opener."
+ },
+ {
+  "judge": 2,
+  "cand": "P-A2",
+  "parent": "P-A0",
+  "cand_pts": 7,
+  "par_pts": 6,
+  "pref_cand": true,
+  "ratio": 2.0,
+  "why": "B's 'deleting things' contrarian hook and concrete tricolon beat A's generic context-bottleneck take."
+ },
+ {
+  "judge": 2,
+  "cand": "P-B3",
+  "parent": "P-B0",
+  "cand_pts": 8,
+  "par_pts": 7,
+  "pref_cand": true,
+  "ratio": 1.5,
+  "why": "A's added caveat ('read what you install anyway') builds trust and reads more human than B's flat announcement."
+ },
+ {
+  "judge": 2,
+  "cand": "P-A0p",
+  "parent": "P-A0",
+  "cand_pts": 6,
+  "par_pts": 6,
+  "pref_cand": false,
+  "ratio": 0.9090909090909091,
+  "why": "Near-duplicates; A's 'it's context' lands cleaner than B's clipped 'context is,' otherwise identical."
+ },
+ {
+  "judge": 3,
+  "cand": "P-A1",
+  "parent": "P-A0",
+  "cand_pts": 8,
+  "par_pts": 3,
+  "pref_cand": true,
+  "ratio": 4.0,
+  "why": "A's contrarian hook and 'skill issue and the skill is yours' land hard; B is generic marketing cadence with an em-dash tell."
+ },
+ {
+  "judge": 3,
+  "cand": "P-B3",
+  "parent": "P-B0",
+  "cand_pts": 8,
+  "par_pts": 7,
+  "pref_cand": true,
+  "ratio": 1.5,
+  "why": "B leads with a clean claim and adds the 'read what you install' security beat; A's 'we built a way' opener is soft."
+ },
+ {
+  "judge": 3,
+  "cand": "P-A3",
+  "parent": "P-A0",
+  "cand_pts": 8,
+  "par_pts": 3,
+  "pref_cand": true,
+  "ratio": 4.0,
+  "why": "'a prompt someone rewrote 40 times at 2am' is a shareable truth; B is the bland baseline again."
+ },
+ {
+  "judge": 3,
+  "cand": "P-B1",
+  "parent": "P-B0",
+  "cand_pts": 8,
+  "par_pts": 7,
+  "pref_cand": true,
+  "ratio": 1.7,
+  "why": "B opens with the mechanism itself, feels discovered not announced; A's corporate 'we built' framing dulls the same idea."
+ },
+ {
+  "judge": 3,
+  "cand": "P-A4",
+  "parent": "P-A0",
+  "cand_pts": 8,
+  "par_pts": 3,
+  "pref_cand": true,
+  "ratio": 5.0,
+  "why": "The then/now format is a proven banger and 'one markdown file nobody is allowed to edit' is instantly quotable; A is filler."
+ },
+ {
+  "judge": 3,
+  "cand": "P-A0p",
+  "parent": "P-A0",
+  "cand_pts": 3,
+  "par_pts": 3,
+  "pref_cand": true,
+  "ratio": 1.1,
+  "why": "Near-identical bland posts; B's phrasing is marginally tighter but both read as marketing, neither will move."
+ },
+ {
+  "judge": 3,
+  "cand": "P-A2",
+  "parent": "P-A0",
+  "cand_pts": 8,
+  "par_pts": 3,
+  "pref_cand": true,
+  "ratio": 3.5,
+  "why": "'The fastest way to make an agent smarter is still deleting things' is counterintuitive and concrete; A is vague and agreeable."
+ },
+ {
+  "judge": 3,
+  "cand": "P-B2",
+  "parent": "P-B0",
+  "cand_pts": 8,
+  "par_pts": 7,
+  "pref_cand": true,
+  "ratio": 2.2,
+  "why": "B is self-demonstrating ('the file, not a screenshot') which begs verification and shares; A merely describes the same trick."
+ },
+ {
+  "judge": 3,
+  "cand": "P-B4",
+  "parent": "P-B0",
+  "cand_pts": 8,
+  "par_pts": 7,
+  "pref_cand": true,
+  "ratio": 1.8,
+  "why": "The 1994 cartridge framing gives taste and nostalgia; A states the mechanism flatly without the emotional hook."
+ }
+]

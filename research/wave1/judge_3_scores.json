@@ -1,0 +1,11 @@
+[
+  {"pair": "pair1", "a_points": 8, "b_points": 3, "prefer": "A", "likes_ratio": 4.0, "why": "A's contrarian hook and 'skill issue and the skill is yours' land hard; B is generic marketing cadence with an em-dash tell."},
+  {"pair": "pair2", "a_points": 7, "b_points": 8, "prefer": "B", "likes_ratio": 1.5, "why": "B leads with a clean claim and adds the 'read what you install' security beat; A's 'we built a way' opener is soft."},
+  {"pair": "pair3", "a_points": 8, "b_points": 3, "prefer": "A", "likes_ratio": 4.0, "why": "'a prompt someone rewrote 40 times at 2am' is a shareable truth; B is the bland baseline again."},
+  {"pair": "pair4", "a_points": 7, "b_points": 8, "prefer": "B", "likes_ratio": 1.7, "why": "B opens with the mechanism itself, feels discovered not announced; A's corporate 'we built' framing dulls the same idea."},
+  {"pair": "pair5", "a_points": 3, "b_points": 8, "prefer": "B", "likes_ratio": 5.0, "why": "The then/now format is a proven banger and 'one markdown file nobody is allowed to edit' is instantly quotable; A is filler."},
+  {"pair": "pair6", "a_points": 3, "b_points": 3, "prefer": "B", "likes_ratio": 1.1, "why": "Near-identical bland posts; B's phrasing is marginally tighter but both read as marketing, neither will move."},
+  {"pair": "pair7", "a_points": 3, "b_points": 8, "prefer": "B", "likes_ratio": 3.5, "why": "'The fastest way to make an agent smarter is still deleting things' is counterintuitive and concrete; A is vague and agreeable."},
+  {"pair": "pair8", "a_points": 7, "b_points": 8, "prefer": "B", "likes_ratio": 2.2, "why": "B is self-demonstrating ('the file, not a screenshot') which begs verification and shares; A merely describes the same trick."},
+  {"pair": "pair9", "a_points": 7, "b_points": 8, "prefer": "B", "likes_ratio": 1.8, "why": "The 1994 cartridge framing gives taste and nostalgia; A states the mechanism flatly without the emotional hook."}
+]

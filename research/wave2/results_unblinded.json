@@ -1,0 +1,142 @@
+{
+ "P-A4": {
+  "mean_borda": 11.333333333333334,
+  "ranks": [
+   3,
+   2,
+   3
+  ],
+  "reposts": 2,
+  "kind": "w1 survivor"
+ },
+ "H3": {
+  "mean_borda": 11.0,
+  "ranks": [
+   4,
+   3,
+   2
+  ],
+  "reposts": 3,
+  "kind": "hybrid B2 x B1"
+ },
+ "P-B2": {
+  "mean_borda": 10.0,
+  "ranks": [
+   1,
+   7,
+   4
+  ],
+  "reposts": 1,
+  "kind": "w1 survivor"
+ },
+ "H2": {
+  "mean_borda": 9.0,
+  "ranks": [
+   8,
+   6,
+   1
+  ],
+  "reposts": 1,
+  "kind": "hybrid A4 x A3"
+ },
+ "P-A1": {
+  "mean_borda": 8.666666666666666,
+  "ranks": [
+   10,
+   1,
+   5
+  ],
+  "reposts": 1,
+  "kind": "w1 survivor"
+ },
+ "H4": {
+  "mean_borda": 7.666666666666667,
+  "ranks": [
+   2,
+   10,
+   7
+  ],
+  "reposts": 0,
+  "kind": "hybrid B2 x B4"
+ },
+ "H5": {
+  "mean_borda": 7.0,
+  "ranks": [
+   5,
+   5,
+   11
+  ],
+  "reposts": 0,
+  "kind": "hybrid B2 x B3"
+ },
+ "P-A3": {
+  "mean_borda": 6.666666666666667,
+  "ranks": [
+   6,
+   4,
+   12
+  ],
+  "reposts": 0,
+  "kind": "w1 survivor"
+ },
+ "P-B4": {
+  "mean_borda": 5.0,
+  "ranks": [
+   11,
+   8,
+   8
+  ],
+  "reposts": 0,
+  "kind": "w1 survivor"
+ },
+ "H6": {
+  "mean_borda": 5.0,
+  "ranks": [
+   9,
+   9,
+   9
+  ],
+  "reposts": 0,
+  "kind": "hybrid cross-track: B content in A4 format"
+ },
+ "H1": {
+  "mean_borda": 4.666666666666667,
+  "ranks": [
+   7,
+   11,
+   10
+  ],
+  "reposts": 0,
+  "kind": "hybrid A4 x A1"
+ },
+ "P-A4p": {
+  "mean_borda": 3.6666666666666665,
+  "ranks": [
+   12,
+   13,
+   6
+  ],
+  "reposts": 0,
+  "kind": "noise probe (paraphrase of P-A4)"
+ },
+ "P-B0": {
+  "mean_borda": 1.3333333333333333,
+  "ranks": [
+   13,
+   12,
+   13
+  ],
+  "reposts": 0,
+  "kind": "anchor"
+ },
+ "P-A0": {
+  "mean_borda": 0.0,
+  "ranks": [
+   14,
+   14,
+   14
+  ],
+  "reposts": 0,
+  "kind": "anchor"
+ }
+}

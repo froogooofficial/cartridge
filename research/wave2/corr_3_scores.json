@@ -1,0 +1,1 @@
+{"prefer":"B","likes_ratio":1.15,"why":"Identical hook; FFD9 hex marker reads more hacker-credible to dev Twitter than IEND, and JPEG tail survives X's pipeline more plausibly.","factual_risk":"A","risk_why":"X re-encodes most PNGs to JPEG, stripping post-IEND bytes; replies will point this out."}

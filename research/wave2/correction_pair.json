@@ -1,0 +1,4 @@
+{
+ "H3": "The image attached to this tweet is a working Claude Code skill.\n\nA PNG stops decoding at its IEND marker. Everything after it is invisible to every viewer and perfectly readable to everything else. That's where the SKILL.md is. Save it, read the tail.",
+ "H3c": "The image attached to this tweet is a working Claude Code skill.\n\nA JPEG stops decoding at its FFD9 end marker. Everything after it is invisible to every viewer and perfectly readable to everything else. That's where the SKILL.md is. Save it, read the tail."
+}

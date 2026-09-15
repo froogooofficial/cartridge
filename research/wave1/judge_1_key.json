@@ -1,0 +1,56 @@
+{
+ "pair1": {
+  "A": "P-A0",
+  "B": "P-A3",
+  "parent": "P-A0",
+  "candidate": "P-A3"
+ },
+ "pair2": {
+  "A": "P-A0",
+  "B": "P-A2",
+  "parent": "P-A0",
+  "candidate": "P-A2"
+ },
+ "pair3": {
+  "A": "P-B0",
+  "B": "P-B2",
+  "parent": "P-B0",
+  "candidate": "P-B2"
+ },
+ "pair4": {
+  "A": "P-B0",
+  "B": "P-B4",
+  "parent": "P-B0",
+  "candidate": "P-B4"
+ },
+ "pair5": {
+  "A": "P-B1",
+  "B": "P-B0",
+  "parent": "P-B0",
+  "candidate": "P-B1"
+ },
+ "pair6": {
+  "A": "P-A0",
+  "B": "P-A0p",
+  "parent": "P-A0",
+  "candidate": "P-A0p"
+ },
+ "pair7": {
+  "A": "P-B3",
+  "B": "P-B0",
+  "parent": "P-B0",
+  "candidate": "P-B3"
+ },
+ "pair8": {
+  "A": "P-A0",
+  "B": "P-A4",
+  "parent": "P-A0",
+  "candidate": "P-A4"
+ },
+ "pair9": {
+  "A": "P-A0",
+  "B": "P-A1",
+  "parent": "P-A0",
+  "candidate": "P-A1"
+ }
+}
