@@ -1,0 +1,74 @@
+[
+  {
+    "pair": "pair1",
+    "a_points": 6,
+    "b_points": 8,
+    "prefer": "B",
+    "likes_ratio": 4.0,
+    "why": "B is a witty year:year joke with a concrete punchline; A reads like generic thought-leader filler."
+  },
+  {
+    "pair": "pair2",
+    "a_points": 6,
+    "b_points": 8,
+    "prefer": "B",
+    "likes_ratio": 3.0,
+    "why": "B's specific numbers and 'skill issue' callout hit harder and are more arguable than A's vague reframe."
+  },
+  {
+    "pair": "pair3",
+    "a_points": 7,
+    "b_points": 8,
+    "prefer": "B",
+    "likes_ratio": 1.6,
+    "why": "B leads with the surprising technical fact instead of 'we built X'; stronger hook, same payoff."
+  },
+  {
+    "pair": "pair4",
+    "a_points": 8,
+    "b_points": 6,
+    "prefer": "A",
+    "likes_ratio": 3.0,
+    "why": "A's '2am rewrite' detail and moat punchline are vivid and shareable; B is bland thought-leader prose."
+  },
+  {
+    "pair": "pair5",
+    "a_points": 8,
+    "b_points": 7,
+    "prefer": "A",
+    "likes_ratio": 2.5,
+    "why": "A's self-referential 'this tweet' hook exploiting the attached image beats B's generic announcement opener."
+  },
+  {
+    "pair": "pair6",
+    "a_points": 8,
+    "b_points": 7,
+    "prefer": "A",
+    "likes_ratio": 2.8,
+    "why": "A's 1994-shareware analogy is a stronger, more nostalgic hook than B's flat 'we built a way' opener."
+  },
+  {
+    "pair": "pair7",
+    "a_points": 6,
+    "b_points": 7,
+    "prefer": "B",
+    "likes_ratio": 2.0,
+    "why": "B's 'deleting things' contrarian hook and concrete tricolon beat A's generic context-bottleneck take."
+  },
+  {
+    "pair": "pair8",
+    "a_points": 8,
+    "b_points": 7,
+    "prefer": "A",
+    "likes_ratio": 1.5,
+    "why": "A's added caveat ('read what you install anyway') builds trust and reads more human than B's flat announcement."
+  },
+  {
+    "pair": "pair9",
+    "a_points": 6,
+    "b_points": 6,
+    "prefer": "A",
+    "likes_ratio": 1.1,
+    "why": "Near-duplicates; A's 'it's context' lands cleaner than B's clipped 'context is,' otherwise identical."
+  }
+]

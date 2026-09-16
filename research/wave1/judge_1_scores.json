@@ -1,0 +1,11 @@
+[
+  {"pair": "pair1", "a_points": 2, "b_points": 8, "prefer": "B", "likes_ratio": 6.0, "why": "A is LinkedIn thought-leader mush. B has a joke, a mechanism and a 2am detail people will quote back."},
+  {"pair": "pair2", "a_points": 2, "b_points": 7, "prefer": "B", "likes_ratio": 4.5, "why": "B gives an actionable contrarian move with rhythm; last line is murky. A says nothing checkable."},
+  {"pair": "pair3", "a_points": 5, "b_points": 8, "prefer": "B", "likes_ratio": 5.0, "why": "B's opening line is a self-demonstrating flex. A buries the same trick under a launch announcement."},
+  {"pair": "pair4", "a_points": 5, "b_points": 8, "prefer": "B", "likes_ratio": 3.5, "why": "1994 box-art framing earns the nostalgia retweet and still ships the mechanism. A is press release cadence."},
+  {"pair": "pair5", "a_points": 8, "b_points": 5, "prefer": "A", "likes_ratio": 3.0, "why": "A leads with the fact that makes the trick work; devs love a format-spec reveal. B leads with we-built."},
+  {"pair": "pair6", "a_points": 2, "b_points": 3, "prefer": "B", "likes_ratio": 1.15, "why": "Same bland take, B's tense reads marginally less ghostwritten. Neither stops a scroll."},
+  {"pair": "pair7", "a_points": 7, "b_points": 5, "prefer": "A", "likes_ratio": 2.0, "why": "A is concrete and preempts the security dunk, though the reassurance slightly dampens it. B is generic launch voice."},
+  {"pair": "pair8", "a_points": 2, "b_points": 7, "prefer": "B", "likes_ratio": 8.0, "why": "The then/now format is pure like bait and the punchline is true. A is a take everyone has read."},
+  {"pair": "pair9", "a_points": 2, "b_points": 8, "prefer": "B", "likes_ratio": 7.0, "why": "B accuses the reader with numbers and lands skill issue. Spicy, specific, quotable. A is wallpaper."}
+]

@@ -1,0 +1,10 @@
+{
+  "ranking": ["P2", "P3", "P7", "P9", "P11", "P4", "P6", "P14", "P1", "P8", "P5", "P12", "P10", "P13"],
+  "best_overall": "P2",
+  "why_best": "Opening line forces a double-take, the claim is checkable in seconds, and 'extracts in 4 lines, installs in one' is the payoff. People save the image.",
+  "why_second": "Same disbelief hook plus the 1994-cartridge frame, which is the part people quote. Slightly diluted by carrying two ideas at once.",
+  "worst": "P13",
+  "why_worst": "Consensus take everyone already posted, em-dash LLM cadence, nothing concrete to check or argue with.",
+  "would_repost": ["P2", "P7", "P9"],
+  "notes": "Surprised how much the near-identical image posts diverge: 'We built a way to' in P10 kills an otherwise identical payload, and P7 beats longer versions of its own joke."
+}

@@ -1,0 +1,10 @@
+{
+  "ranking": ["P9", "P3", "P10", "P8", "P2", "P6", "P13", "P7", "P4", "P12", "P1", "P11", "P14", "P5"],
+  "best_overall": "P9",
+  "why_best": "Proven 2023/2026 format, the '40 times at 2am' detail is painfully specific, and reposting it flatters every prompt-wrangler who feels unseen.",
+  "why_second": "Strongest hook of the demo family, mechanism is checkable in one line, 'invisible to every viewer, readable to everything else' is quotable.",
+  "worst": "P5",
+  "why_worst": "LinkedIn cadence, no hook, no specific claim, nothing to argue with or check.",
+  "would_repost": ["P9", "P3"],
+  "notes": "Mashups (P12, P13) lose to their parents; blending two hooks dilutes both. 'We built' (P14) instantly reads as marketing. Cartridge metaphor works better as garnish (P7) than as the hook (P4)."
+}
